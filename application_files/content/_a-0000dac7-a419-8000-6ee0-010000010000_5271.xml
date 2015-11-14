@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>Utils_DocX_CreateTableHeader_Row</name>
+        <uuid>_a-0000dac7-a419-8000-6ee0-010000010000_5271</uuid>
+        <description></description>
+        <parentUuid>_a-0000dac7-a419-8000-6ee0-010000010000_5267</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=&quot;&lt;w:tc&gt;&#xD;
+	&lt;w:p&gt;&#xD;
+		&lt;w:r&gt;&#xD;
+			&lt;w:t&gt;&quot; &amp; ri!columnname &amp; &#xD;
+			&quot;&lt;/w:t&gt;&#xD;
+		&lt;/w:r&gt;&#xD;
+	&lt;/w:p&gt;&#xD;
+&lt;/w:tc&gt;&quot;</definition>
+        <namedTypedValue>
+            <name>columnName</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

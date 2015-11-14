@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>Utils_EditableGrid_Row</name>
+        <uuid>29ea8aca-51bb-40c9-934a-3cc80260e89d</uuid>
+        <description></description>
+        <parentUuid>_a-0000da84-7ec2-8000-6ee0-010000010000_2120</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(&#xD;
+  id: ri!index,&#xD;
+  contents: {&#xD;
+    #&quot;SYSTEM_SYSRULES_paragraphField&quot;(&#xD;
+      label: ri!label &amp; ri!index,&#xD;
+      value: ri!items[ri!index],&#xD;
+      saveInto: ri!items[ri!index],&#xD;
+      align: &quot;LEFT&quot;&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+      label: &quot;Delete &quot; &amp; ri!index,&#xD;
+      links: #&quot;SYSTEM_SYSRULES_dynamicLink&quot;(&#xD;
+        label: char(10005),&#xD;
+        value: ri!index,&#xD;
+        saveInto: {&#xD;
+          a!save(ri!items, remove(ri!items, save!value)),&#xD;
+          a!save(ri!itemsToken, remove(ri!itemsToken, save!value))&#xD;
+        },&#xD;
+      align: &quot;CENTER&quot;&#xD;
+      )&#xD;
+    )&#xD;
+  }&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>items</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>index</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>itemsToken</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>label</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

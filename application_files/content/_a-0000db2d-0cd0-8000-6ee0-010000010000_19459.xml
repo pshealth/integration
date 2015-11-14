@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>Utils_CalculateDuration_Text</name>
+        <uuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_19459</uuid>
+        <description></description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_946</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= with(
+  local!int: tointeger(
+    ri!text
+  ),
+  local!type: index(
+    ri!text,
+    len(
+      ri!text
+    ),
+    &quot;&quot;
+  ),
+  if(
+    and(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+        tointeger(ri!text)
+      ) = false, len(tointeger(ri!text)) = len(ri!text))
+    tointeger(ri!text),
+    if(
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      wherecontains(
+        {
+          &quot;d&quot;,
+          &quot;h&quot;,
+          &quot;m&quot;
+        },
+        local!type
+      )
+    ),
+      {},
+      choose(
+        wherecontains(
+          local!type,
+          {
+            &quot;d&quot;,
+            &quot;h&quot;,
+            &quot;m&quot;
+          }
+        )[1],
+        local!int * 24 * 60,
+        local!int * 60,
+        local!int,
+        local!int
+      )
+    )
+  )
+)
+
+
+</definition>
+        <namedTypedValue>
+            <name>text</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>Utils_Round</name>
+        <uuid>_a-0000db0d-1b74-8000-6ee0-010000010000_13236</uuid>
+        <description>Rounds to specified number of decimal places</description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_946</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>if(
+  isnull(ri!decimalplaces),
+  ri!decimal,
+  with(
+    a: tostring(ri!decimal),
+    b: find(&quot;.&quot;, a),
+    c: if(b = 0, null, right(a, len(a) - find(&quot;.&quot;, a))),
+    d: if(b = 0, null, left(c, ri!decimalplaces+1)),
+    d
+    )
+)
+
+/*
+  d: if(b = 0, null, if(len(c)&gt;1, left(right(c, 2), 1), null)),
+  e: if(d = null, null, right(c,1)),
+  f: if(e = null, null, if(e&gt;=5, 1, 0)),
+  g: if(f = null, null, f+d),
+  h: if(g = null, null, )
+  */</definition>
+        <namedTypedValue>
+            <name>decimal</name>
+            <type>
+                <name>double</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>decimalplaces</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

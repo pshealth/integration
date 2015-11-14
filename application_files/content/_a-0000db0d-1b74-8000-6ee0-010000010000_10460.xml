@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>Utils_DisplayGoogleMapWithPins</name>
+        <uuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10460</uuid>
+        <description></description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_946</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= with(
+  local!map: &quot;http://maps.google.com/maps/api/staticmap&quot; &amp; &quot;?center=&quot; &amp; substitute(ri!center, &quot; &quot;, &quot;+&quot;) &amp; &quot;&amp;zoom=&quot; &amp; ri!zoom &amp; &quot;&amp;size=&quot; &amp; ri!size &amp; &quot;&amp;maptype=&quot; &amp; ri!mapType,
+  local!markerHome: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10463&quot;(
+    &quot;H&quot;,
+    ri!center,
+    &quot;red&quot;
+  ),
+  local!markers: apply(
+    #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10463&quot;,
+    merge(
+      ri!labels,
+      ri!postCodes,
+      #&quot;f76ad327-c338-417e-9bb5-590b3be7589f&quot;(
+        ri!labels,
+        ri!color
+      )
+    )
+  ),
+  local!map &amp; &quot;&amp;&quot; &amp; local!markerHome &amp; &quot;&amp;&quot; &amp; joinarray(
+    local!markers,
+    &quot;&amp;&quot;
+  )
+)</definition>
+        <namedTypedValue>
+            <name>center</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>size</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>zoom</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>mapType</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>color</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>labels</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>postCodes</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>Utils_GenerateTaskNameDetails</name>
+        <uuid>_a-0000db81-7a28-8000-5130-010000010000_4063</uuid>
+        <description>Formats the task name to display in the psHEALTH task format</description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_946</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= load(&#xD;
+  local!Absence: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!AbsenceID),null,#&quot;00ca2f25-fb07-4ac9-a412-da78275aebc5&quot;(&#xD;
+    ri!AbsenceID&#xD;
+  )),&#xD;
+  local!CustomerId: if(&#xD;
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+      index(local!Absence,&quot;EmployeeId&quot;,null)&#xD;
+    ),&#xD;
+    ri!CustomerId,&#xD;
+    #&quot;daf54511-22ba-4f20-8d6a-10ad33e4894f&quot;(&#xD;
+      index(local!Absence,&quot;EmployeeId&quot;,null)&#xD;
+    ).CustomerId&#xD;
+  ),&#xD;
+  local!CustomerName:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!CustomerId),null,index(#&quot;45f1afde-bc6f-4aea-8079-b7d72e54ee7d&quot;(local!CustomerId),&quot;CustomerName&quot;,null)),&#xD;
+  if(&#xD;
+    ri!SLA,&#xD;
+    #&quot;_a-0000db81-7a28-8000-5130-010000010000_4061&quot; &amp; &quot;: &quot;,&#xD;
+    &quot;&quot;&#xD;
+  ) &amp; ri!TaskTitle &amp; &quot; (Customer: &quot; &amp; local!CustomerName &amp; &quot;)&quot;&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>AbsenceID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>SLA</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>TaskTitle</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>CustomerId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>AbsenceID</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>SLA</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                    <a:nameRef>TaskTitle</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>CustomerId</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

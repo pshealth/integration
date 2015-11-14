@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>Utils_SeeCaseStakeholders_Grid</name>
+        <uuid>647bf2ad-b390-4bff-8684-9e0911c9ca02</uuid>
+        <description></description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_946</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>  #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+          label: ri!SectionLabel,&#xD;
+          labelPosition: &quot;ABOVE&quot;,&#xD;
+          firstColumnContents:{&#xD;
+            #&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+              totalCount: ri!SelectedClients.totalCount,&#xD;
+              columns: {&#xD;
+                #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+                    label: &quot;Name&quot;,&#xD;
+                    field: &quot;Name&quot;,&#xD;
+                    data: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!SelectedClients.data), null, index(ri!SelectedClients.data, &quot;Name&quot;, null)),&#xD;
+                    alignment: &quot;LEFT&quot;&#xD;
+                  ),&#xD;
+                  #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+                    label: &quot;Email&quot;,&#xD;
+                    field: &quot;Email&quot;,&#xD;
+                    data: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!SelectedClients.data), null, index(ri!SelectedClients.data, &quot;Email&quot;, null)),&#xD;
+                    alignment: &quot;LEFT&quot;&#xD;
+                  ),&#xD;
+                  #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+                    label: &quot;Address&quot;,&#xD;
+                    field: &quot;Address&quot;,&#xD;
+                    data: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!SelectedClients.data), null, index(ri!SelectedClients.data, &quot;Address&quot;, null)),&#xD;
+                    alignment: &quot;LEFT&quot;&#xD;
+                  ),&#xD;
+                  #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+                    label: &quot;City&quot;,&#xD;
+                    field: &quot;City&quot;,&#xD;
+                    data: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!SelectedClients.data), null, index(ri!SelectedClients.data, &quot;City&quot;, null)),&#xD;
+                    alignment: &quot;LEFT&quot;&#xD;
+                  ),&#xD;
+                  #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+                    label: &quot;Type&quot;,&#xD;
+                    field: &quot;Type&quot;,&#xD;
+                    data: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!SelectedClients.data), null, apply(fn!displayvalue, index(ri!SelectedClients.data, &quot;ClientTypeID&quot;, null), ri!ClientTypes.ID, ri!ClientTypes.Name, 0)),&#xD;
+                    alignment: &quot;LEFT&quot;&#xD;
+                  ),&#xD;
+                  #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+                    label: &quot;Phone&quot;,&#xD;
+                    field: &quot;PhonePrimary&quot;,&#xD;
+                    data: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!SelectedClients.data), null, index(ri!SelectedClients.data, &quot;PhonePrimary&quot;, null)),&#xD;
+                    alignment: &quot;LEFT&quot;&#xD;
+                  ) &#xD;
+              },&#xD;
+              value: ri!PagingInfo,&#xD;
+              saveInto: {},&#xD;
+              validations: {}&#xD;
+            )&#xD;
+          },&#xD;
+          secondColumnContents:{&#xD;
+          }&#xD;
+          )</definition>
+        <namedTypedValue>
+            <name>ClientTypes</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>PagingInfo</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>SelectedClients</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>SectionLabel</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

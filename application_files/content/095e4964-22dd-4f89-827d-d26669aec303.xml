@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>Utils_IsDateRangeWithinRange</name>
+        <uuid>095e4964-22dd-4f89-827d-d26669aec303</uuid>
+        <description>Checks if a date range falls within two dates. Returns true at any point the ranges intercept (include same day as the bounds)</description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_946</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>if(&#xD;
+	or(&#xD;
+		and(&#xD;
+			ri!StartDate &lt;= ri!DateUpperBound, &#xD;
+			ri!StartDate &gt;= ri!DateLowerBound&#xD;
+			),&#xD;
+		and(&#xD;
+			ri!EndDate &lt;= ri!DateUpperBound, &#xD;
+			ri!EndDate &gt;= ri!DateLowerBound&#xD;
+			),&#xD;
+		and(&#xD;
+			ri!StartDate &lt; ri!DateLowerBound,&#xD;
+			ri!EndDate &gt; ri!DateLowerBound&#xD;
+			)&#xD;
+		), &#xD;
+	true, &#xD;
+	false&#xD;
+  )</definition>
+        <namedTypedValue>
+            <name>DateUpperBound</name>
+            <type>
+                <name>date</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>DateLowerBound</name>
+            <type>
+                <name>date</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>StartDate</name>
+            <type>
+                <name>date</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>EndDate</name>
+            <type>
+                <name>date</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

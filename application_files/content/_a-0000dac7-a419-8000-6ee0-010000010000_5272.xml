@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>Utils_DocX_CreateTableHeader</name>
+        <uuid>_a-0000dac7-a419-8000-6ee0-010000010000_5272</uuid>
+        <description></description>
+        <parentUuid>_a-0000dac7-a419-8000-6ee0-010000010000_5267</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= with(
+  local!rows: apply(
+    #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_5271&quot;,
+    ri!columnNames
+  ),
+  &quot;&lt;w:tblPr&gt;
+				&lt;w:tblStyle w:val=&quot;&quot;LightList-Accent4&quot;&quot;/&gt;
+				&lt;w:tblW w:w=&quot;&quot;5000&quot;&quot; w:type=&quot;&quot;pct&quot;&quot;/&gt;
+				&lt;w:tblLook w:val=&quot;&quot;04A0&quot;&quot; w:firstRow=&quot;&quot;1&quot;&quot; w:lastRow=&quot;&quot;0&quot;&quot; w:firstColumn=&quot;&quot;1&quot;&quot; w:lastColumn=&quot;&quot;0&quot;&quot; w:noHBand=&quot;&quot;0&quot;&quot; w:noVBand=&quot;&quot;1&quot;&quot;/&gt;
+			&lt;/w:tblPr&gt;
+			&lt;w:tblGrid&gt;
+				&lt;w:gridCol w:w=&quot;&quot;3192&quot;&quot;/&gt;
+				&lt;w:gridCol w:w=&quot;&quot;3193&quot;&quot;/&gt;
+				&lt;w:gridCol w:w=&quot;&quot;3191&quot;&quot;/&gt;
+			&lt;/w:tblGrid&gt;
+  			&lt;w:tr w:rsidR=&quot;&quot;00BC4945&quot;&quot; w:rsidTr=&quot;&quot;00BC4945&quot;&quot;&gt;
+				&lt;w:trPr&gt;
+					&lt;w:cnfStyle w:val=&quot;&quot;100000000000&quot;&quot; w:firstRow=&quot;&quot;1&quot;&quot; w:lastRow=&quot;&quot;0&quot;&quot; w:firstColumn=&quot;&quot;0&quot;&quot; w:lastColumn=&quot;&quot;0&quot;&quot; w:oddVBand=&quot;&quot;0&quot;&quot; w:evenVBand=&quot;&quot;0&quot;&quot; w:oddHBand=&quot;&quot;0&quot;&quot; w:evenHBand=&quot;&quot;0&quot;&quot; w:firstRowFirstColumn=&quot;&quot;0&quot;&quot; w:firstRowLastColumn=&quot;&quot;0&quot;&quot; w:lastRowFirstColumn=&quot;&quot;0&quot;&quot; w:lastRowLastColumn=&quot;&quot;0&quot;&quot;/&gt;
+				&lt;/w:trPr&gt;
+				&quot; &amp; joinarray(
+    local!rows,
+    &quot;&quot;
+  ) &amp; &quot;&lt;/w:tr&gt;&quot;
+)</definition>
+        <namedTypedValue>
+            <name>columnNames</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>
