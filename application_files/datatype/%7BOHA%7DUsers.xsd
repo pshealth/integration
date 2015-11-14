@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="OHA" xmlns:tns="OHA" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="Users">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">
+                @Table(name="Users")
+            </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="ID" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @Column(name="Id", columnDefinition="INT NOT NULL") @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Username" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="Username", columnDefinition="VARCHAR(255) NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="FirstName" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="FirstName", columnDefinition="varchar(255) NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Surname" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="Surname", columnDefinition="varchar(255) NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ProfileImageId" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="ProfileImageId", columnDefinition="INT NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ContactId" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="ContactId", columnDefinition="INT NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="IsAdministrator" nillable="true" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="IsAdministrator", columnDefinition="BIT NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="IsHRManager" nillable="true" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="IsHRManager", columnDefinition="BIT NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="IsPowerUser" nillable="true" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="IsPowerUser", columnDefinition="BIT NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="IsLineManager" nillable="true" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="IslineManager", columnDefinition="BIT NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="IsActive" nillable="true" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="IsActive", columnDefinition="BIT NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="CreatedBy" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="CreatedBy", columnDefinition="varchar(255) NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="CreatedDate" nillable="true" type="xsd:dateTime">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="CreatedDate", columnDefinition="DATETIME NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="LastModifiedBy" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="LastModifiedBy", columnDefinition="varchar(255) NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="LastModifiedDate" nillable="true" type="xsd:dateTime">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa"> @Column(name="LastModifiedDate", columnDefinition="DATETIME NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

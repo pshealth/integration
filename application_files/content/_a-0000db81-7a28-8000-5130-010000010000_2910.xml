@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <queryRule>
+        <name>AC_GetCustomerTypeDetails</name>
+        <uuid>_a-0000db81-7a28-8000-5130-010000010000_2910</uuid>
+        <description>Returns the details of customer type</description>
+        <folderUuid>_a-0000db81-7a28-8000-5130-010000010000_2572</folderUuid>
+        <dataStoreEntityCompositeUuid>f55c1129-eaa7-4986-9569-2c85265b9fb1@_a-0000db81-7a28-8000-5130-010000010000_2392</dataStoreEntityCompositeUuid>
+        <params/>
+        <filters/>
+        <orderings>
+            <ordering>
+                <ascending>true</ascending>
+                <field>
+                    <name>Type</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}string</type>
+                </field>
+            </ordering>
+        </orderings>
+    </queryRule>
+    <roleMap public="false">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

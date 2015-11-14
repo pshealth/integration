@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <group>
+        <name>Admin-psHEALTH</name>
+        <securityMap>SECURITYMAP_TEAM</securityMap>
+        <uuid>_e-0000db81-7a1f-8000-512d-010000010000_7</uuid>
+        <groupTypeUuid>SYSTEM_GROUP_TYPE_CUSTOM</groupTypeUuid>
+        <description></description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_HIGH</viewingPolicy>
+        <attributes/>
+    </group>
+    <members>
+        <users>
+            <userUuid>gagan.mathur</userUuid>
+            <userUuid>siddharth.goyal</userUuid>
+            <userUuid>kshama.gupta</userUuid>
+            <userUuid>sachin.raghav</userUuid>
+            <userUuid>siddharth.gupta</userUuid>
+            <userUuid>neera.sharma</userUuid>
+        </users>
+        <groups/>
+    </members>
+    <admins>
+        <users>
+            <userUuid>siddharth.goyal</userUuid>
+        </users>
+        <groups/>
+    </admins>
+    <ruleSet/>
+</groupHaul>

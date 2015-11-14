@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_StatusMultiSelect</name>
+        <uuid>937f21ea-366d-4206-99e2-9a35eeb819c2</uuid>
+        <description>Provide Status facets for multi select facility</description>
+        <parentUuid>_a-0000db81-7a28-8000-5130-010000010000_3511</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+  local!FieldsValues,&#xD;
+  local!FieldsArray: tostring(&#xD;
+    null&#xD;
+  ),&#xD;
+  local!ValuesArray: tointeger(&#xD;
+    null&#xD;
+  ),&#xD;
+  local!StatusId,&#xD;
+  if(&#xD;
+    ri!IsMultiSelect,&#xD;
+    with(&#xD;
+      local!FieldsValues: #&quot;b5d04606-bdcd-4e24-ab5e-cb084863b446&quot;(&#xD;
+        ri!QueryCondition&#xD;
+      ),&#xD;
+      local!FieldsArray: #&quot;e34303b0-842a-4916-84b4-c22746471617&quot;(&#xD;
+        local!FieldsValues&#xD;
+      ),&#xD;
+      local!ValuesArray:#&quot;7f34498f-2eb3-4308-a7f9-05a082324266&quot;(&#xD;
+        local!FieldsValues&#xD;
+      ), &#xD;
+      local!StatusId: index(&#xD;
+        local!ValuesArray,&#xD;
+        wherecontains(&#xD;
+          &quot;IsActive&quot;,&#xD;
+          trim(&#xD;
+            {&#xD;
+              split(&#xD;
+                tostring(&#xD;
+                  local!FieldsArray&#xD;
+                ),&#xD;
+                &quot;;&quot;&#xD;
+              )&#xD;
+            }&#xD;
+          )&#xD;
+        ),&#xD;
+        null&#xD;
+      ),&#xD;
+      local!StatusId&#xD;
+    ),&#xD;
+    null&#xD;
+  )&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>QueryCondition</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>IsMultiSelect</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>siddharth.goyal</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>QueryCondition</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>IsMultiSelect</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

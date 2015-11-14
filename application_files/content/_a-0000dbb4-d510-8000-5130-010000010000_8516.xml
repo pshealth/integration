@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_GetAllActiveEmployeeDetailById</name>
+        <uuid>_a-0000dbb4-d510-8000-5130-010000010000_8516</uuid>
+        <description>Returns all active employee's customerId ,BU_Id by Id and customer Id</description>
+        <parentUuid>_a-0000db81-7a28-8000-5130-010000010000_3461</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_queryEntity&quot;(&#xD;
+  entity:#&quot;_a-0000db81-7a28-8000-5130-010000010000_2948&quot; ,&#xD;
+  query:#&quot;SYSTEM_SYSRULES_query&quot;(&#xD;
+    selection:#&quot;SYSTEM_SYSRULES_querySelection&quot;(&#xD;
+	columns:{&#xD;
+      #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field:&quot;BU_Id&quot;),&#xD;
+      #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field:&quot;ContactId&quot;) &#xD;
+	  }&#xD;
+    ),&#xD;
+    logicalExpression:if(&#xD;
+and(	#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!CustomerId),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!EmployeeId)),&#xD;
+	null,&#xD;
+	#&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(&#xD;
+      operator:&quot;AND&quot;,&#xD;
+      filters:{&#xD;
+	  if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!CustomerId),&#xD;
+			null,&#xD;
+			#&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+				field: &quot;CustomerId&quot;,&#xD;
+				operator: &quot;=&quot;,&#xD;
+				value: ri!CustomerId&#xD;
+			)&#xD;
+		),	 if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!EmployeeId),&#xD;
+			null,&#xD;
+			#&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+				field: &quot;ID&quot;,&#xD;
+				operator: &quot;=&quot;,&#xD;
+				value: ri!EmployeeId&#xD;
+			)&#xD;
+		),#&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+				field: &quot;IsActive&quot;,&#xD;
+				operator: &quot;=&quot;,&#xD;
+				value: true&#xD;
+			)})),&#xD;
+    pagingInfo:topaginginfo(1,-1)&#xD;
+  )&#xD;
+  )</definition>
+        <namedTypedValue>
+            <name>CustomerId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>EmployeeId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>CustomerId</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>EmployeeId</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

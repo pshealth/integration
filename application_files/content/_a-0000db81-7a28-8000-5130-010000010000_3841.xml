@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_Employee_SummaryDashboard</name>
+        <uuid>_a-0000db81-7a28-8000-5130-010000010000_3841</uuid>
+        <description>Provides summary dashboard for employee dashboard</description>
+        <parentUuid>_a-0000db81-7a28-8000-5130-010000010000_3848</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!UserDetails:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!UserId),null,#&quot;_a-0000db81-7a28-8000-5130-010000010000_2843&quot;(
+    ri!UserId
+  )),
+  local!ContactDetails: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      ri!ContactID
+    ),
+    {},
+    #&quot;2481067c-7331-4f22-a9a2-4fe8daa7bf13&quot;(
+      ri!ContactID
+    )
+  ),
+  local!ContactInfoDetails: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      index(
+        local!ContactDetails,
+        &quot;ContactInfoID&quot;,
+        null
+      )
+    ),
+    {},
+    #&quot;f12bc7eb-70cb-46dd-a046-6ff573fe08a3&quot;(
+      local!ContactDetails.ContactInfoID
+    )
+  ),
+  local!AddressDetails: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      index(
+        local!ContactDetails,
+        &quot;AddressId&quot;,
+        null
+      )
+    ),
+    {},
+    #&quot;5fdc3c4b-8f1d-4393-8749-c0389efac7ab&quot;(
+      local!ContactDetails.AddressId
+    )
+  ),
+  local!pagingInfo:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:#&quot;_a-0000db81-7a28-8000-5130-010000010000_2766&quot;,sort:#&quot;SYSTEM_SYSRULES_sortInfo&quot;(field:&quot;ID&quot;,ascending:false)),
+local!AbsenceDetailsByEmployeeID:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!ID),null,#&quot;_a-0000db81-7a28-8000-5130-010000010000_2961&quot;(ri!ID)),
+  #&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(
+    firstColumnContents: {
+      /*
+      Employee Basic Details Section*
+            --Begin--
+      */
+      #&quot;_a-0000db81-7a28-8000-5130-010000010000_3832&quot;(
+        CustomerID: ri!CustomerID,
+        UserId: ri!UserId,
+        IsShiftWorker: ri!IsShiftWorker,
+        IsActive:index(
+          local!UserDetails,
+          &quot;IsActive&quot;,
+          null
+        ),
+        BUID:ri!BUID
+      ),
+      /*
+      Employee Basic Details Section*
+            --END--
+      */
+      /*
+        Employee Contact Details Section*
+              --Begin--
+      */
+      #&quot;_a-0000db81-7a28-8000-5130-010000010000_3834&quot;()
+      /*
+        Employee Contact Details Section*
+                --End--
+      */
+      
+   
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>UserId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>CustomerID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ContactID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>IsShiftWorker</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>IsActive</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>BUID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>UserId</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>CustomerID</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>ContactID</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                    <a:nameRef>IsShiftWorker</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                    <a:nameRef>IsActive</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>BUID</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>ID</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

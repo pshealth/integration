@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_RenderDynamicConditionIllness</name>
+        <uuid>_a-0000db81-7a28-8000-5130-010000010000_4606</uuid>
+        <description>Render dynamic rows for condition illness</description>
+        <parentUuid>_a-0000db81-7a28-8000-5130-010000010000_2792</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(&#xD;
+  local!PrimaryConditions: union(index(#&quot;_a-0000db81-7a28-8000-5130-010000010000_4638&quot;(true()),&quot;PrimaryCondition&quot;,null),index(#&quot;_a-0000db81-7a28-8000-5130-010000010000_4638&quot;(true()),&quot;PrimaryCondition&quot;,null)),&#xD;
+  with(&#xD;
+  local!SecondaryConditions:union(index(#&quot;_a-0000db81-7a28-8000-5130-010000010000_5764&quot;(PrimaryCondition:ri!PickedPrimaryConditions[ri!Index],IsActive:true).data,&quot;SecondaryCondition&quot;,{null}),index(#&quot;_a-0000db81-7a28-8000-5130-010000010000_5764&quot;(PrimaryCondition:ri!PickedPrimaryConditions[ri!Index],IsActive:true).data,&quot;SecondaryCondition&quot;,{null})),&#xD;
+  #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(&#xD;
+            contents:{&#xD;
+               #&quot;SYSTEM_SYSRULES_pickerFieldCustom&quot;(&#xD;
+      label: &quot;Primary Condition&quot;,&#xD;
+      maxSelections: 1,&#xD;
+      suggestFunction: #&quot;_a-0000db81-7a28-8000-5130-010000010000_3274&quot;(filter: _, labels: local!PrimaryConditions, identifiers: local!PrimaryConditions),&#xD;
+      selectedLabels: if(&#xD;
+        or(isnull(ri!PickedPrimaryConditions[ri!Index]), count(ri!PickedPrimaryConditions[ri!Index]) = 0),&#xD;
+        null,&#xD;
+        apply(#&quot;_a-0000db81-7a28-8000-5130-010000010000_3276&quot;(identifier: _, labels: local!PrimaryConditions, identifiers: local!PrimaryConditions),{ri!PickedPrimaryConditions[ri!Index]})&#xD;
+      ),&#xD;
+      required:true,&#xD;
+      value: ri!PickedPrimaryConditions[ri!Index],&#xD;
+      saveInto: {ri!PickedPrimaryConditions[ri!Index],a!save(ri!PickedSecondaryConditions[ri!Index],null)}&#xD;
+    ),&#xD;
+#&quot;SYSTEM_SYSRULES_pickerFieldCustom&quot;(&#xD;
+      label: &quot;Secondary Condition&quot;,&#xD;
+      maxSelections: 1,&#xD;
+      suggestFunction: #&quot;_a-0000db81-7a28-8000-5130-010000010000_3274&quot;(filter: _, labels: local!SecondaryConditions, identifiers: local!SecondaryConditions),&#xD;
+      selectedLabels: if(&#xD;
+        or(isnull(ri!PickedSecondaryConditions[ri!Index]), count(ri!PickedSecondaryConditions[ri!Index]) = 0),&#xD;
+        null,&#xD;
+        apply(#&quot;_a-0000db81-7a28-8000-5130-010000010000_3276&quot;(identifier: _, labels: local!SecondaryConditions, identifiers: local!SecondaryConditions), {ri!PickedSecondaryConditions[ri!Index]})&#xD;
+      ),&#xD;
+      /*required:true,*/&#xD;
+      validations:if(not(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!PickedSecondaryConditions[ri!Index])),if(&#xD;
+            count(&#xD;
+              wherecontains(&#xD;
+                ri!PickedSecondaryConditions[ri!Index],&#xD;
+                {&#xD;
+                  ri!PickedSecondaryConditions&#xD;
+                }&#xD;
+              )&#xD;
+            ) &gt; 1,&#xD;
+            &quot;You have already selected this condition. Please select another&quot;,&#xD;
+            {}&#xD;
+          ),{}),&#xD;
+      disabled:#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!PickedPrimaryConditions[ri!Index]),&#xD;
+      value: ri!PickedSecondaryConditions[ri!Index],&#xD;
+      saveInto: ri!PickedSecondaryConditions[ri!Index]&#xD;
+    ),&#xD;
+&#xD;
+	&#xD;
+              #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+                label:&quot;Days&quot;,&#xD;
+                value:ri!IllnessConditionConfig[ri!Index].DayOfTrigger,&#xD;
+                required:true,&#xD;
+                disabled:#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!PickedPrimaryConditions[ri!Index]),&#xD;
+                saveInto:ri!IllnessConditionConfig[ri!Index].DayOfTrigger&#xD;
+              ),&#xD;
+			  #&quot;SYSTEM_SYSRULES_checkboxField&quot;(&#xD;
+label:&quot;Actions&quot;,&#xD;
+choiceLabels:{#&quot;_a-0000db81-7a28-8000-5130-010000010000_2782&quot;(true)[1].Action,#&quot;_a-0000db81-7a28-8000-5130-010000010000_2782&quot;(true)[2].Action},&#xD;
+choiceValues:{#&quot;_a-0000db81-7a28-8000-5130-010000010000_2782&quot;(true)[1].ID,#&quot;_a-0000db81-7a28-8000-5130-010000010000_2782&quot;(true)[2].ID},&#xD;
+required:true,&#xD;
+  disabled:#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!PickedPrimaryConditions[ri!Index]),&#xD;
+value:ri!ActionIDs[ri!index],&#xD;
+saveInto:ri!ActionIDs[ri!index]&#xD;
+),&#xD;
+	#&quot;SYSTEM_SYSRULES_checkboxField&quot;(&#xD;
+	label:&quot;Is Active&quot;,&#xD;
+	choiceLabels:{&quot;Yes&quot;},&#xD;
+	choiceValues:{true()},&#xD;
+	value:ri!IllnessConditionConfig[ri!Index].IsActive,&#xD;
+	saveInto:ri!IllnessConditionConfig[ri!Index].IsActive&#xD;
+	),&#xD;
+              #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+      label: &quot;delete &quot; &amp; ri!Index,&#xD;
+      links: #&quot;SYSTEM_SYSRULES_dynamicLink&quot;(&#xD;
+        label: char(10005),&#xD;
+        value: ri!Index,&#xD;
+        saveInto: {&#xD;
+		a!save(ri!IllnessConditionConfigDeleted, append(ri!IllnessConditionConfigDeleted,ri!IllnessConditionConfig[save!value])),&#xD;
+        a!save(ri!IllnessConditionConfig, remove(ri!IllnessConditionConfig, save!value)),&#xD;
+         a!save(ri!PickedPrimaryConditions, remove(ri!PickedPrimaryConditions, save!value)),&#xD;
+         a!save(ri!PickedSecondaryConditions, remove(ri!PickedSecondaryConditions, save!value)),&#xD;
+		 a!save(ri!IllnessConditionConfigDeleted.IsActive,repeat(count(ri!IllnessConditionConfigDeleted),false()))&#xD;
+        },&#xD;
+      align: &quot;CENTER&quot;&#xD;
+      )&#xD;
+      )&#xD;
+            }&#xD;
+          )&#xD;
+          )&#xD;
+          )</definition>
+        <namedTypedValue>
+            <name>IllnessConditionConfig</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>Index</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>PickedPrimaryConditions</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>PickedSecondaryConditions</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>IllnessConditionConfigDeleted</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ActionIDs</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>IllnessConditionConfig</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>Index</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>PickedPrimaryConditions</a:nameRef>
+                    <a:id>3</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>PickedSecondaryConditions</a:nameRef>
+                    <a:id>4</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>IllnessConditionConfigDeleted</a:nameRef>
+                    <a:id>5</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                    <a:nameRef>ActionIDs</a:nameRef>
+                    <a:id>6</a:id>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

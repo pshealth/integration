@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="OHA" xmlns:tns="OHA" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="Employee">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">
+                @Table(name="Employee")
+            </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="ID" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @Column(name="Id", columnDefinition="INT NOT NULL") @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="UserId" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="UserId", columnDefinition="INT NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="FirstName" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="FirstName", columnDefinition="nvarchar(255) NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Surname" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="Surname", columnDefinition="nvarchar(255) NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="NessieId" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="NessieId", columnDefinition="nvarchar(255) NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="DASID" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="DASID", columnDefinition="nvarchar(255) NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="PayRollNo" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="PayRollNo", columnDefinition="nvarchar(255) NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ShiftWorker" nillable="true" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="ShiftWorker", columnDefinition="bit")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="WorkingHourCodeId" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="WorkingHourCodeId", columnDefinition="int")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="BU_Id" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="BU_Id", columnDefinition="int")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ContactId" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="ContactId", columnDefinition="int")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="CustomerId" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="CustomerId", columnDefinition="int")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="IsActive" nillable="true" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="IsActive", columnDefinition="BIT")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ManagerNessieId" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="ManagerNessieId", columnDefinition="nvarchar(255) NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="CostCenterId" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="CostCenterId", columnDefinition="int")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="IsLineManager" nillable="true" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="IsLineManager", columnDefinition="BIT")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="BradfordFactor" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="BradfordFactor", columnDefinition="int NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="BradfordFactorCalculatedDateTime"
+        nillable="true" type="xsd:dateTime">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="BradfordFactorCalculatedDateTime", columnDefinition="DATETIME NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

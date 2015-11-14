@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <queryRule>
+        <name>AC_GetAllCustomerUserRelationshipByCustomerId</name>
+        <uuid>_a-0000db81-7a28-8000-5130-010000010000_6323</uuid>
+        <description>Return all customer User relationship by customer id</description>
+        <folderUuid>_a-0000db81-7a28-8000-5130-010000010000_2701</folderUuid>
+        <dataStoreEntityCompositeUuid>bf87cf3a-7b2c-4e30-a522-de4eca79c635@_a-0000db81-7a28-8000-5130-010000010000_2392</dataStoreEntityCompositeUuid>
+        <params>
+            <param>
+                <description></description>
+                <name>CustomerId</name>
+                <type>{http://www.w3.org/2001/XMLSchema}int</type>
+            </param>
+        </params>
+        <filters>
+            <filter>
+                <field>
+                    <name>CustomerId</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}int</type>
+                </field>
+                <op>=</op>
+                <value>CustomerId</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+        </filters>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

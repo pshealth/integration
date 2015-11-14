@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_Accounts_RecordSource</name>
+        <uuid>b83eb669-c577-4782-85fa-87c3085f05e1</uuid>
+        <description>Provides with the list of customers to show in the list view of Account record</description>
+        <parentUuid>_a-0000db81-7a28-8000-5130-010000010000_3511</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(&#xD;
+  local!pagingInfo: ri!query.pagingInfo,&#xD;
+  local!queryCondition: index(&#xD;
+    ri!query,&#xD;
+    &quot;logicalExpression|filter|search&quot;,&#xD;
+    null&#xD;
+  ),&#xD;
+  local!requestedId: if(&#xD;
+    and(&#xD;
+      index(&#xD;
+        local!queryCondition,&#xD;
+        &quot;field&quot;,&#xD;
+        null&#xD;
+      ) = &quot;rp!id&quot;,&#xD;
+      index(&#xD;
+        local!queryCondition,&#xD;
+        &quot;operator&quot;,&#xD;
+        null&#xD;
+      ) = &quot;=&quot;&#xD;
+    ),&#xD;
+    index(&#xD;
+      local!queryCondition,&#xD;
+      &quot;value&quot;,&#xD;
+      null&#xD;
+    ),&#xD;
+    null&#xD;
+  ),&#xD;
+  local!searchTerm: index(&#xD;
+      local!queryCondition,&#xD;
+      &quot;searchQuery&quot;,&#xD;
+      null&#xD;
+    ),&#xD;
+	&#xD;
+	local!facetType: index(&#xD;
+      local!queryCondition,&#xD;
+      &quot;operator&quot;,&#xD;
+      null&#xD;
+    ),&#xD;
+	local!isMultiSelect:#&quot;50d68f12-4b07-4658-b380-ac0b490dc7f1&quot;(&#xD;
+      local!queryCondition&#xD;
+    ),&#xD;
+	&#xD;
+	local!StatusMultiSelect:#&quot;937f21ea-366d-4206-99e2-9a35eeb819c2&quot; (&#xD;
+      local!queryCondition,&#xD;
+      local!isMultiSelect&#xD;
+    ),&#xD;
+	local!StatusSingleSelect:#&quot;6d9f9901-7c01-481b-aff4-8a00efeb4595&quot; (local!queryCondition,&#xD;
+      &quot;IsActive&quot;,&#xD;
+      local!facetType),&#xD;
+	  &#xD;
+	  local!StatusId:if(&#xD;
+      local!isMultiSelect,&#xD;
+      local!StatusMultiSelect,&#xD;
+      local!StatusSingleSelect&#xD;
+    ),&#xD;
+	 &#xD;
+	local!AdminMultiSelect:#&quot;d913e00c-8748-43de-bc9b-7042ad2c07e5&quot; (&#xD;
+      local!queryCondition,&#xD;
+      local!isMultiSelect&#xD;
+    ),&#xD;
+	local!AdminSingleSelect:#&quot;6d9f9901-7c01-481b-aff4-8a00efeb4595&quot;(local!queryCondition,&#xD;
+      &quot;IsAdministrator&quot;,&#xD;
+      local!facetType),&#xD;
+	  &#xD;
+	  local!AdminId:if(&#xD;
+      local!isMultiSelect,&#xD;
+      local!AdminMultiSelect,&#xD;
+      local!AdminSingleSelect&#xD;
+    ),&#xD;
+	&#xD;
+	local!CustomerMultiSelect:#&quot;24b88625-8a3e-4b61-8f0e-5cfda9086e43&quot; (&#xD;
+      local!queryCondition,&#xD;
+      local!isMultiSelect&#xD;
+    ),&#xD;
+	local!CustomerSingleSelect:#&quot;6d9f9901-7c01-481b-aff4-8a00efeb4595&quot; (local!queryCondition,&#xD;
+      &quot;CustomerId&quot;,&#xD;
+      local!facetType),&#xD;
+	  &#xD;
+	  local!CustomerId:if(&#xD;
+      local!isMultiSelect,&#xD;
+      local!CustomerMultiSelect,&#xD;
+      local!CustomerSingleSelect&#xD;
+    ),&#xD;
+  local!AccountsBysearchTerm: #&quot;SYSTEM_SYSRULES_queryEntity&quot;(&#xD;
+    entity: #&quot;_a-0000db81-7a28-8000-5130-010000010000_3248&quot;,&#xD;
+    query: #&quot;SYSTEM_SYSRULES_query&quot;(&#xD;
+      selection: {&#xD;
+        #&quot;SYSTEM_SYSRULES_queryColumn&quot;(&#xD;
+          field: &quot;ID&quot;&#xD;
+        )&#xD;
+      },&#xD;
+      logicalExpression: if(&#xD;
+        #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+            local!searchTerm&#xD;
+          ),&#xD;
+        null,&#xD;
+        #&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(&#xD;
+          operator: &quot;OR&quot;,&#xD;
+          filters: {&#xD;
+            if(&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!searchTerm&#xD;
+              ),&#xD;
+              {},&#xD;
+              #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+            field: &quot;FirstName&quot;,&#xD;
+            operator: &quot;includes&quot;,&#xD;
+            value: local!searchTerm&#xD;
+          )&#xD;
+            ),&#xD;
+			if(&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!searchTerm&#xD;
+              ),&#xD;
+              {},&#xD;
+              #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+            field: &quot;Surname&quot;,&#xD;
+            operator: &quot;includes&quot;,&#xD;
+            value: local!searchTerm&#xD;
+          )&#xD;
+            )&#xD;
+          }&#xD;
+        )&#xD;
+      ),&#xD;
+      pagingInfo: local!pagingInfo&#xD;
+    )&#xD;
+  ),&#xD;
+  local!Accounts: if(&#xD;
+    not(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!requestedId&#xD;
+      )&#xD;
+    ),&#xD;
+    #&quot;_a-0000db81-7a28-8000-5130-010000010000_2843&quot;(&#xD;
+      local!requestedId,&#xD;
+      local!pagingInfo&#xD;
+    ),&#xD;
+    if(&#xD;
+      not(&#xD;
+        #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+          local!searchTerm&#xD;
+        )&#xD;
+      ),&#xD;
+      local!AccountsBysearchTerm,&#xD;
+	  #&quot;4fae4def-e7b9-4199-b2da-ff1ee42c74bd&quot;(local!StatusId,local!AdminId,local!CustomerId)&#xD;
+    )&#xD;
+  ),&#xD;
+  local!Accounts&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>query</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>gagan.mathur</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>query</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

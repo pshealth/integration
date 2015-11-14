@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_CustomerContactDetailsSection</name>
+        <uuid>_a-0000db81-7a28-8000-5130-010000010000_3043</uuid>
+        <description>Provides a section layout for customer's contact details</description>
+        <parentUuid>_a-0000db81-7a28-8000-5130-010000010000_5088</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+      label: &quot;Contact Details&quot;,&#xD;
+      firstColumnContents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          label: &quot;Address&quot;,&#xD;
+          value: ri!Address.Address,&#xD;
+          saveInto: a!save(&#xD;
+            ri!Address.Address,&#xD;
+            #&quot;_a-0000db81-7a28-8000-5130-010000010000_2898&quot;(&#xD;
+              &quot;test&quot;,&#xD;
+              save!value&#xD;
+            )&#xD;
+          ),&#xD;
+          validations: #&quot;_a-0000db81-7a28-8000-5130-010000010000_2903&quot;(&#xD;
+            255,&#xD;
+            ri!Address.Address&#xD;
+          )&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          label: &quot;City&quot;,&#xD;
+          value: ri!Address.City,&#xD;
+          saveInto: a!save(&#xD;
+            ri!Address.City,&#xD;
+            #&quot;_a-0000db81-7a28-8000-5130-010000010000_2898&quot;(&#xD;
+              &quot;test&quot;,&#xD;
+              save!value&#xD;
+            )&#xD;
+          ),&#xD;
+          validations: #&quot;_a-0000db81-7a28-8000-5130-010000010000_2903&quot;(&#xD;
+            255,&#xD;
+            ri!Address.City&#xD;
+          )&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          label: &quot;Post Code&quot;,&#xD;
+          value: ri!Address.PostCode,&#xD;
+          saveInto: a!save(&#xD;
+            ri!Address.PostCode,&#xD;
+            #&quot;_a-0000db81-7a28-8000-5130-010000010000_2898&quot;(&#xD;
+              &quot;test&quot;,&#xD;
+              save!value&#xD;
+            )&#xD;
+          ),&#xD;
+          validations: if(&#xD;
+            #&quot;a195609e-6cf4-4e36-b5d3-786eb7e0017b&quot;(&#xD;
+              ri!Address.PostCode&#xD;
+            ),&#xD;
+            null,&#xD;
+            &quot;Please provide a valid postcode&quot;&#xD;
+          )&#xD;
+        )&#xD;
+      },&#xD;
+      secondColumnContents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          label: &quot;Country&quot;,&#xD;
+          value: ri!Address.Country,&#xD;
+          saveInto: a!save(&#xD;
+            ri!Address.Country,&#xD;
+            #&quot;_a-0000db81-7a28-8000-5130-010000010000_2898&quot;(&#xD;
+              &quot;test&quot;,&#xD;
+              save!value&#xD;
+            )&#xD;
+          ),&#xD;
+          validations: #&quot;_a-0000db81-7a28-8000-5130-010000010000_2903&quot;(&#xD;
+            255,&#xD;
+            ri!Address.Country&#xD;
+          )&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          label: &quot;Contact Number&quot;,&#xD;
+          value: ri!ContactInfo.PrimaryTelephoneNo,&#xD;
+          saveInto: a!save(&#xD;
+            ri!ContactInfo.PrimaryTelephoneNo,&#xD;
+            #&quot;_a-0000db81-7a28-8000-5130-010000010000_2898&quot;(&#xD;
+              &quot;test&quot;,&#xD;
+              save!value&#xD;
+            )&#xD;
+          ),&#xD;
+          validations: if(&#xD;
+            #&quot;e55f4f7e-2c68-4d12-8995-77d41cbe36a1&quot;(&#xD;
+              ri!ContactInfo.PrimaryTelephoneNo&#xD;
+            ),&#xD;
+            null,&#xD;
+            &quot;Please provide a valid contact number&quot;&#xD;
+          )&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          label: &quot;Email&quot;,&#xD;
+          value: ri!ContactInfo.Email,&#xD;
+          saveInto: a!save(&#xD;
+            ri!ContactInfo.Email,&#xD;
+            #&quot;_a-0000db81-7a28-8000-5130-010000010000_2898&quot;(&#xD;
+              &quot;test&quot;,&#xD;
+              save!value&#xD;
+            )&#xD;
+          ),&#xD;
+          validations: if(&#xD;
+            #&quot;83f6f923-411b-4885-83b1-5b9f0ac227b5&quot;(&#xD;
+              ri!ContactInfo.Email&#xD;
+            ),&#xD;
+            null,&#xD;
+            &quot;Please provide a valid email address&quot;&#xD;
+          )&#xD;
+        )&#xD;
+      }&#xD;
+    )</definition>
+        <namedTypedValue>
+            <name>Customer</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>Address</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ContactInfo</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>Customer</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>Address</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>ContactInfo</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

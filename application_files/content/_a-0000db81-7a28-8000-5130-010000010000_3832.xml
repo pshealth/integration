@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_EmployeeBasicDetails</name>
+        <uuid>_a-0000db81-7a28-8000-5130-010000010000_3832</uuid>
+        <description>Provides a section layout with basic details of employee</description>
+        <parentUuid>_a-0000db81-7a28-8000-5130-010000010000_3848</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+  label: &quot;&quot;,&#xD;
+  firstColumnContents: {/*a!textField(&#xD;
+      label: &quot;Name&quot;,&#xD;
+      value: rule!Utils_FormatUser(&#xD;
+        index(&#xD;
+          local!UserDetails,&#xD;
+          &quot;Username&quot;,&#xD;
+          null&#xD;
+        )&#xD;
+      ),&#xD;
+      labelPosition: &quot;ADJACENT&quot;,&#xD;
+      readOnly: true&#xD;
+    )*/&#xD;
+	#&quot;SYSTEM_SYSRULES_linkField&quot;(label:&quot;Name&quot;,labelPosition:&quot;ADJACENT&quot;,links:#&quot;SYSTEM_SYSRULES_userRecordLink&quot;(label:#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;(&#xD;
+        index(&#xD;
+          local!UserDetails,&#xD;
+          &quot;Username&quot;,&#xD;
+          null&#xD;
+        )&#xD;
+      ),user:touser(index(&#xD;
+          local!UserDetails,&#xD;
+          &quot;Username&quot;,&#xD;
+          null&#xD;
+        )))/*rule!SAIL_DisplayRecord(identifier:ri!UserId,label:rule!Utils_FormatUser(&#xD;
+        index(&#xD;
+          local!UserDetails,&#xD;
+          &quot;Username&quot;,&#xD;
+          null&#xD;
+        )&#xD;
+      ),recordType:cons!AC_USERS_RECORD)*/),&#xD;
+	  #&quot;SYSTEM_SYSRULES_linkField&quot;(label:&quot;Customer&quot;,labelPosition:&quot;ADJACENT&quot;,links:#&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_8952&quot;(identifier:ri!CustomerID,label: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!CustomerID),null,index(&#xD;
+       #&quot;45f1afde-bc6f-4aea-8079-b7d72e54ee7d&quot;(&#xD;
+          ri!CustomerID&#xD;
+        ),&#xD;
+        &quot;CustomerName&quot;,&#xD;
+        null&#xD;
+      )),recordType:#&quot;_a-0000db81-7a28-8000-5130-010000010000_3584&quot;)),&#xD;
+   /* a!textField(&#xD;
+      label: &quot;Customer&quot;,&#xD;
+      value: if(rule!Utils_CheckIsNull(ri!CustomerID),null,index(&#xD;
+       rule!AC_GetCustomerDetailsByID(&#xD;
+          ri!CustomerID&#xD;
+        ),&#xD;
+        &quot;CustomerName&quot;,&#xD;
+        null&#xD;
+      )),&#xD;
+      labelPosition: &quot;ADJACENT&quot;,&#xD;
+      readOnly: true&#xD;
+    ),*/&#xD;
+     #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label: &quot;Business Unit&quot;,&#xD;
+      value: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!BUID),null,index(&#xD;
+       #&quot;_a-0000db81-7a28-8000-5130-010000010000_3952&quot;(&#xD;
+          ri!BUID&#xD;
+        ),&#xD;
+        &quot;Name&quot;,&#xD;
+        null&#xD;
+      )),&#xD;
+      labelPosition: &quot;ADJACENT&quot;,&#xD;
+      readOnly: true&#xD;
+    )&#xD;
+   &#xD;
+  },&#xD;
+  secondColumnContents: {&#xD;
+    &#xD;
+    &#xD;
+  /*  if(&#xD;
+      rule!Utils_CheckIsValidDocument(&#xD;
+        index(&#xD;
+          local!UserDetails,&#xD;
+          &quot;ProfileImageId&quot;,&#xD;
+          null&#xD;
+        )&#xD;
+      ),&#xD;
+      a!imageField(&#xD;
+        labelPosition: &quot;ADJACENT&quot;,&#xD;
+        images: a!documentImage(&#xD;
+          document: index(&#xD;
+            local!UserDetails,&#xD;
+            &quot;ProfileImageId&quot;,&#xD;
+            null&#xD;
+          )&#xD;
+        )&#xD;
+      ),&#xD;
+      {}&#xD;
+    )*/&#xD;
+     #&quot;SYSTEM_SYSRULES_imageField&quot;(&#xD;
+      label: &quot;Shift Worker&quot;,&#xD;
+      labelPosition: &quot;ADJACENT&quot;,&#xD;
+      images: if(&#xD;
+        ri!IsShiftWorker,&#xD;
+        #&quot;SYSTEM_SYSRULES_documentImage&quot;(&#xD;
+          document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(&#xD;
+            &quot;STATUS_OK&quot;&#xD;
+          ),&#xD;
+          caption: &quot;Yes&quot;&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_documentImage&quot;(&#xD;
+          document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(&#xD;
+            &quot;STATUS_NOTDONE&quot;&#xD;
+          ),&#xD;
+          caption: &quot;No&quot;&#xD;
+        )&#xD;
+      ),&#xD;
+      size: &quot;ICON&quot;&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_imageField&quot;(&#xD;
+      label: &quot;Active&quot;,&#xD;
+      labelPosition: &quot;ADJACENT&quot;,&#xD;
+      images: if(&#xD;
+        ri!IsActive,&#xD;
+        #&quot;SYSTEM_SYSRULES_documentImage&quot;(&#xD;
+          document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(&#xD;
+            &quot;STATUS_OK&quot;&#xD;
+          ),&#xD;
+          caption: &quot;Yes&quot;&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_documentImage&quot;(&#xD;
+          document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(&#xD;
+            &quot;STATUS_NOTDONE&quot;&#xD;
+          ),&#xD;
+          caption: &quot;No&quot;&#xD;
+        )&#xD;
+      ),&#xD;
+      size: &quot;ICON&quot;&#xD;
+    )&#xD;
+  }&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>CustomerID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>UserId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>IsShiftWorker</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>IsActive</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>BUID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>CustomerID</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>UserId</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>IsShiftWorker</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>IsActive</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>BUID</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

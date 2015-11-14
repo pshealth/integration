@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_UpdateCustomer</name>
+        <uuid>_a-0000db81-7a28-8000-5130-010000010000_3612</uuid>
+        <description>Provides a form layout to update a  customer</description>
+        <parentUuid>_a-0000db81-7a28-8000-5130-010000010000_3610</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>/* Update Customer Details*/
+#&quot;SYSTEM_SYSRULES_formLayout&quot;(
+  label: if(ri!CustomerId=0,&quot;Customer Setup&quot;,&quot;Update &quot; &amp; index(
+    ri!Customer,
+    &quot;CustomerName&quot;,
+    null
+  ) &amp; &quot; Details&quot;),
+  firstColumnContents: {
+    /* 
+        Customer Basic Details
+              BEGIN
+    */
+    #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+      firstColumnContents: {if(ri!CustomerId=0,#&quot;SYSTEM_SYSRULES_textField&quot;(
+          label: &quot;Name&quot;,
+          required: true,
+          value: ri!Customer.CustomerName,
+          saveInto:  a!save(
+            ri!Customer.CustomerName,#&quot;_a-0000db81-7a28-8000-5130-010000010000_2898&quot;(
+              &quot;test&quot;,
+              save!value
+            )),
+          
+          validations: {#&quot;_a-0000db81-7a28-8000-5130-010000010000_2903&quot;(
+            255,
+            ri!Customer.CustomerName
+          ),if(contains(lower(#&quot;6dca8559-3653-499e-9777-7ff42a875461&quot;().CustomerName), lower(ri!Customer.CustomerName)),&quot;Customer Already Exist&quot;,{})}
+        ),#&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+          label: &quot;Enable DOAM&quot;,
+          required: true,
+          choiceLabels: #&quot;_a-0000da7b-2d42-8000-6ee0-010000010000_1154&quot;,
+          choiceValues: #&quot;_a-0000da7b-2d42-8000-6ee0-010000010000_1155&quot;,
+          value: ri!Customer.IsDOAMEnabled,
+          saveInto: ri!Customer.IsDOAMEnabled
+        ))
+      
+      },
+      secondColumnContents: {
+         #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+          label: &quot;Type&quot;,
+          required: true,
+          choiceLabels: #&quot;_a-0000db81-7a28-8000-5130-010000010000_2910&quot;().Type,
+          choiceValues: #&quot;_a-0000db81-7a28-8000-5130-010000010000_2910&quot;().ID,
+          
+          value: ri!Customer.CustomerTypeID,
+          saveInto: ri!Customer.CustomerTypeID
+        ) 
+      }
+    ),
+    /* 
+        Customer Basic Details
+              END
+    */
+    
+    /* 
+        Customer Contact Details
+              BEGIN
+    */
+    #&quot;_a-0000db81-7a28-8000-5130-010000010000_3043&quot;(
+        Customer: ri!Customer,
+        Address: ri!Address,
+        ContactInfo: ri!ContactInfo,
+        Logo: ri!Logo
+      ),
+   /* 
+        Customer Contact Details
+              END
+  */
+  	#&quot;_a-0000dbb4-d510-8000-5130-010000010000_10057&quot;(Customer:ri!Customer,CustomerId:ri!CustomerId),
+  
+   /* 
+        Customer Logo Details
+              BEGIN
+  */
+  
+  if(ri!CustomerId=0,#&quot;_a-0000db81-7a28-8000-5130-010000010000_3678&quot;(Logo:ri!Logo),#&quot;_a-0000db81-7a28-8000-5130-010000010000_3683&quot;(Logo:ri!Logo,RevisedLogo:ri!RevisedLogo))
+  
+   /* 
+        Customer Logo Details
+              END
+  */
+  
+  },
+  buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+    primaryButtons: {
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: #&quot;_a-0000db81-7a28-8000-5130-010000010000_2906&quot;,
+        style: &quot;PRIMARY&quot;,
+        value: #&quot;_a-0000db81-7a28-8000-5130-010000010000_2906&quot;,
+        saveInto: ri!BtnAction
+      )
+    },
+    secondaryButtons: {
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: #&quot;_a-0000db81-7a28-8000-5130-010000010000_2915&quot;,
+        value: #&quot;_a-0000db81-7a28-8000-5130-010000010000_2915&quot;,
+        saveInto: ri!BtnAction,
+        skipValidation: true
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>Logo</name>
+            <type>
+                <name>CollaborationDocument</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>Customer</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>Address</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ContactInfo</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>BtnAction</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>RevisedLogo</name>
+            <type>
+                <name>CollaborationDocument</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>CustomerId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:CollaborationDocument"/>
+                    <a:nameRef>Logo</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                    <a:nameRef>Customer</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                    <a:nameRef>Address</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                    <a:nameRef>ContactInfo</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>BtnAction</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:CollaborationDocument"/>
+                    <a:nameRef>RevisedLogo</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>CustomerId</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

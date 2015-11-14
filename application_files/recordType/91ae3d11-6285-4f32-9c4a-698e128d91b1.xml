@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <recordType name="Customer" a:uuid="91ae3d11-6285-4f32-9c4a-698e128d91b1">
+        <a:pluralName>Customers</a:pluralName>
+        <a:description>Record for Customers</a:description>
+        <a:urlStub>WtwZkg</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Datatype" a:uuid="{OHA}Customer"/>
+        <a:listViewTemplateExpr>#&quot;c2417499-ac47-4b6d-a1aa-7989e795b115&quot;()</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Summary&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;cae49b1e-9ca2-4d67-a473-c31945b248a0&quot;(rf!LogoID,rf!CustomerName,rf!CustomerTypeID,rf!IsDOAMEnabled,rf!IsActive,rf!ContactID)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>9da164a1-6d5a-4d5e-9a0c-8ca6daae3912</a:relatedActionCfg>
+            <a:relatedActionCfg>6e624744-1e1e-43d7-8737-d60bd89d0b1a</a:relatedActionCfg>
+            <a:relatedActionCfg>1a1b8c42-b23c-49e3-8504-61c4bb278046</a:relatedActionCfg>
+            <a:relatedActionCfg>3b153ab5-35ad-4ee8-835d-4ee57df258cb</a:relatedActionCfg>
+            <a:relatedActionCfg>baeec6f1-5e4b-4058-b455-34d65d4bce04</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;SLAs&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;ba019840-5122-4e0f-8fc2-d8b7a7e40923&quot;(rf!ID)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_wxg9Nw</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>baeec6f1-5e4b-4058-b455-34d65d4bce04</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:defaultSortInfo>
+            <field>CreatedDate</field>
+            <ascending>false</ascending>
+        </a:defaultSortInfo>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002db98-e789-8000-5131-010000010000"/>
+            <a:contextExpr>{CustomerID:rf!ID}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>9da164a1-6d5a-4d5e-9a0c-8ca6daae3912</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dba3-a8e2-8000-5131-010000010000"/>
+            <a:contextExpr>{CustomerID:rf!ID}</a:contextExpr>
+            <a:visibilityExpr>rf!IsDOAMEnabled</a:visibilityExpr>
+            <a:refId>6e624744-1e1e-43d7-8737-d60bd89d0b1a</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dba3-843f-8000-5131-010000010000"/>
+            <a:contextExpr>{CustomerId:rf!ID}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>1a1b8c42-b23c-49e3-8504-61c4bb278046</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dba3-d0d9-8000-5131-010000010000"/>
+            <a:contextExpr>{CustomerId:rf!ID}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>3f1a37fa-da11-4fbd-b8f5-e3295a3ad8a9</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dbda-f823-8000-5131-010000010000"/>
+            <a:contextExpr>{CustomerId:rf!ID}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>ebf2883c-4cf7-4759-b6cf-0437d241e779</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0009dbaa-4435-8000-5131-010000010000"/>
+            <a:contextExpr>{CustomerId:rf!ID}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>3b153ab5-35ad-4ee8-835d-4ee57df258cb</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0004dbe1-d9f2-8000-5131-010000010000"/>
+            <a:contextExpr>{CustomerId:pv!CustomerId}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>936a789c-0587-4bd2-a6b9-cd36448facae</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0004dbfd-09d6-8000-5131-010000010000"/>
+            <a:contextExpr>={CustomerID:rf!ID}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>baeec6f1-5e4b-4058-b455-34d65d4bce04</a:refId>
+        </a:relatedActionCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr>#&quot;238518eb-2398-485f-adb3-e5c975d4d8c4&quot;(rsp!query)</a:dataSrcExpr>
+        <a:facetsListExpr>#&quot;_a-0000db81-7a28-8000-5130-010000010000_4016&quot;()</a:facetsListExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:security>16383</a:security>
+    </recordType>
+    <roleMap>
+        <role name="record_type_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000db81-7a1f-8000-512d-010000010000_9</groupUuid>
+            </groups>
+        </role>
+        <role name="record_type_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000db81-7a1f-8000-512d-010000010000_28</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</recordTypeHaul>

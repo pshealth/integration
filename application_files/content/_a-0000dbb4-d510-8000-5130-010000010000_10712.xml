@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <queryRule>
+        <name>AC_GetAllActiveUserDetailById</name>
+        <uuid>_a-0000dbb4-d510-8000-5130-010000010000_10712</uuid>
+        <description>Returns all active user details by id</description>
+        <folderUuid>_a-0000db81-7a28-8000-5130-010000010000_2701</folderUuid>
+        <dataStoreEntityCompositeUuid>7170b2a3-d01e-4815-b1b1-8e19f0177ca1@_a-0000db81-7a28-8000-5130-010000010000_2392</dataStoreEntityCompositeUuid>
+        <params>
+            <param>
+                <description></description>
+                <name>Id</name>
+                <type>{http://www.appian.com/ae/types/2009}Integer?list</type>
+            </param>
+            <param>
+                <description></description>
+                <name>IsActive</name>
+                <type>{http://www.w3.org/2001/XMLSchema}boolean</type>
+            </param>
+        </params>
+        <filters>
+            <filter>
+                <field>
+                    <name>ID</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}int</type>
+                </field>
+                <op>in</op>
+                <value>Id</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+            <filter>
+                <field>
+                    <name>IsActive</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}boolean</type>
+                </field>
+                <op>=</op>
+                <value>IsActive</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+        </filters>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

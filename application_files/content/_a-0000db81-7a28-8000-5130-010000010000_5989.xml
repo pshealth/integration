@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_GetIllnessConditionIDsForPrimarySecondaryConditionCombination</name>
+        <uuid>_a-0000db81-7a28-8000-5130-010000010000_5989</uuid>
+        <description>Returns the id of illness condition on the basis of Primary Secondary Condition Combination</description>
+        <parentUuid>_a-0000db81-7a28-8000-5130-010000010000_2792</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>if(and(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!PickedPrimaryConditions),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!PickedSecondaryConditions)),tointeger({}),intersection(
+  tointeger(
+    if(
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+        #&quot;4672f7be-c1cd-45ad-a0e4-852a54368ab2&quot;(
+          SearchValues: ri!PickedPrimaryConditions,
+          SearchArray: index(
+            #&quot;_a-0000db81-7a28-8000-5130-010000010000_4638&quot;(
+              true()
+            ),
+            &quot;PrimaryCondition&quot;,
+            null
+          ),
+          IndexArray: index(
+            #&quot;_a-0000db81-7a28-8000-5130-010000010000_4638&quot;(
+              true()
+            ),
+            &quot;ID&quot;,
+            null
+          )
+        )
+      ),
+      index(
+        #&quot;_a-0000db81-7a28-8000-5130-010000010000_4638&quot;(
+          true()
+        ),
+        &quot;ID&quot;,
+        null
+      ),
+      #&quot;4672f7be-c1cd-45ad-a0e4-852a54368ab2&quot;(
+        SearchValues: ri!PickedPrimaryConditions,
+        SearchArray: index(
+          #&quot;_a-0000db81-7a28-8000-5130-010000010000_4638&quot;(
+            true()
+          ),
+          &quot;PrimaryCondition&quot;,
+          null
+        ),
+        IndexArray: index(
+          #&quot;_a-0000db81-7a28-8000-5130-010000010000_4638&quot;(
+            true()
+          ),
+          &quot;ID&quot;,
+          null
+        )
+      )
+    )
+  ),
+  tointeger(
+    if(
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+        #&quot;4672f7be-c1cd-45ad-a0e4-852a54368ab2&quot;(
+          SearchValues: ri!PickedSecondaryConditions,
+          SearchArray: index(
+            #&quot;_a-0000db81-7a28-8000-5130-010000010000_4638&quot;(
+              true()
+            ),
+            &quot;SecondaryCondition&quot;,
+            null
+          ),
+          IndexArray: index(
+            #&quot;_a-0000db81-7a28-8000-5130-010000010000_4638&quot;(
+              true()
+            ),
+            &quot;ID&quot;,
+            null
+          )
+        )
+      ),
+      index(
+        #&quot;_a-0000db81-7a28-8000-5130-010000010000_4638&quot;(
+          true()
+        ),
+        &quot;ID&quot;,
+        null
+      ),
+      #&quot;4672f7be-c1cd-45ad-a0e4-852a54368ab2&quot;(
+        SearchValues: ri!PickedSecondaryConditions,
+        SearchArray: index(
+          #&quot;_a-0000db81-7a28-8000-5130-010000010000_4638&quot;(
+            true()
+          ),
+          &quot;SecondaryCondition&quot;,
+          null
+        ),
+        IndexArray: index(
+          #&quot;_a-0000db81-7a28-8000-5130-010000010000_4638&quot;(
+            true()
+          ),
+          &quot;ID&quot;,
+          null
+        )
+      )
+    )
+  )
+)
+)</definition>
+        <namedTypedValue>
+            <name>PickedPrimaryConditions</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>PickedSecondaryConditions</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>PickedPrimaryConditions</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>PickedSecondaryConditions</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

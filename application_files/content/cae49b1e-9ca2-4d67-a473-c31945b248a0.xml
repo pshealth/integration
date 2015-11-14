@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_Customer_SummaryDashboard</name>
+        <uuid>cae49b1e-9ca2-4d67-a473-c31945b248a0</uuid>
+        <description>Provides summary dashboard for customer dashboard</description>
+        <parentUuid>_a-0000db81-7a28-8000-5130-010000010000_2584</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+local!ContactDetails:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!ContactID),{},#&quot;2481067c-7331-4f22-a9a2-4fe8daa7bf13&quot;(ri!ContactID)),&#xD;
+local!ContactInfoDetails:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(index(local!ContactDetails,&quot;ContactInfoID&quot;,null)),{},#&quot;f12bc7eb-70cb-46dd-a046-6ff573fe08a3&quot;(local!ContactDetails.ContactInfoID)),&#xD;
+local!AddressDetails:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(index(local!ContactDetails,&quot;AddressId&quot;,null)),{},#&quot;5fdc3c4b-8f1d-4393-8749-c0389efac7ab&quot;(local!ContactDetails.AddressId)),&#xD;
+#&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(&#xD;
+  firstColumnContents: {&#xD;
+  /*Customer Basic Details Section*&#xD;
+  --Begin--*/&#xD;
+    #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+      firstColumnContents: {&#xD;
+        if(#&quot;_a-0000db81-7a28-8000-5130-010000010000_2887&quot;(ri!LogoID),#&quot;SYSTEM_SYSRULES_imageField&quot;(labelPosition:&quot;ADJACENT&quot;,images:#&quot;SYSTEM_SYSRULES_documentImage&quot;(document:ri!LogoID)),{}) &#xD;
+      },&#xD;
+      secondColumnContents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          label: &quot;Name&quot;,&#xD;
+          labelPosition:&quot;ADJACENT&quot;,&#xD;
+          value: ri!Name,&#xD;
+          readOnly: true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          label: &quot;Type&quot;,&#xD;
+          labelPosition:&quot;ADJACENT&quot;,&#xD;
+          value: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!CustomerTypeID),null,#&quot;7fe0689c-72e7-4eaf-b1b5-a87889b2d3c3&quot;(ri!CustomerTypeID).Type),&#xD;
+          readOnly: true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_imageField&quot;(&#xD;
+          label: &quot;DOAM Enabled&quot;,&#xD;
+          labelPosition:&quot;ADJACENT&quot;,&#xD;
+          images: if(&#xD;
+            ri!DOAMEnabled,&#xD;
+            #&quot;SYSTEM_SYSRULES_documentImage&quot;(&#xD;
+              document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(&#xD;
+                &quot;STATUS_OK&quot;&#xD;
+              ),&#xD;
+              caption: &quot;Yes&quot;&#xD;
+            ),&#xD;
+            #&quot;SYSTEM_SYSRULES_documentImage&quot;(&#xD;
+              document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(&#xD;
+                &quot;STATUS_NOTDONE&quot;&#xD;
+              ),&#xD;
+              caption: &quot;No&quot;&#xD;
+            )&#xD;
+          ),&#xD;
+          size: &quot;ICON&quot;&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_imageField&quot;(&#xD;
+          label: &quot;Active&quot;,&#xD;
+          labelPosition:&quot;ADJACENT&quot;,&#xD;
+          images: if(&#xD;
+            ri!IsActive,&#xD;
+            #&quot;SYSTEM_SYSRULES_documentImage&quot;(&#xD;
+              document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(&#xD;
+                &quot;STATUS_OK&quot;&#xD;
+              ),&#xD;
+              caption: &quot;Yes&quot;&#xD;
+            ),&#xD;
+            #&quot;SYSTEM_SYSRULES_documentImage&quot;(&#xD;
+              document: #&quot;SYSTEM_SYSRULES_iconIndicator&quot;(&#xD;
+                &quot;STATUS_NOTDONE&quot;&#xD;
+              ),&#xD;
+              caption: &quot;No&quot;&#xD;
+            )&#xD;
+          ),&#xD;
+          size: &quot;ICON&quot;&#xD;
+        )&#xD;
+      }&#xD;
+    ),&#xD;
+	/*Customer Basic Details Section*&#xD;
+  --End--*/&#xD;
+  &#xD;
+  &#xD;
+  /*Customer Contact Details Section*&#xD;
+  --Begin--*/&#xD;
+	#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+	label:&quot;Contact Details&quot;,&#xD;
+	firstColumnContents:{&#xD;
+	#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;Address&quot;,labelPosition:&quot;ADJACENT&quot;,value:index(local!AddressDetails,&quot;Address&quot;,null),readOnly:true),&#xD;
+	#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;City&quot;,labelPosition:&quot;ADJACENT&quot;,value:index(local!AddressDetails,&quot;City&quot;,null),readOnly:true),&#xD;
+	#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;PostCode&quot;,labelPosition:&quot;ADJACENT&quot;,value:index(local!AddressDetails,&quot;PostCode&quot;,null),readOnly:true)&#xD;
+	},&#xD;
+	secondColumnContents:{&#xD;
+	#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;Country&quot;,labelPosition:&quot;ADJACENT&quot;,value:index(local!AddressDetails,&quot;Country&quot;,null),readOnly:true),&#xD;
+	#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;Contact Number&quot;,labelPosition:&quot;ADJACENT&quot;,value:index(local!ContactInfoDetails,&quot;PrimaryTelephoneNo&quot;,null),readOnly:true),&#xD;
+	#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;Email&quot;,labelPosition:&quot;ADJACENT&quot;,value:index(local!ContactInfoDetails,&quot;Email&quot;,null),readOnly:true)&#xD;
+	}&#xD;
+	),&#xD;
+	 /*Customer Contact Details Section*&#xD;
+  --End--*/&#xD;
+  &#xD;
+   /*Customer Business Orgs Section*&#xD;
+  --Begin--*/&#xD;
+	#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(label:&quot;Business Orgs&quot;,firstColumnContents:{#&quot;f441e499-691e-4ab7-bf3a-22fd014ef296&quot;()})&#xD;
+	  /*Customer Business Orgs Section*&#xD;
+  --End--*/&#xD;
+  }&#xD;
+)&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>LogoID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>Name</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>CustomerTypeID</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>DOAMEnabled</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>IsActive</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ContactID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>siddharth.goyal</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>LogoID</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>Name</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>CustomerTypeID</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                    <a:nameRef>DOAMEnabled</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                    <a:nameRef>IsActive</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>ContactID</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

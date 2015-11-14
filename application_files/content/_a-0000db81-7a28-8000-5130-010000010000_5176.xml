@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_AccidentAtWorkRowLayout</name>
+        <uuid>_a-0000db81-7a28-8000-5130-010000010000_5176</uuid>
+        <description>Provides a grid row layout to set Accident at work trigger</description>
+        <parentUuid>_a-0000db81-7a28-8000-5130-010000010000_2792</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(&#xD;
+  id: ri!index,&#xD;
+  contents: {&#xD;
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+      label: &quot;Action &quot; &amp; ri!index,&#xD;
+	  placeholderLabel:&quot;--Please Select--&quot;,&#xD;
+	  choiceLabels:#&quot;_a-0000db81-7a28-8000-5130-010000010000_2782&quot;(true).Action,&#xD;
+	  choiceValues:#&quot;_a-0000db81-7a28-8000-5130-010000010000_2782&quot;(true).ID,&#xD;
+      value: ri!AccidentAtWorkConfig[ri!index].ActionId,&#xD;
+      saveInto: ri!AccidentAtWorkConfig[ri!index].ActionId&#xD;
+      &#xD;
+    )&#xD;
+  }&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>AccidentAtWorkConfig</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>index</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>AccidentAtWorkConfig</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>index</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>
