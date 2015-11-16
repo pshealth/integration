@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_Billing_GenerateDailyRunRateDataSubsetForExcel</name>
+        <uuid>_a-0000dbde-d572-8000-6ee0-010000010000_47054</uuid>
+        <description>Returns a datasubset to generate excel for billing daily run rate report</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_19705</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(&#xD;
+  local!search: #&quot;SYSTEM_SYSRULES_fromJson&quot;(&#xD;
+    ri!input&#xD;
+  ),&#xD;
+  local!PagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+    startIndex: 1,&#xD;
+    batchSize: - 1,&#xD;
+    sort: {&#xD;
+      field: &quot;CaseID&quot;,&#xD;
+      ascending: false&#xD;
+    }&#xD;
+  ),&#xD;
+ &#xD;
+ /*&#xD;
+		Get the data again for values provided in filters section.&#xD;
+ */&#xD;
+ &#xD;
+local!Datasubset:#&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47050&quot;(AllMonths:local!search.AllMonths,FilterByCM:local!search.FilterByCM,FilterByProduct:local!search.FilterByProduct,FilterByYear:local!search.FilterByYear,FilterByMonth:local!search.FilterByMonth,FilterByCustomer:local!search.FilterByCustomer,CaseManager:local!search.CaseManager,ProviderID:local!search.ProviderID,&#xD;
+	  FilterByTeam:local!search.FilterByTeam,FilterByCaseManager:local!search.FilterByCaseManager,FilterByTeamDept:local!search.FilterByTeamDept,FilterByBrand:local!search.FilterByBrandl,pagingInfo:local!PagingInfo,FilterByReferredStartDate:local!search.FilterByReferredStartDate,FilterByStartClosedDate:local!search.FilterByStartClosedDate,FilterByEndClosedDate:local!search.FilterByEndClosedDate,FilterByStartOpenedDate:local!search.FilterByStartOpenedDate,FilterByReferredEndDate:local!search.FilterByReferredEndDate,FilterByEndOpenedDate:local!search.FilterByEndOpenedDate,DailyRunRateDate:local!search.DailyRunRateDate&#xD;
+&#xD;
+),&#xD;
+ &#xD;
+ &#xD;
+local!Datasubset&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>input</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>input</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

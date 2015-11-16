@@ -22,7 +22,9 @@
         </role>
         <role allowForAll="true" inherit="false" name="authors">
             <users/>
-            <groups/>
+            <groups>
+                <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_16</groupUuid>
+            </groups>
         </role>
         <role allowForAll="false" inherit="false" name="administrators">
             <users/>

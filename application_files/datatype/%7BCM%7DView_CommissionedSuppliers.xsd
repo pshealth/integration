@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="CM" xmlns:ac1="AC" xmlns:tns="CM" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="AC" schemaLocation="%7BAC%7DClient.xsd"/>
+  <xsd:import namespace="AC" schemaLocation="%7BAC%7DIntervention.xsd"/>
+  <xsd:complexType name="View_CommissionedSuppliers">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">
+                @Table(name="CommissionedSuppliers")
+            </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="ID" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @Column(name="ID") @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="CaseID" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="CaseID")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Intervention" nillable="true" type="ac1:Intervention">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@JoinColumn(name="InterventionID")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Client" nillable="true" type="ac1:Client">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@JoinColumn(name="ClientID")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="IsActive" nillable="true" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="IsActive")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="DateInvoiced" nillable="true" type="xsd:dateTime">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="DateInvoiced")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="DateCompleted" nillable="true" type="xsd:dateTime">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="DateCompleted")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="PurchaseOrderNumber" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="PurchaseOrderNumber")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="QuantityCommissioned" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="QuantityCommissioned")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="TotalPurchaseOrderCost" nillable="true" type="xsd:double">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="TotalPurchaseOrderCost")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="QuantityCompleted" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="QuantityCompleted")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="UnitCost" nillable="true" type="xsd:double"/>
+      <xsd:element name="PurchaseOrderOutstanding" nillable="true" type="xsd:double"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

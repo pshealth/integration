@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="CM" xmlns:tns="CM" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="Delegation">
+    <xsd:sequence>
+      <xsd:element name="ID" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="NewAssignee" nillable="true" type="xsd:string"/>
+      <xsd:element name="StartDate" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="EndDate" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="CreatedDate" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="CreatedBy" nillable="true" type="xsd:string"/>
+      <xsd:element name="LastUpdateDate" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="LastUpdatedBy" nillable="true" type="xsd:string"/>
+      <xsd:element name="CurrentAssignee" nillable="true" type="xsd:string"/>
+      <xsd:element name="IsDelegated" nillable="true" type="xsd:boolean"/>
+      <xsd:element name="IsApproved" nillable="true" type="xsd:boolean"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

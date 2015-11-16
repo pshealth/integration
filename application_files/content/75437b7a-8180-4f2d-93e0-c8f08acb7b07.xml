@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>MI_MultiTrack_DateRangeFilter</name>
+        <uuid>75437b7a-8180-4f2d-93e0-c8f08acb7b07</uuid>
+        <description>Contains a date range filter for MI Multi Track Report</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25360</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{&#xD;
+  #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+    label: &quot;Filters&quot;,&#xD;
+    firstColumnContents: {&#xD;
+      #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(&#xD;
+        label: &quot;Date&quot;,&#xD;
+        value: local!FilterByEndDate,&#xD;
+        saveInto: {&#xD;
+          local!FilterByEndDate,&#xD;
+          a!save(&#xD;
+            local!pagingInfo.startIndex,&#xD;
+            1&#xD;
+          ),&#xD;
+          a!save(&#xD;
+            local!isdownload,&#xD;
+            null&#xD;
+          )&#xD;
+        }&#xD;
+      )&#xD;
+    },&#xD;
+    secondColumnContents: {&#xD;
+      #&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+        label: &quot;Rolling Month Count&quot;,&#xD;
+        placeholderLabel: &quot;--Please Select--&quot;,&#xD;
+        choiceLabels: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11228&quot;,&#xD;
+        choiceValues: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11229&quot;,&#xD;
+        value: local!RollingMonthCount,&#xD;
+        saveInto: {&#xD;
+          local!RollingMonthCount,&#xD;
+          a!save(&#xD;
+            local!pagingInfo.startIndex,&#xD;
+            1&#xD;
+          ),&#xD;
+          a!save(&#xD;
+            local!isdownload,&#xD;
+            null&#xD;
+          )&#xD;
+        }&#xD;
+      )&#xD;
+    }&#xD;
+  )&#xD;
+}</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

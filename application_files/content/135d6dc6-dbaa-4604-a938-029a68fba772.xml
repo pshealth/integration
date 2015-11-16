@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_Referrals_DailyRunRate</name>
+        <uuid>135d6dc6-dbaa-4604-a938-029a68fba772</uuid>
+        <description></description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10801</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_queryEntity&quot;(&#xD;
+entity:#&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_13370&quot;,&#xD;
+query:#&quot;SYSTEM_SYSRULES_query&quot;(&#xD;
+aggregation:#&quot;SYSTEM_SYSRULES_queryAggregation&quot;(&#xD;
+{&#xD;
+#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+field:&quot;Months&quot;,&#xD;
+isGrouping:true&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+field:&quot;Years&quot;,&#xD;
+isGrouping:true&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(field: &quot;TotalInProgressCases&quot;, aggregationFunction: &quot;AVG&quot;)&#xD;
+}&#xD;
+),&#xD;
+logicalExpression :if(or(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByReferredStartDate),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByReferredEndDate)),null,#&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(&#xD;
+operator :&quot;AND&quot;,&#xD;
+filters : {if(or(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByReferredStartDate),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByReferredEndDate)),null,&#xD;
+		&#xD;
+		#&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+  field: &quot;RunRateDate&quot;,&#xD;
+  operator: &quot;between&quot;,&#xD;
+  value:{todate(local!FilterByReferredStartDate),todate(local!FilterByReferredEndDate)}&#xD;
+)),&#xD;
+&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!ProviderID),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;ProviderID&quot;,operator:&quot;in&quot;,value:local!ProviderID)),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByCM), if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!CaseManager),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;CaseManagerName&quot;,&#xD;
+                    operator: &quot;in&quot;,&#xD;
+                    value: &#xD;
+                      local!CaseManager&#xD;
+                    &#xD;
+                  )),#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;CaseManagerName&quot;,operator:&quot;=&quot;,value:tostring(local!FilterByCM))),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByProduct),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;ProductName&quot;,operator:&quot;=&quot;,value:local!FilterByProduct)),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByCustomer),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;TopClientName&quot;,operator:&quot;=&quot;,value:local!FilterByCustomer)),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByTeam),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;TeamID&quot;,operator:&quot;=&quot;,value:local!FilterByTeam))}&#xD;
+&#xD;
+)),&#xD;
+	pagingInfo: local!pagingInfo&#xD;
+	)&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

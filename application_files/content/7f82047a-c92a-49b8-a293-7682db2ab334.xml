@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_GetCustomerNamesForFilters</name>
+        <uuid>7f82047a-c92a-49b8-a293-7682db2ab334</uuid>
+        <description>Returns the customer name on the basis of Logged in User.
+If logged in user is a case manger then this rule will return customer name corresponding to that case manager.
+If logged in user is a team leader then this rule will return all the customer names</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10791</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  /*local!ProviderAccountDetailsByUser:rule!CM_MI_GetProviderAccountDetailsByUsername(ri!LoggedInUser),
+local!LoggedInUserID:if(rule!Utils_CheckIsNull(local!ProviderAccountDetailsByUser),null,local!ProviderAccountDetailsByUser.ID),
+local!TopClientIds:if(rule!Utils_CheckIsNull(local!LoggedInUserID),{},rule!CM_MI_GetCaseDetailsByCaseManagerID(local!LoggedInUserID).TopClientID),
+local!CaseManagerClientNames:apply(rule!CM_MI_GetCustomerNameByCustomerId,local!TopClientIds),
+local!TeamLeaderClientNames:union(rule!CM_MI_GetClientDetails().Name,rule!CM_MI_GetClientDetails().Name),
+local!ClientName:if(ri!TypeId=cons!AC_ProviderAccount_Types_Values[1],local!CaseManagerClientNames,if(ri!TypeId=cons!AC_ProviderAccount_Types_Values[3],local!TeamLeaderClientNames,if(user(ri!LoggedInUser,&quot;userTypeName&quot;)=&quot;Administrator&quot;,local!TeamLeaderClientNames,null))),
+difference(local!ClientName,null)*/
+  local!ProviderAccountDetails: #&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(
+    ri!LoggedInUser
+  ),
+  local!ProviderID: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      local!ProviderAccountDetails
+    ),
+    {},
+    tointeger(
+      local!ProviderAccountDetails.ProviderID
+    )
+  ),
+  local!CustomerDetails: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      local!ProviderID
+    ),
+    {},
+    #&quot;c976272d-c9e7-453b-940c-c7248da1b1b2&quot;(
+      ProviderID: local!ProviderID,
+      CustomerTypeID: 1,
+      ParentID: 0
+    )
+  ),
+  local!CustomerName: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      local!CustomerDetails
+    ),
+    {},
+    index(
+      local!CustomerDetails.data,
+      &quot;Name&quot;,
+      {}
+    )
+  ),
+  local!CustomerName
+)</definition>
+        <namedTypedValue>
+            <name>LoggedInUser</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>TypeId</name>
+            <type>
+                <name>double</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>LoggedInUser</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>TypeId</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

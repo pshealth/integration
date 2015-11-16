@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CaseOutcomes_CaseWithdrawnDatsubsetForFilters</name>
+        <uuid>1c0264f5-e46f-4368-959a-3b4c2ccb3117</uuid>
+        <description></description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_16749</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_queryEntity&quot;(&#xD;
+entity:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_16750&quot;,&#xD;
+&#xD;
+query:#&quot;SYSTEM_SYSRULES_query&quot;(&#xD;
+logicalExpression :if(or(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByStartDate),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByEndDate)),null,#&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(&#xD;
+operator :&quot;AND&quot;,&#xD;
+filters : {if(or(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByStartDate),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByEndDate)),null,&#xD;
+		&#xD;
+		#&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+  field: &quot;DateClosed&quot;,&#xD;
+  operator: &quot;between&quot;,&#xD;
+  value: {todatetime(ri!FilterByStartDate),todatetime(ri!FilterByEndDate)}&#xD;
+)),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!IsWithdrawn),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;IsWithdrawn&quot;,operator:&quot;=&quot;,value:ri!IsWithdrawn)),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!ProviderID),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;ProviderID&quot;,operator:&quot;in&quot;,value:ri!ProviderID)),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByCM),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;CaseManagerName&quot;,operator:&quot;=&quot;,value:tostring(ri!FilterByCM))),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByProduct),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;ProductName&quot;,operator:&quot;=&quot;,value:ri!FilterByProduct)),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByCustomer),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;TopClientName&quot;,operator:&quot;=&quot;,value:ri!FilterByCustomer)),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByTeam),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;TeamID&quot;,operator:&quot;=&quot;,value:ri!FilterByTeam))}&#xD;
+&#xD;
+)),&#xD;
+	pagingInfo: ri!pagingInfo&#xD;
+	)&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>FilterByEndDate</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByCM</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByProduct</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByCustomer</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByStartDate</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ProviderID</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByTeam</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>IsWithdrawn</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>pagingInfo</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

@@ -44,7 +44,9 @@
             <groups/>
         </role>
         <role allowForAll="false" inherit="true" name="administrators">
-            <users/>
+            <users>
+                <userUuid>david.bewick@pshealth.co.uk</userUuid>
+            </users>
             <groups/>
         </role>
         <role allowForAll="false" inherit="false" name="denyReaders">

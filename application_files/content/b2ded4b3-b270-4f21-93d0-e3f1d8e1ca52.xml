@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>MI_MultiTrack_SelectReportSection</name>
+        <uuid>b2ded4b3-b270-4f21-93d0-e3f1d8e1ca52</uuid>
+        <description>Contains a section to select report for Multi Track MI Report</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25360</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+  local!testBool: bind(&#xD;
+    get: {},&#xD;
+    set: startprocesswrite(&#xD;
+      processModelId: tointeger(#&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_42508&quot;),&#xD;
+      processParameters: _&#xD;
+    )&#xD;
+  ),&#xD;
+  local!DataExport,&#xD;
+  local!ShowDocumentBrowser,&#xD;
+  with(&#xD;
+     local!CaseIDs:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(#&quot;6b30a081-e719-48a3-a741-17ef23cda7b2&quot;(FilterByCustomer:local!FilterByCustomer,CaseManager:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByCM),local!CaseManager,{local!FilterByCM}),FilterByEndDate :if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndDate),null,datetext(local!FilterByEndDate,&quot;dd/MM/yyyy hh:mm&quot;)),FilterByProduct:local!FilterByProduct,FilterByTeam :local!FilterByTeam,FilterByStartDate :if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartDate),null,datetext(local!FilterByStartDate,&quot;dd/MM/yyyy hh:mm&quot;)))),{},#&quot;6b30a081-e719-48a3-a741-17ef23cda7b2&quot;(FilterByCustomer:local!FilterByCustomer,CaseManager:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByCM),local!CaseManager,{local!FilterByCM}),FilterByEndDate :if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndDate),null,datetext(local!FilterByEndDate,&quot;dd/MM/yyyy hh:mm&quot;)),FilterByProduct:local!FilterByProduct,FilterByTeam :local!FilterByTeam,FilterByStartDate :if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartDate),null,datetext(local!FilterByStartDate,&quot;dd/MM/yyyy hh:mm&quot;))).CaseID),&#xD;
+  {&#xD;
+  #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+    label: &quot;Select Report &amp; Data Export&quot;,&#xD;
+    isCollapsible: true,&#xD;
+    firstColumnContents: {&#xD;
+      #&quot;SYSTEM_SYSRULES_checkboxField&quot;(&#xD;
+        label: &quot;Select report to render below&quot;,&#xD;
+        choiceLabels: ri!ReportValues,&#xD;
+        choiceValues: ri!ReportValues,&#xD;
+        value: local!SelectedReport,&#xD;
+        saveInto: local!SelectedReport&#xD;
+      )&#xD;
+    },&#xD;
+    secondColumnContents: {&#xD;
+      #&quot;SYSTEM_SYSRULES_checkboxField&quot;(&#xD;
+        label: &quot;Select report for Data Export&quot;,&#xD;
+        choiceLabels: #&quot;_a-0000db6d-e203-8000-6ee0-010000010000_27412&quot;,&#xD;
+        choiceValues: #&quot;_a-0000db6d-e203-8000-6ee0-010000010000_27418&quot;,&#xD;
+        value: local!DataExportReport,&#xD;
+        saveInto: {local!DataExportReport,a!save(local!DataExport,null)}&#xD;
+      ),&#xD;
+      #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+        primaryButtons: {&#xD;
+          #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(&#xD;
+            label: &quot;Export Data&quot;,&#xD;
+            style:&quot;PRIMARY&quot;,&#xD;
+            disabled:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!DataExportReport),true(),false()),&#xD;
+            value: {FilterJSON:#&quot;SYSTEM_SYSRULES_toJson&quot;({&#xD;
+              CaseManager: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByCM),local!CaseManager,local!FilterByCM),&#xD;
+              Customer: local!FilterByCustomer,&#xD;
+              Team:local!FilterByTeam,&#xD;
+              Product:local!FilterByProduct,&#xD;
+              ToDate:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndDate),null,datetext(local!FilterByEndDate,&quot;dd/MM/yyyy hh:mm&quot;)),&#xD;
+              FromDate:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartDate),null,datetext(local!FilterByStartDate,&quot;dd/MM/yyyy hh:mm&quot;)),&#xD;
+              ReportCategory:local!DataExportReport,&#xD;
+              LoggedInUser:tostring(loggedInUser())&#xD;
+              })&#xD;
+            },&#xD;
+            saveInto: {local!testBool,a!save(local!DataExport,&quot;DataExport&quot;),a!save(local!ShowDocumentBrowser,if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!CaseIDs),null,&quot;Show&quot;))}&#xD;
+          )&#xD;
+        }&#xD;
+      )&#xD;
+&#xD;
+    }&#xD;
+  ),if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!DataExport),{},&#xD;
+  #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+    label:&quot;Export to Excel&quot;,&#xD;
+    isCollapsible:true,&#xD;
+    firstColumnContents:{if(or(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!ShowDocumentBrowser),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!CaseIDs)),{},&#xD;
+   { #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(secondaryButtons:{#&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(label:&quot;Refresh&quot;)}),&#xD;
+      #&quot;SYSTEM_SYSRULES_documentBrowserFieldColumns&quot;(&#xD;
+      label: &quot;&quot;,&#xD;
+      folder: findfoldersbyname(true(),#&quot;68f12513-60c1-48ea-98aa-7579cb4c1977&quot;(tostring(loggedInUser()))),&#xD;
+      height:&quot;SMALL&quot;&#xD;
+    )})},&#xD;
+    validations:if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!CaseIDs),&#xD;
+      #&quot;SYSTEM_SYSRULES_validationMessage&quot;(&#xD;
+        message: &quot;There are no case ids for the selected filters.&quot;,&#xD;
+        validateAfter: &quot;REFRESH&quot;&#xD;
+      ),&#xD;
+      {}&#xD;
+    )&#xD;
+  )&#xD;
+  )&#xD;
+  }&#xD;
+)&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>ReportValues</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>ReportValues</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

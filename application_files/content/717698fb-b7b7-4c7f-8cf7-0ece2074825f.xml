@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_TotalCostBillingGrid</name>
+        <uuid>717698fb-b7b7-4c7f-8cf7-0ece2074825f</uuid>
+        <description>Contains a grid for Total Cost Billing</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_19705</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridLayout&quot;(&#xD;
+    label: &quot;Total Billing Cost&quot;,&#xD;
+    headerCells: {&#xD;
+      #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Total Assessment Cost&quot;),&#xD;
+      #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Total Case Management Cost&quot;),&#xD;
+      #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Total Supplier Cost&quot;),&#xD;
+      #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Total Cost&quot;)&#xD;
+    },&#xD;
+    rows: {&#xD;
+      #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(index(local!DataSubsetForTotalCost.data,&quot;Assessment&quot;,null)),null,sum(index(local!DataSubsetForTotalCost.data,&quot;Assessment&quot;,{}))),&#xD;
+readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(index(local!DataSubsetForTotalCost.data,&quot;CaseManagement&quot;,null)),null,sum(index(local!DataSubsetForTotalCost.data,&quot;CaseManagement&quot;,{}))),&#xD;
+          readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+value: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(index(local!DataSubsetForTotalCost.data,&quot;Suppliers&quot;,null)),null,sum(index(local!DataSubsetForTotalCost.data,&quot;Suppliers&quot;,{}))),&#xD;
+         readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          &#xD;
+          readOnly: true,&#xD;
+          value:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(index(local!DataSubsetForTotalCost.data,&quot;Total&quot;,null)),null,sum(index(local!DataSubsetForTotalCost.data,&quot;Total&quot;,{})))&#xD;
+        )&#xD;
+      })&#xD;
+    }&#xD;
+  )</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

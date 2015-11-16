@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_Client_Dashboard_Products</name>
+        <uuid>36ff5406-2dcf-4f9f-98e2-2f9a4233c3e9</uuid>
+        <description></description>
+        <parentUuid>_a-0000da7b-2d42-8000-6ee0-010000010000_1157</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(&#xD;
+  local!paginginfo: topaginginfo(1,#&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1892&quot;),&#xD;
+  local!client: #&quot;40886eb4-ae36-4ee8-adf6-8fb4860ce02d&quot;(ri!clientId),&#xD;
+  local!products: #&quot;a6693ece-1c51-49e8-80d9-58aff6f24bfe&quot;(local!client.ProviderID),&#xD;
+  local!clients: repeat(#&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1892&quot;, #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1895&quot;(local!client)),&#xD;
+  with(&#xD;
+    local!clientProducts: #&quot;6cd18ee1-98c2-4e3d-b3db-c2a5c7ec30f7&quot;(ri!clientId, local!paginginfo), &#xD;
+    #&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(&#xD;
+      firstColumnContents: {&#xD;
+        #&quot;fcc96160-89ee-4b8d-a3c6-1aaec7f09142&quot;(local!clientProducts, local!products, local!clients, local!paginginfo)&#xD;
+      },&#xD;
+      secondColumnContents: {&#xD;
+      }&#xD;
+    )&#xD;
+  )&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>clientId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>krassimir.dimitrov@pshealth.co.uk</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

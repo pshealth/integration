@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_GetClientDescendants_FiveGenerations</name>
+        <uuid>f3a15790-4918-473e-8296-7baaddf18da3</uuid>
+        <description></description>
+        <parentUuid>_a-0000dac7-a419-8000-6ee0-010000010000_3865</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(
+  local!client: #&quot;40886eb4-ae36-4ee8-adf6-8fb4860ce02d&quot;(
+    ri!ClientID
+  ),
+  local!generation1: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10614&quot;(
+    #&quot;_a-0000db92-ca0b-8000-6ee0-010000010000_36570&quot;(
+      ri!clientId
+    ).ID,
+    ri!ClientTypes
+  ).ID,
+  local!generation2: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      local!generation1
+    ),
+    {},
+    #&quot;_a-0000db92-ca0b-8000-6ee0-010000010000_37877&quot;(
+      local!generation1
+    )
+  ),
+  local!generation3: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      local!generation2
+    ),
+    {},
+    #&quot;_a-0000db92-ca0b-8000-6ee0-010000010000_37877&quot;(
+      local!generation2
+    )
+  ),
+  local!generation4: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      local!generation3
+    ),
+    {},
+    #&quot;_a-0000db92-ca0b-8000-6ee0-010000010000_37877&quot;(
+      local!generation3
+    )
+  ),
+  local!generation5: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      local!generation4
+    ),
+    {},
+    #&quot;_a-0000db92-ca0b-8000-6ee0-010000010000_37877&quot;(
+      local!generation4
+    )
+  ),
+  difference(
+    union(
+      append(
+        if(
+          wherecontains(
+            local!client.ClientTypeID,
+            ri!ClientTypes
+          ) &gt; 0,
+          ri!ClientID,
+          tointeger(
+            null
+          )
+        ),
+        local!generation1,
+        local!generation2,
+        local!generation3,
+        local!generation4,
+        local!generation5
+      ),
+      tointeger(
+        null
+      )
+    ),
+    tointeger(
+      null
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>ClientID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ClientTypes</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>iain.fifer@pshealth.co.uk</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>ClientID</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>ClientTypes</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_SLAAdherenceReportPagingGrid</name>
+        <uuid>ae1a3a67-2bc9-4f7f-8d33-07fb2760dd9c</uuid>
+        <description>Contains a paging grid for the report SLA Adherence</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10791</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+label:&quot;&quot;,&#xD;
+totalCount:local!datasubset.totalCount,&#xD;
+columns:{&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;SLA Type&quot;,&#xD;
+data:index(local!datasubset.data,&quot;SLATypeName&quot;,null),&#xD;
+links:if(isnull(index(local!datasubset.data,&quot;SLATypeName&quot;,null)),null,apply(#&quot;42f663b7-cd6a-467a-99ee-bac54676c654&quot;,index(local!datasubset.data,&quot;SLATypeName&quot;,null))),&#xD;
+field:&quot;SLATypeName&quot;&#xD;
+),&#xD;
+&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;% SLA Met&quot;,&#xD;
+data:apply(#&quot;64b4a3c0-0b52-43f1-a15f-3162da22c051&quot;,index(local!datasubset.data,&quot;Breached&quot;,{})),&#xD;
+field:&quot;Breached&quot;&#xD;
+)&#xD;
+},&#xD;
+value:local!pagingInfo,&#xD;
+saveInto:local!pagingInfo&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

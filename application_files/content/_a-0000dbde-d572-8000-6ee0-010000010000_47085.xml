@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CostBillingProductPagingGrid</name>
+        <uuid>_a-0000dbde-d572-8000-6ee0-010000010000_47085</uuid>
+        <description>Contains paging for cost billing report group by product</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_19705</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+label:&quot;&quot;,&#xD;
+totalCount:local!ProductDatasubset.totalCount,&#xD;
+columns:{&#xD;
+  #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Product&quot;,&#xD;
+data:index(local!ProductDatasubset.data,&quot;ProductName&quot;,{}),&#xD;
+links:apply(#&quot;2c1540a8-0a13-4e3c-ba64-4c334a6090fa&quot;,index(local!ProductDatasubset.data,&quot;ProductName&quot;,{})),&#xD;
+field:&quot;CaseManagerName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Month&quot;,&#xD;
+data:/*if(rule!Utils_CheckIsNull(local!FilterByMonth),a!gridTextColumn(label:&quot;&quot;,data:apply(rule!CM_MI_GetMonthNamesByMonthNumber,index(local!ProductDatasubset.data,&quot;Months&quot;,{})),field:&quot;Months&quot;),{}),*/apply(#&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,index(local!ProductDatasubset.data,&quot;Months&quot;,{})),&#xD;
+field:&quot;Months&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Year&quot;,&#xD;
+data:index(local!ProductDatasubset.data,&quot;Years&quot;,null),&#xD;
+field:&quot;Years&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Assessment&quot;,&#xD;
+data:index(local!ProductDatasubset.data,&quot;Assessment&quot;,{}),&#xD;
+field:&quot;Assessment&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Case Management&quot;,&#xD;
+data:index(local!ProductDatasubset.data,&quot;CaseManagement&quot;,{}),&#xD;
+field:&quot;CaseManagement&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Suppliers&quot;,&#xD;
+data:index(local!ProductDatasubset.data,&quot;Suppliers&quot;,{}),&#xD;
+field:&quot;Suppliers&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Total Cost&quot;,&#xD;
+data:index(local!ProductDatasubset.data,&quot;Total&quot;,{}),&#xD;
+field:&quot;Total&quot;&#xD;
+)&#xD;
+},&#xD;
+value:local!pagingInfo5,&#xD;
+saveInto:local!pagingInfo5&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

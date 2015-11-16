@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CaseManagementDataExportForm</name>
+        <uuid>764eb2d0-8cde-42e4-ac47-8ec37c56d3fc</uuid>
+        <description>Provides a form to case management report data to excel</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25505</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_formLayout&quot;(&#xD;
+  label: &quot;Case Management Data Export&quot;,&#xD;
+  firstColumnContents: {&#xD;
+  if(not(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!CaseIDs)),&#xD;
+    #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+      label: &quot;Exporting your data in excel... Please click on Refresh button below in some time to download your generated excel&quot;,&#xD;
+      firstColumnContents: {&#xD;
+       &#xD;
+          &#xD;
+            #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+              secondaryButtons: {&#xD;
+                #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(&#xD;
+                  label: &quot;Refresh&quot;&#xD;
+                )&#xD;
+              }&#xD;
+            ),&#xD;
+            #&quot;SYSTEM_SYSRULES_documentBrowserFieldColumns&quot;(&#xD;
+              label: &quot;&quot;,&#xD;
+              height: &quot;SMALL&quot;,&#xD;
+              folder: findfoldersbyname(&#xD;
+                true(),&#xD;
+                #&quot;68f12513-60c1-48ea-98aa-7579cb4c1977&quot;(&#xD;
+                  tostring(&#xD;
+                    loggedInUser()&#xD;
+                  )&#xD;
+                )&#xD;
+              )&#xD;
+            )&#xD;
+          &#xD;
+      },&#xD;
+      isCollapsible: true&#xD;
+    ),&#xD;
+	#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+	label:&quot;&quot;,&#xD;
+	firstColumnContents:{},&#xD;
+	 validations:if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!CaseIDs),&#xD;
+      #&quot;SYSTEM_SYSRULES_validationMessage&quot;(&#xD;
+        message: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_48643&quot;,&#xD;
+        validateAfter: &quot;REFRESH&quot;&#xD;
+      ),&#xD;
+      {}&#xD;
+    )&#xD;
+	)&#xD;
+	)&#xD;
+  },&#xD;
+ buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+    primaryButtons:#&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(label:&quot;Close&quot;,style:&quot;PRIMARY&quot;,skipValidation:true)&#xD;
+  )&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>CaseIDs</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                <a:nameRef>CaseIDs</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

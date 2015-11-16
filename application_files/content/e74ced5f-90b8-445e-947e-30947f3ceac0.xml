@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_GetClientIDByClientName</name>
+        <uuid>e74ced5f-90b8-445e-947e-30947f3ceac0</uuid>
+        <description>Returns client id by client name</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_18160</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>index(
+  #&quot;SYSTEM_SYSRULES_queryEntity&quot;(
+    entity: #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_42551&quot;,
+    query: #&quot;SYSTEM_SYSRULES_query&quot;(
+      selection: #&quot;SYSTEM_SYSRULES_querySelection&quot;(
+        columns: {
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(
+            field: &quot;ID&quot;
+          )
+        }
+      ),
+      filter: if(
+        #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+          ri!Name
+        ),
+        null,
+        #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+          field: &quot;Name&quot;,
+          operator: &quot;=&quot;,
+          value: ri!Name
+        )
+      ),
+      pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+        startIndex: 1,
+        batchSize: - 1
+      )
+    )
+  ).data,
+  &quot;ID&quot;,
+  {}
+)</definition>
+        <namedTypedValue>
+            <name>Name</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>Name</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

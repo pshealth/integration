@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <queryRule>
+        <name>AC_getCurrentAnnualLeaveForProvider</name>
+        <uuid>f4695b8e-d7c8-4b58-91f5-2ef344877fbc</uuid>
+        <description></description>
+        <folderUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_1006</folderUuid>
+        <dataStoreEntityCompositeUuid>d7592a76-5086-4a6d-b872-8b3795fab49c@_a-0000da6a-36ed-8000-6ee0-010000010000_923</dataStoreEntityCompositeUuid>
+        <params>
+            <param>
+                <description></description>
+                <name>Username</name>
+                <type>{http://www.w3.org/2001/XMLSchema}string</type>
+            </param>
+            <param>
+                <description></description>
+                <name>FromThisDate</name>
+                <type>{http://www.w3.org/2001/XMLSchema}dateTime</type>
+            </param>
+        </params>
+        <filters>
+            <filter>
+                <field>
+                    <name>CurrentAssignee</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}string</type>
+                </field>
+                <op>=</op>
+                <value>Username</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+            <filter>
+                <field>
+                    <name>StartDate</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}dateTime</type>
+                </field>
+                <op>&gt;</op>
+                <value>FromThisDate</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+        </filters>
+        <orderings/>
+    </queryRule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>david.bewick@pshealth.co.uk</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

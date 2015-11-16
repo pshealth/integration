@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CaseOutcomes_GenerateDataSubsetForOutcomesExcelExport</name>
+        <uuid>fa3498e6-e6b4-46f2-a86e-9c4b3646d05c</uuid>
+        <description></description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_16749</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(
+  local!search: #&quot;SYSTEM_SYSRULES_fromJson&quot;(
+    ri!input
+  ),
+  local!PagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchSize: - 1,
+    sort: {
+      field: &quot;CaseID&quot;,
+      ascending: false
+    }
+  ),
+  /*
+    Get the data again for values provided in filters section.
+ */
+  local!Datasubset: #&quot;06feffc0-51f5-429d-b585-299451c3534e&quot;(
+    FilterByStartDate: local!search.FilterByStartDate,
+    FilterByEndDate: local!search.FilterByEndDate,
+    FilterByCM: local!search.FilterByCM,
+    FilterByProduct: local!search.Product,
+    FilterByCustomer: local!search.Customer,
+    FilterByTeam: local!search.Team,
+    pagingInfo: local!PagingInfo,
+    ProviderID: local!search.ProviderID,
+    FilterByReferredStartDate:local!search.FilterByReferredStartDate,
+					  FilterByBrand:local!search.FilterByBrand,
+					  FilterByTeamDept:local!search.FilterByTeamDept,
+					  FilterByStartClosedDate:local!search.FilterByStartClosedDate,
+					  FilterByEndClosedDate:local!search.FilterByEndClosedDate,
+					  FilterByStartOpenedDate:local!search.FilterByStartOpenedDate,
+					  FilterByEndOpenedDate:local!search.FilterByEndOpenedDate,
+					  FilterByReferredEndDate:local!search.FilterByReferredEndDate
+  ),
+  local!Datasubset
+)</definition>
+        <namedTypedValue>
+            <name>input</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>input</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

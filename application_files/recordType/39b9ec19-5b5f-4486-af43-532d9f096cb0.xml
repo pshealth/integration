@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <recordType name="Team" a:uuid="39b9ec19-5b5f-4486-af43-532d9f096cb0">
+        <a:pluralName>Team</a:pluralName>
+        <a:description>List of teams in the system</a:description>
+        <a:urlStub>_q5MNQ</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="e28fc5cc-90ed-48d0-be79-5d41803003a8@_a-0000da6a-36ed-8000-6ee0-010000010000_923"/>
+        <a:listViewTemplateExpr>#&quot;96611bf4-76ae-4a9c-887f-4496857629f3&quot;()</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Summary&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;a368aa70-2f5c-4159-8cce-f306c5dc57d4&quot;()</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>0c26c850-6359-46a7-91e3-55dd4e22a5ef</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>&quot;Team MI Report&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;22f6727d-1357-4ffc-897f-e638376173a4&quot;(rf!TeamID)</a:uiExpr>
+            <a:visibilityExpr>#&quot;29d6ce48-eb1b-4a14-b676-bbe09ff398c2&quot;(rf!TeamID)</a:visibilityExpr>
+            <a:urlStub>_2VjCMw</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+        </a:detailViewCfg>
+        <a:defaultSortInfo>
+            <field>TeamID</field>
+            <ascending>true</ascending>
+        </a:defaultSortInfo>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dbc6-2be8-8000-6ee0-010000010000"/>
+            <a:contextExpr>={}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>0c26c850-6359-46a7-91e3-55dd4e22a5ef</a:refId>
+        </a:relatedActionCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:security>32767</a:security>
+    </recordType>
+    <roleMap/>
+</recordTypeHaul>

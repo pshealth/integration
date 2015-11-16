@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_AgeDebtBrandNameWiseChart</name>
+        <uuid>9d17f652-0c76-476a-be44-93a839bff98c</uuid>
+        <description>Provides column chart for age debt by brand name</description>
+        <parentUuid>_a-0000db6d-e203-8000-6ee0-010000010000_26684</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_columnChartField&quot;(&#xD;
+                  label: &quot;&quot;,&#xD;
+                  categories: index(ri!AgeDebtDatasubsetByBrandName.data,&quot;BrandName&quot;,{}),&#xD;
+                  series: {&#xD;
+                    #&quot;SYSTEM_SYSRULES_chartSeries&quot;(&#xD;
+                      label: &quot;Total Balance&quot;,&#xD;
+                      data: index(&#xD;
+                        ri!AgeDebtDatasubsetByBrandName.data,&#xD;
+                        &quot;AmountTotal&quot;,&#xD;
+                        null&#xD;
+                      ),&#xD;
+                      links: apply(&#xD;
+                        #&quot;SYSTEM_SYSRULES_dynamicLink&quot;(&#xD;
+                          value: _,&#xD;
+                          saveInto: local!FilterByBrandName&#xD;
+                        ),&#xD;
+                        index(ri!AgeDebtDatasubsetByBrandName.data,&quot;BrandName&quot;,{})&#xD;
+                      )&#xD;
+                    )&#xD;
+                  },&#xD;
+                  yAxisTitle: &quot;Total Balance&quot;,&#xD;
+                  showLegend: false,&#xD;
+                  showTooltips: true&#xD;
+                )</definition>
+        <namedTypedValue>
+            <name>AgeDebtDatasubsetByBrandName</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>AgeDebtDatasubsetByBrandName</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

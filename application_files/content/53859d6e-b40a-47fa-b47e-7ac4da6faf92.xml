@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_GetTeamDepartmentByClientID</name>
+        <uuid>53859d6e-b40a-47fa-b47e-7ac4da6faf92</uuid>
+        <description>Returns team or department by client id</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_18160</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(&#xD;
+local!client: #&quot;40886eb4-ae36-4ee8-adf6-8fb4860ce02d&quot;(&#xD;
+    ri!clientId&#xD;
+  ),&#xD;
+  local!parent: if(&#xD;
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+      local!client.ParentID&#xD;
+    ),&#xD;
+    &quot;&quot;,&#xD;
+    #&quot;40886eb4-ae36-4ee8-adf6-8fb4860ce02d&quot;(&#xD;
+      local!client.ParentID&#xD;
+    )&#xD;
+  ),&#xD;
+  local!clientSubGroups: #&quot;7da09d2c-ceeb-4e7b-a509-369369b78f84&quot;(&#xD;
+    #&quot;f3a15790-4918-473e-8296-7baaddf18da3&quot;(&#xD;
+      ri!clientid,&#xD;
+      {1,2,3,4,5,6,7,8,9,10,11,13}&#xD;
+    )&#xD;
+  ),&#xD;
+  local!index:intersection(wherecontains(3,local!clientSubGroups.CustomerTypeID),wherecontains(ri!clientid,local!clientSubGroups.ParentID)),&#xD;
+local!TeamDept:index(local!clientSubGroups.Name,local!index,{}),&#xD;
+union(local!TeamDept,local!TeamDept)&#xD;
+&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>clientId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>clientId</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

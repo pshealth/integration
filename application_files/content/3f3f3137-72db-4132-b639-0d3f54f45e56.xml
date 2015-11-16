@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_AgeDebtPagingGridForTotalAmount</name>
+        <uuid>3f3f3137-72db-4132-b639-0d3f54f45e56</uuid>
+        <description>Contains Age Debt Paging Grid for Total Amount</description>
+        <parentUuid>_a-0000db6d-e203-8000-6ee0-010000010000_26684</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+label:&quot;&quot;,&#xD;
+totalCount:ri!AgeDebtDatasubset.totalCount,&#xD;
+columns:{&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Parent Company&quot;,&#xD;
+data:index(ri!AgeDebtDatasubset.data,&quot;TopClientName&quot;,{}),&#xD;
+links:apply(#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:_,saveInto:local!FilterByParentCompany),index(ri!AgeDebtDatasubset.data,&quot;TopClientName&quot;,{})),&#xD;
+field:&quot;TopClientName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Total Amount&quot;,&#xD;
+data:index(ri!AgeDebtDatasubset.data,&quot;AmountTotal&quot;,{}),&#xD;
+field:&quot;AmountTotal&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Current (Between 1-30 days)&quot;,&#xD;
+data:index(ri!AgeDebtDatasubset.data,&quot;Days_1_30&quot;,{}),&#xD;
+field:&quot;Days_1_30&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Between 31-60 days&quot;,&#xD;
+data:index(ri!AgeDebtDatasubset.data,&quot;Days_31_60&quot;,{}),&#xD;
+field:&quot;Days_31_60&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Between 61-90 days&quot;,&#xD;
+data:index(ri!AgeDebtDatasubset.data,&quot;Days_61_90&quot;,{}),&#xD;
+field:&quot;Days_61_90&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Between 3-6 Months&quot;,&#xD;
+data:index(ri!AgeDebtDatasubset.data,&quot;Months_3_6&quot;,{}),&#xD;
+field:&quot;Months_3_6&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Between 6-12 Months&quot;,&#xD;
+data:index(ri!AgeDebtDatasubset.data,&quot;Months_6_12&quot;,{}),&#xD;
+field:&quot;Months_6_12&quot;&#xD;
+),&#xD;
+&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Between 12-18 Months&quot;,&#xD;
+data:index(ri!AgeDebtDatasubset.data,&quot;Months_12_18&quot;,{}),&#xD;
+field:&quot;Months_12_18&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Between 18-24 Months&quot;,&#xD;
+data:index(ri!AgeDebtDatasubset.data,&quot;Months_18_24&quot;,{}),&#xD;
+field:&quot;Months_18_24&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Between 24-30 Months&quot;,&#xD;
+data:index(ri!AgeDebtDatasubset.data,&quot;Months_24_30&quot;,{}),&#xD;
+field:&quot;Months_24_30&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;After 30 Months&quot;,&#xD;
+data:index(ri!AgeDebtDatasubset.data,&quot;Months_30&quot;,{}),&#xD;
+field:&quot;Months_30&quot;&#xD;
+)&#xD;
+},&#xD;
+value:ri!pagingInfo,&#xD;
+saveInto:ri!pagingInfo&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>AgeDebtDatasubset</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>pagingInfo</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>AgeDebtDatasubset</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>pagingInfo</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

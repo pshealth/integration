@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_BillingDistribution_PagingGrid</name>
+        <uuid>eef6ded6-b3bd-4e84-8431-14e12e80fe1f</uuid>
+        <description></description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_20533</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(
+  label:&quot;Case Billing Distribution&quot;,
+  totalCount:local!DatasubsetForBillingDistributionTable.totalCount,
+  columns:{
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label:&quot;Case ID&quot;,
+      data:index(local!DatasubsetForBillingDistributionTable.data,&quot;CaseID&quot;,{}),
+links: apply(
+        #&quot;SYSTEM_SYSRULES_recordLink&quot;(
+          recordType: #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1432&quot;,
+          identifier: _
+        ),
+        index(
+          local!DatasubsetForBillingDistributionTable.data,
+          &quot;CaseID&quot;,
+          {}
+        )
+      ),
+      field:&quot;CaseID&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label:&quot;Assessment&quot;,
+      data:index(local!DatasubsetForBillingDistributionTable.data,&quot;Assessment&quot;,null),
+      field:&quot;Assessment&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label:&quot;Case Management&quot;,
+      data:index(local!DatasubsetForBillingDistributionTable.data,&quot;CaseManagement&quot;,null),
+      field:&quot;CaseManagement&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label:&quot;Suppliers&quot;,
+      data:index(local!DatasubsetForBillingDistributionTable.data,&quot;Suppliers&quot;,null),
+      field:&quot;Suppliers&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label:&quot;Total Cost&quot;,
+      data:index(local!DatasubsetForBillingDistributionTable.data,&quot;Total&quot;,null),
+      field:&quot;Total&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label:&quot;&quot;,
+      data:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(index(local!DatasubsetForBillingDistributionTable.data,&quot;CaseID&quot;,null)),null,repeat(count(index(local!DatasubsetForBillingDistributionTable.data,&quot;CaseID&quot;,null)),&quot;Billing Distribution&quot;)),
+      links:apply(#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:_,saveInto:local!BillingDistribution),index(local!DatasubsetForBillingDistributionTable.data,&quot;CaseID&quot;,{}))
+    ) 
+  },
+  value:local!pagingInfo3,
+  saveInto:local!pagingInfo3
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

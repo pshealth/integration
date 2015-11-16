@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="CM" xmlns:ac1="AC" xmlns:tns="CM" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="AC" schemaLocation="%7BAC%7DProduct.xsd"/>
+  <xsd:import namespace="AC" schemaLocation="%7BAC%7DView_Client.xsd"/>
+  <xsd:include schemaLocation="%7BCM%7DView_Patient.xsd"/>
+  <xsd:import namespace="AC" schemaLocation="%7BAC%7DView_ProviderAccount.xsd"/>
+  <xsd:complexType name="View_CaseRecordList">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">
+                @Table(name="Case")
+            </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="CaseID" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @Column(name="CaseID") @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Client" nillable="true" type="ac1:View_Client">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@JoinColumn(name="ClientID")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Patient" nillable="true" type="tns:View_Patient">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@JoinColumn(name="PatientID")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ProviderAccount" nillable="true" type="ac1:View_ProviderAccount">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@JoinColumn(name="CaseManagerID")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ProviderID" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="ProviderID")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Product" nillable="true" type="ac1:Product">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@JoinColumn(name="ProductID")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="CaseStatus" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="CaseStatus")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="MatterID" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="MatterID")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="CreatedDate" nillable="true" type="xsd:dateTime">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="CreatedDate")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="DateOpened" nillable="true" type="xsd:dateTime">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="DateOpened")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="NoteOfInterest" nillable="true" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="NoteOfInterest")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="FastTrackID" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="FastTrackID")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

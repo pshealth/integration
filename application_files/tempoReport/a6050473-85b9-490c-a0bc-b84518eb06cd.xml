@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="Open Case Status Profile" a:uuid="a6050473-85b9-490c-a0bc-b84518eb06cd">
+        <a:description>Click above to see the details of all open cases</a:description>
+        <a:uiExpr>=#&quot;bf13246f-9dbe-4dc7-a3ba-d7367827719d&quot;()</a:uiExpr>
+        <a:urlStub>xH_o4w</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_51</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_17</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoReportHaul>

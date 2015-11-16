@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_OpenCaseStatusProfileFilterSection</name>
+        <uuid>ea485753-6a3d-49f0-b804-36add16e3a48</uuid>
+        <description>Contains filter section for Open Case Status Profile Report</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_11065</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{
+  #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+    label: &quot;Filters&quot;,
+    firstColumnContents: {
+      #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+        label: &quot;Date&quot;,
+        value: local!FilterByEndDate,
+        saveInto: {
+          local!FilterByEndDate,
+          a!save(
+            local!pagingInfo.startIndex,
+            1
+          ),
+          a!save(
+            local!isdownload,
+            null
+          )
+        }
+      )
+    },
+    secondColumnContents: {
+      #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+        label: &quot;Rolling Month Count&quot;,
+        choiceLabels: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11228&quot;,
+        choiceValues: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11229&quot;,
+        value: local!RollingMonthCount,
+        saveInto: {
+          local!RollingMonthCount,
+          a!save(
+            local!pagingInfo.startIndex,
+            1
+          ),
+          a!save(
+            local!isdownload,
+            null
+          )
+        }
+      )
+    }
+  ),
+  #&quot;fb9d74c1-3d66-4e12-9ce4-d290e6e4f8d0&quot;()
+}</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

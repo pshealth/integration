@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="CSQ Details for All Cases" a:uuid="1dbd2235-cb9f-47c3-98e1-f1bd86d669b9">
+        <a:description>Click above to view the CSQ details for All cases</a:description>
+        <a:uiExpr>=#&quot;e351317a-c714-42bd-8b9e-3e151d1d02fb&quot;()</a:uiExpr>
+        <a:urlStub>7hWuxg</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_51</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_17</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoReportHaul>

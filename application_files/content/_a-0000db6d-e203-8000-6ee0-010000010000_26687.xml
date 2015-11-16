@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <constant>
+        <name>CM_MI_AGE_DEBT_HEADER_VALUES</name>
+        <uuid>_a-0000db6d-e203-8000-6ee0-010000010000_26687</uuid>
+        <description>Contains the grid header values for Age Debt report</description>
+        <parentUuid>_a-0000db6d-e203-8000-6ee0-010000010000_26684</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+            <value>
+                <el>Case ID</el>
+                <el>Parent Company</el>
+                <el>Brand - Location</el>
+                <el>Team / Department</el>
+                <el>Product</el>
+                <el>Case Manager</el>
+                <el>Total Balance</el>
+                <el>Current (Between 1-30 days)</el>
+                <el>Between 31-60 days</el>
+                <el>Between 61-90 days</el>
+                <el>Between 3-6 Months</el>
+                <el>Between 6-12 Months</el>
+                <el>Between 12-18 Months</el>
+                <el>Between 18-24 Months</el>
+                <el>Between 24-30 Months</el>
+                <el>After 30 Months</el>
+            </value>
+        </typedValue>
+    </constant>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_WholeBusiness_WorkInProgressReport</name>
+        <uuid>5a1656d0-0e04-4194-b056-f3a96ea8b6be</uuid>
+        <description>Provides the work in progress report for whole business report</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25362</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!FilterByEndDate: todatetime(day(today())&amp;&quot;/&quot;&amp;month(today())&amp;&quot;/2015 22:59&quot;),
+  local!RollingMonthCount: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11229&quot;[1],
+  local!FilterByStartDate: /*local!FilterByEndDate - (
+    30 * local!RollingMonthCount
+  )*/ todatetime(&quot;1/&quot;&amp;month(today())&amp;&quot;/2015 00:00&quot;),
+  local!ChartType:#&quot;_a-0000dbde-d572-8000-6ee0-010000010000_46346&quot;[1],
+  local!FilterByYear:tointeger(year(today())),
+  local!DailyRunRateWeek:2,
+  local!isdownload,
+local!Assessment,
+local!CaseManagement,
+local!Suppliers,
+local!AllMonths:{1,2,3,4,5,6,7,8,9,10,11,12},
+local!pagingInfo:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:10,sort:#&quot;SYSTEM_SYSRULES_sortInfo&quot;(field:&quot;Months&quot;,ascending:true)),
+local!pagingInfo2:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:10,sort:#&quot;SYSTEM_SYSRULES_sortInfo&quot;(field:&quot;CaseID&quot;,ascending:true)),
+local!pagingInfo3:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:10,sort:#&quot;SYSTEM_SYSRULES_sortInfo&quot;(field:&quot;DailyRunRateDate&quot;,ascending:false)),
+local!pagingInfo4:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:10),
+local!pagingInfo5:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:10),
+local!pagingInfo6:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:10),
+local!CaseManger,
+with(
+  local!FilterByYear:year(local!FilterByStartDate),
+local!AllMonths:ldrop(enumerate(month(local!FilterByEndDate))+1,(month(local!FilterByStartDate)-1)),
+local!Datasubset: if(
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+        local!ProviderID
+      ),
+      {},
+      #&quot;SYSTEM_SYSRULES_queryEntity&quot;(
+        entity: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_46835&quot;,
+        
+        query: #&quot;SYSTEM_SYSRULES_query&quot;(
+		aggregation: #&quot;SYSTEM_SYSRULES_queryAggregation&quot;(
+          {
+            
+            #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;Months&quot;,
+              isGrouping: true
+            ),
+            #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;Years&quot;,
+              isGrouping:true
+            ),
+            #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;CaseManagerName&quot;,
+              isGrouping: true
+            ),
+            #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;CaseManagerID&quot;,
+              isGrouping: true
+            ),
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+  field:&quot;Assessment&quot;,
+  aggregationFunction :&quot;SUM&quot;
+  ),
+  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+  field:&quot;CaseManagement&quot;,
+  aggregationFunction :&quot;SUM&quot;
+  ),
+  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+  field:&quot;Suppliers&quot;,
+  aggregationFunction :&quot;SUM&quot;
+  ),
+  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+  field:&quot;Target&quot;,
+  aggregationFunction :&quot;SUM&quot;
+  ),
+  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+  field:&quot;PercentageTarget&quot;,
+  aggregationFunction :&quot;SUM&quot;
+  ),
+  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+  field:&quot;Total&quot;,
+  aggregationFunction :&quot;SUM&quot;
+  )
+          }
+        ),
+          logicalExpression: if(
+             and(
+        isnull(
+          local!FilterByYear
+        ),
+        isnull(
+         local!FilterByMonth
+        )
+      ),
+            null,
+            #&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(
+              operator: &quot;AND&quot;,
+              filters: {
+                if(
+            isnull(
+              local!FilterByYear
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;Years&quot;,
+              operator: &quot;=&quot;,
+              value:tointeger(local!FilterByYear)
+            )),
+            if(
+              isnull(
+                local!FilterByMonth
+              ),
+               #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                field: &quot;Months&quot;,
+                operator: &quot;IN&quot;,
+                value: local!AllMonths
+              ),
+              #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                field: &quot;Months&quot;,
+                operator: &quot;=&quot;,
+                value: tointeger(local!FilterByMonth)
+              )
+            ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!ProviderID
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;ProviderID&quot;,
+                    operator: &quot;in&quot;,
+                    value: local!ProviderID
+                  )
+                ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!FilterByCM
+                  ),
+                 if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!CaseManager),{}, #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;CaseManagerName&quot;,
+                    operator: &quot;in&quot;,
+                    value: {touniformstring(
+                      local!CaseManager
+                    )}
+                  )),
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;CaseManagerName&quot;,
+                    operator: &quot;=&quot;,
+                    value: tostring(
+                      local!FilterByCM
+                    )
+                  )
+                ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!FilterByProduct
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;ProductName&quot;,
+                    operator: &quot;=&quot;,
+                    value: local!FilterByProduct
+                  )
+                ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!FilterByCustomer
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;TopClientName&quot;,
+                    operator: &quot;=&quot;,
+                    value: local!FilterByCustomer
+                  )
+                ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!FilterByTeam
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;TeamID&quot;,
+                    operator: &quot;=&quot;,
+                    value: local!FilterByTeam
+                  )
+                ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!FilterByBrand
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;BrandName&quot;,
+                    operator: &quot;=&quot;,
+                    value: local!FilterByBrand
+                  )
+                ),
+				if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                      local!FilterByTeamDept
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;ClientName&quot;,
+                    operator: &quot;=&quot;,
+                    value: local!FilterByTeamDept
+                  )
+                ),
+              }
+            )
+          ),
+          pagingInfo: local!pagingInfo
+        )
+      )
+    ),
+	local!DataSubsetForTotalCost:if(
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+        local!ProviderID
+      ),
+      {},
+      #&quot;SYSTEM_SYSRULES_queryEntity&quot;(
+        entity: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_46835&quot;,
+        
+        query: #&quot;SYSTEM_SYSRULES_query&quot;(
+          logicalExpression: if(
+             and(
+        isnull(
+          local!FilterByYear
+        ),
+        isnull(
+         local!FilterByMonth
+        )
+      ),
+            null,
+            #&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(
+              operator: &quot;AND&quot;,
+              filters: {
+                if(
+            isnull(
+              local!FilterByYear
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;Years&quot;,
+              operator: &quot;=&quot;,
+              value:tointeger(local!FilterByYear)
+            )),
+            if(
+              isnull(
+                local!FilterByMonth
+              ),
+               #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                field: &quot;Months&quot;,
+                operator: &quot;IN&quot;,
+                value: local!AllMonths
+              ),
+              #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                field: &quot;Months&quot;,
+                operator: &quot;=&quot;,
+                value: tointeger(local!FilterByMonth)
+              )
+            ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!ProviderID
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;ProviderID&quot;,
+                    operator: &quot;in&quot;,
+                    value: local!ProviderID
+                  )
+                ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!FilterByCM
+                  ),
+				  if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!CaseManger),{},
+                   #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;CaseManagerName&quot;,
+                    operator: &quot;in&quot;,
+                    value: {touniformstring(
+                      local!CaseManager
+                    )}
+                  )),
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;CaseManagerName&quot;,
+                    operator: &quot;=&quot;,
+                    value: tostring(
+                      local!FilterByCM
+                    )
+                  )
+                ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!FilterByProduct
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;ProductName&quot;,
+                    operator: &quot;=&quot;,
+                    value: local!FilterByProduct
+                  )
+                ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!FilterByCustomer
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;TopClientName&quot;,
+                    operator: &quot;=&quot;,
+                    value: local!FilterByCustomer
+                  )
+                ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!FilterByTeam
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;TeamID&quot;,
+                    operator: &quot;=&quot;,
+                    value: local!FilterByTeam
+                  )
+                ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!FilterByBrand
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;BrandName&quot;,
+                    operator: &quot;=&quot;,
+                    value: local!FilterByBrand
+                  )
+                ),
+				if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                      local!FilterByTeamDept
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;ClientName&quot;,
+                    operator: &quot;=&quot;,
+                    value: local!FilterByTeamDept
+                  )
+                ),
+              }
+            )
+          ),
+          pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:-1)
+        )
+      )
+    ),
+
+	local!DatasubsetForFilter: if(
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+        local!ProviderID
+      ),
+      {},
+      #&quot;3402ad6e-7ebd-4cce-ba66-d71cff550aa0&quot;(AllMonths:local!AllMonths,FilterByCM:local!FilterByCM,FilterByProduct:local!FilterByProduct,FilterByYear:local!FilterByYear,FilterByMonth:local!FilterByMonth,FilterByCustomer:local!FilterByCustomer,CaseManager:local!CaseManger,ProviderID:local!ProviderID,
+	  FilterByTeam:local!FilterByTeam,pagingInfo:local!pagingInfo2,FilterByCaseManager:local!CaseManager,FilterByTeamDept:local!FilterByTeamDept,FilterByBrand:local!FilterByBrand)
+    ),
+
+
+
+/*
+		Export to Excel Logic
+	*/
+  
+  	local!exportUri:if(
+      local!isdownload = &quot;downloadfile&quot;,
+	getdatasubsetdownloadlinkfromprocess(
+        processModelUuid: &quot;0003dbea-ccf4-8000-6ee0-010000010000&quot;,
+        input: #&quot;SYSTEM_SYSRULES_toJson&quot;(
+          {
+             AllMonths:local!AllMonths,FilterByCM:local!FilterByCM,FilterByProduct:local!FilterByProduct,FilterByYear:local!FilterByYear,FilterByMonth:local!FilterByMonth,FilterByCustomer:local!FilterByCustomer,CaseManager:local!CaseManger,ProviderID:local!ProviderID,
+	  FilterByTeam:local!FilterByTeam,FilterByCaseManager:local!CaseManager,FilterByTeamDept:local!FilterByTeamDept,FilterByBrand:local!FilterByBrand
+          }
+        )
+      ),null),
+  
+	/*
+		End of Export to Excel Logic
+	*/
+	{
+	  if(
+          #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+            local!datasubset
+          ),
+          #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25359&quot;[11],firstColumnContents:{#&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;&quot;,
+            value: &quot;No Data Available&quot;,
+            readOnly: true
+          )}),
+          {
+            #&quot;9f59f759-730c-4dba-9efd-44a5d1585f8a&quot;(ReportType:&quot;Work In Progress&quot;,ReportName:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25359&quot;[11]),
+            #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+              label: &quot;Total Uninvoiced Revenue&quot;,
+              firstColumnContents: {
+                #&quot;SYSTEM_SYSRULES_gridLayout&quot;(
+                  label: &quot;&quot;,
+                  headerCells: {
+                    #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(
+                      label: &quot;Total Assessment&quot;
+                    ),
+                    #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(
+                      label: &quot;Total Case Management&quot;
+                    ),
+                    #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(
+                      label: &quot;Total Supplier&quot;
+                    ),
+                    #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(
+                      label: &quot;Total&quot;
+                    )
+                  },
+                  rows: {
+                    #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(
+                      contents: {
+                        #&quot;SYSTEM_SYSRULES_textField&quot;(
+                          value: if(
+                            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                              index(
+                                local!DataSubsetForTotalCost.data,
+                                &quot;Assessment&quot;,
+                                null
+                              )
+                            ),
+                            null,
+                            #&quot;3fd88c58-74d4-4e05-8a45-aefdb4724451&quot;(
+                              sum(
+                                index(
+                                  local!DataSubsetForTotalCost.data,
+                                  &quot;Assessment&quot;,
+                                  {}
+                                )
+                              )
+                            )
+                          ),
+                          readOnly: true
+                        ),
+                        #&quot;SYSTEM_SYSRULES_textField&quot;(
+                          value: if(
+                            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                              index(
+                                local!DataSubsetForTotalCost.data,
+                                &quot;CaseManagement&quot;,
+                                null
+                              )
+                            ),
+                            null,
+                            #&quot;3fd88c58-74d4-4e05-8a45-aefdb4724451&quot;(
+                              sum(
+                                index(
+                                  local!DataSubsetForTotalCost.data,
+                                  &quot;CaseManagement&quot;,
+                                  {}
+                                )
+                              )
+                            )
+                          ),
+                          readOnly: true
+                        ),
+                        #&quot;SYSTEM_SYSRULES_textField&quot;(
+                          value: if(
+                            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                              index(
+                                local!DataSubsetForTotalCost.data,
+                                &quot;Suppliers&quot;,
+                                null
+                              )
+                            ),
+                            null,
+                            #&quot;3fd88c58-74d4-4e05-8a45-aefdb4724451&quot;(
+                              sum(
+                                index(
+                                  local!DataSubsetForTotalCost.data,
+                                  &quot;Suppliers&quot;,
+                                  {}
+                                )
+                              )
+                            )
+                          ),
+                          readOnly: true
+                        ),
+                        #&quot;SYSTEM_SYSRULES_textField&quot;(
+                          value: if(
+                            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                              index(
+                                local!DataSubsetForTotalCost.data,
+                                &quot;Total&quot;,
+                                null
+                              )
+                            ),
+                            null,
+                            #&quot;3fd88c58-74d4-4e05-8a45-aefdb4724451&quot;(
+                              sum(
+                                index(
+                                  local!DataSubsetForTotalCost.data,
+                                  &quot;Total&quot;,
+                                  {}
+                                )
+                              )
+                            )
+                          ),
+                          readOnly: true
+                        )
+                      }
+                    )
+                  }
+                ),
+                #&quot;SYSTEM_SYSRULES_gridField&quot;(
+                  label: &quot;&quot;,
+                  totalCount: local!Datasubset.totalCount,
+                  columns: {
+                    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+                      label: &quot;Case Manager&quot;,
+                      field: &quot;CaseManagerName&quot;,
+                      data: apply(
+                        #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,
+                        index(
+                          local!Datasubset.data,
+                          &quot;CaseManagerName&quot;,
+                          {}
+                        )
+                      ),
+                      links: apply(
+                        #&quot;cf65e0d6-8bc0-40ef-824c-282c1330a934&quot;,
+                        index(
+                          local!Datasubset.data,
+                          &quot;CaseManagerName&quot;,
+                          {}
+                        )
+                      )
+                    ),
+                    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+                      label: &quot;Month&quot;,
+                      field: &quot;Months&quot;,
+                      data: /*if(rule!Utils_CheckIsNull(local!FilterByMonth),a!gridTextColumn(label:&quot;&quot;,data:apply(rule!CM_MI_GetMonthNamesByMonthNumber,index(local!Datasubset.data,&quot;Months&quot;,{})),field:&quot;Months&quot;),{}),*/apply(
+                        #&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,
+                        index(
+                          local!Datasubset.data,
+                          &quot;Months&quot;,
+                          {}
+                        )
+                      )
+                    ),
+                    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+                      label: &quot;Year&quot;,
+                      field: &quot;Years&quot;,
+                      data: index(
+                        local!Datasubset.data,
+                        &quot;Years&quot;,
+                        null
+                      )
+                    ),
+                    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+                      label: &quot;Assessment&quot;,
+                      field: &quot;Assessment&quot;,
+                      data: apply(
+                        #&quot;3fd88c58-74d4-4e05-8a45-aefdb4724451&quot;,
+                        index(
+                          local!Datasubset.data,
+                          &quot;Assessment&quot;,
+                          {}
+                        )
+                      )
+                    ),
+                    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+                      label: &quot;Case Management&quot;,
+                      field: &quot;CaseManagement&quot;,
+                      data: apply(
+                        #&quot;3fd88c58-74d4-4e05-8a45-aefdb4724451&quot;,
+                        index(
+                          local!Datasubset.data,
+                          &quot;CaseManagement&quot;,
+                          {}
+                        )
+                      )
+                    ),
+                    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+                      label: &quot;Suppliers&quot;,
+                      field: &quot;Suppliers&quot;,
+                      data: apply(
+                        #&quot;3fd88c58-74d4-4e05-8a45-aefdb4724451&quot;,
+                        index(
+                          local!Datasubset.data,
+                          &quot;Suppliers&quot;,
+                          {}
+                        )
+                      )
+                    ),
+                    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+                      label: &quot;Total&quot;,
+                      field: &quot;Total&quot;,
+                      data: apply(
+                        #&quot;3fd88c58-74d4-4e05-8a45-aefdb4724451&quot;,
+                        index(
+                          local!Datasubset.data,
+                          &quot;Total&quot;,
+                          {}
+                        )
+                      )
+                    )/*,
+a!gridTextColumn(
+label:&quot;Target&quot;,
+data:if(rule!Utils_CheckIsNull(index(local!Datasubset.data,&quot;CaseManagerID&quot;,{})),null,apply(rule!CM_MI_GetTargetValueForCaseManager,merge(index(local!Datasubset.data,&quot;Years&quot;,{}),index(local!Datasubset.data,&quot;Months&quot;,{}),index(local!Datasubset.data,&quot;CaseManagerID&quot;,{})))),
+field:&quot;Target&quot;
+),
+a!gridTextColumn(
+label:&quot;% Target&quot;,
+data:apply(rule!CM_MI_GetPercentageofValues,merge(index(local!Datasubset.data,&quot;Total&quot;,{}),if(rule!Utils_CheckIsNull(index(local!Datasubset.data,&quot;CaseManagerID&quot;,{})),{},apply(rule!CM_MI_GetTargetValueForCaseManager,merge(index(local!Datasubset.data,&quot;Years&quot;,{}),index(local!Datasubset.data,&quot;Months&quot;,{}),index(local!Datasubset.data,&quot;CaseManagerID&quot;,{})))))),
+field:&quot;PercentageTarget&quot;
+)*/
+                    
+                  },
+                  value: local!pagingInfo,
+                  saveInto: local!pagingInfo
+                )
+              }
+            ),
+            if(
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                local!CaseManger
+              ),
+              {},
+              #&quot;b44f250c-bfde-4225-a86f-49579b9cb2e1&quot;()
+            ),
+            if(
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                local!CaseManger
+              ),
+              {},
+              #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+                label: &quot;&quot;,
+                firstColumnContents: {
+                  #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+                    primaryButtons: {
+                      #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+                        label: &quot;Export to Excel&quot;,
+                        style: &quot;PRIMARY&quot;,
+                        value: &quot;downloadfile&quot;,
+                        saveInto: local!isdownload
+                      )
+                    }
+                  )
+                }
+              )
+            ),
+            if(
+              local!isdownload = &quot;downloadfile&quot;,
+              #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+                label: &quot;Export report to excel&quot;,
+                firstColumnContents: {
+                  #&quot;SYSTEM_SYSRULES_linkField&quot;(
+                    label: &quot;Your excel is ready&quot;,
+                    links: #&quot;SYSTEM_SYSRULES_safeLink&quot;(
+                      label: &quot;Click here to download&quot;,
+                      uri: local!exportUri
+                    )
+                  )
+                }
+              ),
+              {}
+            )
+          }
+        )
+	}
+)
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

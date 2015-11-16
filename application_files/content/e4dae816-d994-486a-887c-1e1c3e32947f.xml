@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>MI_MultiTrack_WholeBusiness_OpenCaseStatusProfileReport</name>
+        <uuid>e4dae816-d994-486a-887c-1e1c3e32947f</uuid>
+        <description>Contains Open Case Status Profile Report for Whole Business Multi Track Report</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25362</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+    &#xD;
+local!isdownload,&#xD;
+ local!RollingMonthCount: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11229&quot;[1],&#xD;
+local!pagingInfo:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:10,sort:#&quot;SYSTEM_SYSRULES_sortInfo&quot;(field:&quot;Months&quot;,ascending:true)),&#xD;
+local!DataFormat:&quot;Tabular&quot;,&#xD;
+local!Status,&#xD;
+local!pagingInfo2:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:10,sort:#&quot;SYSTEM_SYSRULES_sortInfo&quot;(field:&quot;Months&quot;,ascending:true)),&#xD;
+local!pagingInfo3: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+    startIndex: 1,&#xD;
+    batchSize: 10&#xD;
+  ),&#xD;
+  local!pagingInfo4: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+    startIndex: 1,&#xD;
+    batchSize: 10&#xD;
+  ),&#xD;
+  local!pagingInfo5: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+    startIndex: 1,&#xD;
+    batchSize: 10&#xD;
+  ),&#xD;
+  local!pagingInfo6: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+    startIndex: 1,&#xD;
+    batchSize: 10&#xD;
+  ),&#xD;
+   local!FilterByBrand,&#xD;
+  local!FilterByTeamDept,&#xD;
+  local!FilterByEndOpenedDate,&#xD;
+  local!FilterByEndClosedDate:now(),&#xD;
+  local!FilterByReferredEndDate,&#xD;
+  local!FilterByReferredStartDate,&#xD;
+  local!FilterByStartOpenedDate,&#xD;
+  local!FilterByStartClosedDate:local!FilterByEndClosedDate-(30*local!RollingMonthCount),&#xD;
+with(&#xD;
+  local!datasubset: if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!ProviderID&#xD;
+      ),&#xD;
+      {},&#xD;
+      #&quot;SYSTEM_SYSRULES_queryEntity&quot;(&#xD;
+        entity: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11003&quot;,&#xD;
+        query: #&quot;SYSTEM_SYSRULES_query&quot;(&#xD;
+          aggregation: #&quot;SYSTEM_SYSRULES_queryAggregation&quot;(&#xD;
+            {&#xD;
+              #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+                field: &quot;Months&quot;,&#xD;
+                isGrouping: true&#xD;
+              ),&#xD;
+              #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+                field: &quot;Years&quot;,&#xD;
+                isGrouping: true&#xD;
+              ),&#xD;
+              #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+                field: &quot;Status&quot;,&#xD;
+                isGrouping: true&#xD;
+              ),&#xD;
+              #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+                field: &quot;ID&quot;,&#xD;
+                aggregationFunction: &quot;COUNT&quot;&#xD;
+              )&#xD;
+            }&#xD;
+          ),&#xD;
+          logicalExpression: if(&#xD;
+            and(or(&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!FilterByStartOpenedDate&#xD;
+              ),&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!FilterByEndOpenedDate&#xD;
+              )&#xD;
+            ),or(&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!FilterByStartClosedDate&#xD;
+              ),&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!FilterByEndClosedDate&#xD;
+              )&#xD;
+            ),or(&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!FilterByReferredStartDate&#xD;
+              ),&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!FilterByReferredEndDate&#xD;
+              )&#xD;
+            )),&#xD;
+            null,&#xD;
+            #&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(&#xD;
+              operator: &quot;AND&quot;,&#xD;
+              filters: {&#xD;
+                if(&#xD;
+                  or(&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!FilterByStartOpenedDate&#xD;
+                    ),&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!FilterByEndOpenedDate&#xD;
+                    )&#xD;
+                  ),&#xD;
+                  null,&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;DateOpened&quot;,&#xD;
+                    operator: &quot;between&quot;,&#xD;
+                    value: {&#xD;
+                      todatetime(&#xD;
+                        datetext(&#xD;
+                          local!FilterByStartOpenedDate,&#xD;
+                          &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+                        )&#xD;
+                      ),&#xD;
+                      todatetime(&#xD;
+                        datetext(&#xD;
+                          local!FilterByEndOpenedDate,&#xD;
+                          &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+                        )&#xD;
+                      )&#xD;
+                    }&#xD;
+                  )&#xD;
+                ),&#xD;
+				 if(&#xD;
+                  or(&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!FilterByStartClosedDate&#xD;
+                    ),&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!FilterByEndClosedDate&#xD;
+                    )&#xD;
+                  ),&#xD;
+                  null,&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;DateClosed&quot;,&#xD;
+                    operator: &quot;between&quot;,&#xD;
+                    value: {&#xD;
+                      todatetime(&#xD;
+                        datetext(&#xD;
+                          local!FilterByStartClosedDate,&#xD;
+                          &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+                        )&#xD;
+                      ),&#xD;
+                      todatetime(&#xD;
+                        datetext(&#xD;
+                          local!FilterByEndClosedDate,&#xD;
+                          &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+                        )&#xD;
+                      )&#xD;
+                    }&#xD;
+                  )&#xD;
+                ),&#xD;
+				 if(&#xD;
+                  or(&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!FilterByReferredStartDate&#xD;
+                    ),&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!FilterByReferredEndDate&#xD;
+                    )&#xD;
+                  ),&#xD;
+                  null,&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;CreatedDate&quot;,&#xD;
+                    operator: &quot;between&quot;,&#xD;
+                    value: {&#xD;
+                      todatetime(&#xD;
+                        datetext(&#xD;
+                          local!FilterByReferredStartDate,&#xD;
+                          &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+                        )&#xD;
+                      ),&#xD;
+                      todatetime(&#xD;
+                        datetext(&#xD;
+                          local!FilterByReferredEndDate,&#xD;
+                          &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+                        )&#xD;
+                      )&#xD;
+                    }&#xD;
+                  )&#xD;
+                ),&#xD;
+                #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                  field: &quot;Status&quot;,&#xD;
+                  operator: &quot;not null&quot;&#xD;
+                ),&#xD;
+                if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!ProviderID&#xD;
+                  ),&#xD;
+                  {},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;ProviderID&quot;,&#xD;
+                    operator: &quot;in&quot;,&#xD;
+                    value: local!ProviderID&#xD;
+                  )&#xD;
+                ),&#xD;
+                if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!FilterByCM&#xD;
+                  ),&#xD;
+                  if(&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!CaseManager&#xD;
+                    ),&#xD;
+                    {},&#xD;
+                    #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                      field: &quot;CaseManagerName&quot;,&#xD;
+                      operator: &quot;in&quot;,&#xD;
+                      value: {touniformstring(&#xD;
+                        local!CaseManager&#xD;
+                      )}&#xD;
+                    )&#xD;
+                  ),&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;CaseManagerName&quot;,&#xD;
+                    operator: &quot;=&quot;,&#xD;
+                    value: tostring(&#xD;
+                      local!FilterByCM&#xD;
+                    )&#xD;
+                  )&#xD;
+                ),&#xD;
+                if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!FilterByProduct&#xD;
+                  ),&#xD;
+                  {},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;ProductName&quot;,&#xD;
+                    operator: &quot;=&quot;,&#xD;
+                    value: local!FilterByProduct&#xD;
+                  )&#xD;
+                ),&#xD;
+                if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!FilterByCustomer&#xD;
+                  ),&#xD;
+                  {},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;TopClientName&quot;,&#xD;
+                    operator: &quot;=&quot;,&#xD;
+                    value: local!FilterByCustomer&#xD;
+                  )&#xD;
+                ),&#xD;
+                if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!FilterByTeam&#xD;
+                  ),&#xD;
+                  {},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;TeamID&quot;,&#xD;
+                    operator: &quot;=&quot;,&#xD;
+                    value: local!FilterByTeam&#xD;
+                  )&#xD;
+                ),&#xD;
+				if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!FilterByBrand&#xD;
+                  ),&#xD;
+                  {},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;BrandName&quot;,&#xD;
+                    operator: &quot;=&quot;,&#xD;
+                    value: local!FilterByBrand&#xD;
+                  )&#xD;
+                ),&#xD;
+				if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!FilterByTeamDept&#xD;
+                  ),&#xD;
+                  {},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;ClientName&quot;,&#xD;
+                    operator: &quot;=&quot;,&#xD;
+                    value: local!FilterByTeamDept&#xD;
+                  )&#xD;
+                )&#xD;
+              }&#xD;
+            )&#xD;
+          ),&#xD;
+          /*filter:if(or(rule!Utils_CheckIsNull(local!FilterByStartDate),rule!Utils_CheckIsNull(local!FilterByEndDate)),null,&#xD;
+    a!queryFilter(&#xD;
+  field: &quot;Deadline&quot;,&#xD;
+  operator: &quot;between&quot;,&#xD;
+  value: {local!FilterByStartDate,local!FilterByEndDate}&#xD;
+)),*/&#xD;
+          pagingInfo: local!pagingInfo&#xD;
+        )&#xD;
+      )&#xD;
+    ),&#xD;
+    local!datasubset2: if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!ProviderID&#xD;
+      ),&#xD;
+      {},&#xD;
+      #&quot;882e3a99-bfe6-45ec-b555-82cef958da82&quot;(&#xD;
+        Status: local!Status,&#xD;
+        FilterByStartDate: local!FilterByStartDate,&#xD;
+        FilterByEndDate: local!FilterByEndDate,&#xD;
+        ProviderID: local!ProviderID,&#xD;
+        FilterByCM: local!FilterByCM,&#xD;
+        FilterByProduct: local!FilterByProduct,&#xD;
+        FilterByCustomer: local!FilterByCustomer,&#xD;
+        FilterByTeam: local!FilterByTeam,&#xD;
+        pagingInfo: local!pagingInfo2,&#xD;
+        CaseManager: local!CaseManager,&#xD;
+		FilterByReferredStartDate:local!FilterByReferredStartDate,&#xD;
+		FilterByStartClosedDate:local!FilterByStartClosedDate,&#xD;
+		FilterByEndClosedDate:local!FilterByEndClosedDate,&#xD;
+		FilterByStartOpenedDate:local!FilterByStartOpenedDate,&#xD;
+		FilterByEndOpenedDate:local!FilterByEndOpenedDate,&#xD;
+		FilterByReferredEndDate:local!FilterByReferredEndDate,&#xD;
+		FilterByBrand:local!FilterByBrand,&#xD;
+		FilterByTeamDept:local!FilterByTeamDept&#xD;
+      )&#xD;
+    ),&#xD;
+    local!Categories: if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!datasubset&#xD;
+      ),&#xD;
+      {},&#xD;
+      apply(&#xD;
+        #&quot;033cfb84-261d-4a37-aad9-19773555dfde&quot;,&#xD;
+        merge(&#xD;
+          apply(&#xD;
+            #&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,&#xD;
+            index(&#xD;
+              local!datasubset.data,&#xD;
+              &quot;Months&quot;,&#xD;
+              {}&#xD;
+            )&#xD;
+          ),&#xD;
+          index(&#xD;
+            local!datasubset.data,&#xD;
+            &quot;Years&quot;,&#xD;
+            {}&#xD;
+          )&#xD;
+        )&#xD;
+      )&#xD;
+    ),&#xD;
+    /*&#xD;
+    Export to Excel Logic&#xD;
+  */&#xD;
+    local!exportUri: if(&#xD;
+      local!isdownload = &quot;downloadfile&quot;,&#xD;
+      getdatasubsetdownloadlinkfromprocess(&#xD;
+        processModelUuid: &quot;0003db24-d326-8000-6ee0-010000010000&quot;,&#xD;
+        input: #&quot;SYSTEM_SYSRULES_toJson&quot;(&#xD;
+          {&#xD;
+            Status: local!Status,&#xD;
+            FilterByStartDate:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartDate),null,datetext(&#xD;
+              local!FilterByStartDate,&#xD;
+              &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+            )),&#xD;
+            FilterByEndDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndDate),null,datetext(&#xD;
+              local!FilterByEndDate,&#xD;
+              &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+            )),&#xD;
+            Product: local!FilterByProduct,&#xD;
+            Customer: local!FilterByCustomer,&#xD;
+            Team: local!FilterByTeam,&#xD;
+            FilterByCM: local!FilterByCM,&#xD;
+            CaseManager: local!CaseManager,&#xD;
+			FilterByReferredStartDate:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByReferredStartDate),null,datetext(local!FilterByReferredStartDate, &quot;dd/MM/yyyy hh:mm&quot;)),&#xD;
+		FilterByStartClosedDate:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartClosedDate),null,datetext(local!FilterByStartClosedDate, &quot;dd/MM/yyyy hh:mm&quot;)),&#xD;
+		FilterByEndClosedDate:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndClosedDate),null,datetext(local!FilterByEndClosedDate, &quot;dd/MM/yyyy hh:mm&quot;)),&#xD;
+		FilterByStartOpenedDate:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartOpenedDate),null,datetext(local!FilterByStartOpenedDate, &quot;dd/MM/yyyy hh:mm&quot;)),&#xD;
+		FilterByEndOpenedDate:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndOpenedDate),null,datetext(local!FilterByEndOpenedDate, &quot;dd/MM/yyyy hh:mm&quot;)),&#xD;
+		FilterByReferredEndDate:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByReferredEndDate),null,datetext(local!FilterByReferredEndDate, &quot;dd/MM/yyyy hh:mm&quot;)),&#xD;
+		FilterByBrand:local!FilterByBrand,&#xD;
+		FilterByTeamDept:local!FilterByTeamDept&#xD;
+          }&#xD;
+        )&#xD;
+      ),&#xD;
+      null&#xD;
+    ),&#xD;
+	/*&#xD;
+		End of Export to Excel Logic&#xD;
+	*/&#xD;
+&#xD;
+&#xD;
+&#xD;
+&#xD;
+&#xD;
+&#xD;
+{&#xD;
+ if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!datasubset),#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,value:&quot;No Data Available&quot;,readOnly:true),{&#xD;
+   &#xD;
+   #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25359&quot;[8],firstColumnContents:{&#xD;
+/*Radio Button For Data Format*/&#xD;
+#&quot;SYSTEM_SYSRULES_radioButtonField&quot;(label:&quot;Chart Type&quot;,choiceLabels:{&quot;Tabular&quot;,&quot;Stacked Bar Chart&quot;},choiceValues:{&quot;Tabular&quot;,&quot;Stacked Bar Chart&quot;},value:local!DataFormat,saveInto:local!DataFormat,&#xD;
+  choicelayout: &quot;COMPACT&quot;),&#xD;
+/* Checks if chart type is &quot;Tabular then shows a paging grid for data else if chart type is Stacked Bar Chart then shows data in stacked bar chart&quot;*/&#xD;
+if(local!DataFormat=&quot;Tabular&quot;,#&quot;a9934097-2a03-431c-bc9b-403381e55b68&quot;(),&#xD;
+#&quot;SYSTEM_SYSRULES_columnChartField&quot;(&#xD;
+  label: &quot;&quot;,&#xD;
+  categories:union(local!Categories,local!Categories),&#xD;
+  series:{&#xD;
+  #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label:&quot;Active Case Management&quot;,data:{#&quot;a88857ae-5d40-49bd-9234-783fc4eed141&quot;(&quot;Active Case Management&quot;,local!datasubset,union(local!Categories,local!Categories))},links:apply(#&quot;f065dc38-6ca7-4b33-acef-ad2ef5092b6d&quot;,#&quot;f958c989-0082-4dcd-8ed3-8be198a9dca9&quot;(&quot;Active Case Management&quot;,local!datasubset,union(local!Categories,local!Categories)))),&#xD;
+  #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label:&quot;Assessment&quot;,data:#&quot;a88857ae-5d40-49bd-9234-783fc4eed141&quot;(&quot;Assessment&quot;,local!datasubset,union(local!Categories,local!Categories)),links:apply(#&quot;f065dc38-6ca7-4b33-acef-ad2ef5092b6d&quot;,#&quot;f958c989-0082-4dcd-8ed3-8be198a9dca9&quot;(&quot;Assessment&quot;,local!datasubset,union(local!Categories,local!Categories)))),&#xD;
+  #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label:&quot;Closure&quot;,data:#&quot;a88857ae-5d40-49bd-9234-783fc4eed141&quot;(&quot;Closure&quot;,local!datasubset,union(local!Categories,local!Categories)),links:apply(#&quot;f065dc38-6ca7-4b33-acef-ad2ef5092b6d&quot;,#&quot;f958c989-0082-4dcd-8ed3-8be198a9dca9&quot;(&quot;Closure&quot;,local!datasubset,union(local!Categories,local!Categories)))),&#xD;
+  #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label:&quot;Consent&quot;,data:#&quot;a88857ae-5d40-49bd-9234-783fc4eed141&quot;(&quot;Consent&quot;,local!datasubset,union(local!Categories,local!Categories)),links:apply(#&quot;f065dc38-6ca7-4b33-acef-ad2ef5092b6d&quot;,#&quot;f958c989-0082-4dcd-8ed3-8be198a9dca9&quot;(&quot;Consent&quot;,local!datasubset,union(local!Categories,local!Categories)))),&#xD;
+  #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label:&quot;Medical Records&quot;,data:#&quot;a88857ae-5d40-49bd-9234-783fc4eed141&quot;(&quot;Medical Records&quot;,local!datasubset,union(local!Categories,local!Categories)),links:apply(#&quot;f065dc38-6ca7-4b33-acef-ad2ef5092b6d&quot;,#&quot;f958c989-0082-4dcd-8ed3-8be198a9dca9&quot;(&quot;Medical Records&quot;,local!datasubset,union(local!Categories,local!Categories)))),&#xD;
+  #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label:&quot;Report Completion&quot;,data:#&quot;a88857ae-5d40-49bd-9234-783fc4eed141&quot;(&quot;Report Completion&quot;,local!datasubset,union(local!Categories,local!Categories)),links:apply(#&quot;f065dc38-6ca7-4b33-acef-ad2ef5092b6d&quot;,#&quot;f958c989-0082-4dcd-8ed3-8be198a9dca9&quot;(&quot;Report Completion&quot;,local!datasubset,union(local!Categories,local!Categories)))),&#xD;
+  #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label:&quot;Allocation&quot;,data:#&quot;a88857ae-5d40-49bd-9234-783fc4eed141&quot;(&quot;Allocation&quot;,local!datasubset,union(local!Categories,local!Categories)),links:apply(#&quot;f065dc38-6ca7-4b33-acef-ad2ef5092b6d&quot;,#&quot;f958c989-0082-4dcd-8ed3-8be198a9dca9&quot;(&quot;Allocation&quot;,local!datasubset,union(local!Categories,local!Categories)))),&#xD;
+  #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label:&quot;Approval to Proceed&quot;,data:#&quot;a88857ae-5d40-49bd-9234-783fc4eed141&quot;(&quot;Approval to Proceed&quot;,local!datasubset,union(local!Categories,local!Categories)),links:apply(#&quot;f065dc38-6ca7-4b33-acef-ad2ef5092b6d&quot;,#&quot;f958c989-0082-4dcd-8ed3-8be198a9dca9&quot;(&quot;Approval to Proceed&quot;,local!datasubset,union(local!Categories,local!Categories)))),&#xD;
+  #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label:&quot;Client Contact&quot;,data:#&quot;a88857ae-5d40-49bd-9234-783fc4eed141&quot;(&quot;Client Contact&quot;,local!datasubset,union(local!Categories,local!Categories)),links:apply(#&quot;f065dc38-6ca7-4b33-acef-ad2ef5092b6d&quot;,#&quot;f958c989-0082-4dcd-8ed3-8be198a9dca9&quot;(&quot;Client Contact&quot;,local!datasubset,union(local!Categories,local!Categories)))),&#xD;
+  #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label:&quot;Funding Approval&quot;,data:#&quot;a88857ae-5d40-49bd-9234-783fc4eed141&quot;(&quot;Funding Approval&quot;,local!datasubset,union(local!Categories,local!Categories)),links:apply(#&quot;f065dc38-6ca7-4b33-acef-ad2ef5092b6d&quot;,#&quot;f958c989-0082-4dcd-8ed3-8be198a9dca9&quot;(&quot;Funding Approval&quot;,local!datasubset,union(local!Categories,local!Categories)))),&#xD;
+  #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label:&quot;Joint Instruction&quot;,data:#&quot;a88857ae-5d40-49bd-9234-783fc4eed141&quot;(&quot;Joint Instruction&quot;,local!datasubset,union(local!Categories,local!Categories)),links:apply(#&quot;f065dc38-6ca7-4b33-acef-ad2ef5092b6d&quot;,#&quot;f958c989-0082-4dcd-8ed3-8be198a9dca9&quot;(&quot;Joint Instruction&quot;,local!datasubset,union(local!Categories,local!Categories))))&#xD;
+  },&#xD;
+  yAxisTitle: &quot;Number of Cases&quot;,&#xD;
+  stacking:&quot;NORMAL&quot;,&#xD;
+  showLegend: true,&#xD;
+  showDataLabels: true&#xD;
+)),&#xD;
+/*Shows a paging grid on the basis of selected  Case Status */&#xD;
+&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!Status),{},#&quot;e73afcdd-dc06-4c8f-a530-dcbd99813b27&quot;())},isCollapsible:true),&#xD;
+&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!Status),{},&#xD;
+&#xD;
+#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+              label: &quot;&quot;,&#xD;
+              firstColumnContents: {&#xD;
+                &#xD;
+                    &#xD;
+                    #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+                      primaryButtons: {&#xD;
+                        #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(&#xD;
+                          label: &quot;Export to Excel&quot;,&#xD;
+                          style: &quot;PRIMARY&quot;,&#xD;
+                          value: &quot;downloadfile&quot;,&#xD;
+                          saveInto: local!isdownload&#xD;
+                        )&#xD;
+						&#xD;
+                      }&#xD;
+                    )&#xD;
+					&#xD;
+                &#xD;
+                  }&#xD;
+                )),&#xD;
+&#xD;
+&#xD;
+ if(local!isdownload=&quot;downloadfile&quot;,#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+            label: &quot;Export report to excel&quot;,&#xD;
+            firstColumnContents: {&#xD;
+              #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+                label: &quot;Your excel is ready&quot;,&#xD;
+                links: #&quot;SYSTEM_SYSRULES_safeLink&quot;(&#xD;
+                  label: &quot;Click here to download&quot;,&#xD;
+                  uri: local!exportUri&#xD;
+                )&#xD;
+              )&#xD;
+            }&#xD;
+          ),{}&#xD;
+)})&#xD;
+&#xD;
+&#xD;
+&#xD;
+&#xD;
+}&#xD;
+&#xD;
+)&#xD;
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

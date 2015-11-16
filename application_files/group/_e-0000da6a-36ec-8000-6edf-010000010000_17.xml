@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <group>
+        <name>CM Providers</name>
+        <securityMap>SECURITYMAP_PUBLIC</securityMap>
+        <uuid>_e-0000da6a-36ec-8000-6edf-010000010000_17</uuid>
+        <groupTypeUuid>_f-0000da6a-36ec-8000-6edf-010000010000_4</groupTypeUuid>
+        <parentUuid>_e-0000da6a-36ec-8000-6edf-010000010000_16</parentUuid>
+        <description></description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_LOW</viewingPolicy>
+        <attributes/>
+    </group>
+    <members>
+        <users>
+            <userUuid>joe.bloggs</userUuid>
+            <userUuid>argentprovider</userUuid>
+        </users>
+        <groups>
+            <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_39</groupUuid>
+            <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_7</groupUuid>
+            <groupUuid>_e-0000da84-7eb7-8000-6edf-010000010000_25</groupUuid>
+            <groupUuid>_e-0000da84-7eb7-8000-6edf-010000010000_26</groupUuid>
+            <groupUuid>_e-0000da84-7eb7-8000-6edf-010000010000_27</groupUuid>
+            <groupUuid>_e-0000da84-7eb7-8000-6edf-010000010000_21</groupUuid>
+            <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_40</groupUuid>
+            <groupUuid>_e-0000db0d-1b6b-8000-6edf-010000010000_76</groupUuid>
+            <groupUuid>_e-0000da84-7eb7-8000-6edf-010000010000_24</groupUuid>
+        </groups>
+    </members>
+    <admins>
+        <users>
+            <userUuid>Administrator</userUuid>
+        </users>
+        <groups/>
+    </admins>
+    <ruleSet/>
+</groupHaul>

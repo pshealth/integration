@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_Referrals_DailyRunRateGrid</name>
+        <uuid>5da70661-807f-49a7-97b7-bb5143f2d11e</uuid>
+        <description></description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10801</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+  label: &quot;&quot;,&#xD;
+  isCollapsible:true,&#xD;
+  firstColumnContents: {&#xD;
+    #&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+      label: &quot;Cases Daily Open Run Rate&quot;,&#xD;
+      labelPosition: &quot;ABOVE&quot;,&#xD;
+      totalCount: local!DatasubsetDailyRunRate.totalCount,&#xD;
+      columns: {&#xD;
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+          label: &quot;Month&quot;,&#xD;
+          field: &quot;Months&quot;,&#xD;
+          data: apply(#&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,index(local!DatasubsetDailyRunRate.data,&quot;Months&quot;,{}))&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+          label: &quot;Year&quot;,&#xD;
+          field: &quot;Years&quot;,&#xD;
+          data: index(local!DatasubsetDailyRunRate.data,&quot;Years&quot;,null)),&#xD;
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+          label: &quot;In Progress (Avg)&quot;,&#xD;
+          field: &quot;TotalInProgressCases&quot;,&#xD;
+          data: index(local!DatasubsetDailyRunRate.data,&quot;TotalInProgressCases&quot;,null)&#xD;
+        )&#xD;
+      },&#xD;
+      value: local!pagingInfoRunrate,&#xD;
+      saveInto: local!pagingInfoRunrate,&#xD;
+      validations: {}&#xD;
+    )&#xD;
+  },&#xD;
+  secondColumnContents: {}&#xD;
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

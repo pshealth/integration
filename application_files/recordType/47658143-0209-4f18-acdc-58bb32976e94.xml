@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <recordType name="Client" a:uuid="47658143-0209-4f18-acdc-58bb32976e94">
+        <a:pluralName>Clients</a:pluralName>
+        <a:description>List of clients in the system</a:description>
+        <a:urlStub>rGPQ7g</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="93fb261c-5029-42d3-b1b4-c775eb4ece38@_a-0000dac7-a419-8000-6ee0-010000010000_3831"/>
+        <a:listViewTemplateExpr>=#&quot;2a256b5b-8934-445e-88f4-c98eb78cd237&quot;()</a:listViewTemplateExpr>
+        <a:fieldCfg name="MyCases">
+            <a:description></a:description>
+            <a:sourceRef>ProviderAccount.Username</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>&quot;Cases&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>&quot;My Cases&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>tostring(loggedinuser())</a:values>
+            </a:facetOption>
+            <a:sortOrderIndex>0</a:sortOrderIndex>
+            <a:facetOrderIndex>0</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="MyTeamsCases">
+            <a:description></a:description>
+            <a:sourceRef>ProviderAccount.Team</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>&quot;&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>&quot;My Team&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=index(#&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1895&quot;(#&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(tostring(loggedinUser()))), &quot;Team&quot;, 0)</a:values>
+            </a:facetOption>
+            <a:sortOrderIndex>1</a:sortOrderIndex>
+            <a:facetOrderIndex>1</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="Status">
+            <a:description></a:description>
+            <a:sourceRef>CaseStatus</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>=&quot;Case Status&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Open&quot;</a:labelExpr>
+                <a:facetOperator>NOT_IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_5581&quot; </a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Closed&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=&quot;Closure&quot;</a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Active Case Management&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_5582&quot;</a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Acknowledgement&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=&quot;Acknowledgement&quot;</a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Allocation&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=&quot;Allocation&quot;</a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Initial Contact&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=&quot;Client Contact&quot;</a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Assessment&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=&quot;Assessment&quot;</a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=&quot;On Hold&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=&quot;On Hold&quot;</a:values>
+            </a:facetOption>
+            <a:sortOrderIndex>2</a:sortOrderIndex>
+            <a:facetOrderIndex>2</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="NotesofInterest">
+            <a:description></a:description>
+            <a:sourceRef>CaseStatus</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>=&quot;Note of Interest&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>&quot;Yes&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=&quot;Missing Information&quot;</a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>&quot;No&quot;</a:labelExpr>
+                <a:facetOperator>NOT_IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=&quot;Missing Information&quot;</a:values>
+            </a:facetOption>
+            <a:sortOrderIndex>3</a:sortOrderIndex>
+            <a:facetOrderIndex>3</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="CreatedLast7Days">
+            <a:description></a:description>
+            <a:sourceRef>CreatedDate</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>&quot;Created Date&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>&quot;Last 7 days&quot;</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>=now()-7</a:lowerLimitExpr>
+                <a:upperLimitExpr>=now()</a:upperLimitExpr>
+            </a:facetOption>
+            <a:sortOrderIndex>4</a:sortOrderIndex>
+            <a:facetOrderIndex>4</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="CreatedLast30Days">
+            <a:description></a:description>
+            <a:sourceRef>CreatedDate</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>&quot;&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>&quot;Last 30 Days&quot;</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>=now()-30</a:lowerLimitExpr>
+                <a:upperLimitExpr>=now()</a:upperLimitExpr>
+            </a:facetOption>
+            <a:sortOrderIndex>5</a:sortOrderIndex>
+            <a:facetOrderIndex>5</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="CreatedLast90Days">
+            <a:description></a:description>
+            <a:sourceRef>CreatedDate</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>&quot;&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>&quot;Last 90 Days&quot;</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>=now()-90</a:lowerLimitExpr>
+                <a:upperLimitExpr>=now()</a:upperLimitExpr>
+            </a:facetOption>
+            <a:sortOrderIndex>6</a:sortOrderIndex>
+            <a:facetOrderIndex>6</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="CreatedLast180Days">
+            <a:description></a:description>
+            <a:sourceRef>CreatedDate</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>&quot;&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>&quot;Last 180 Days&quot;</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>=now()-180</a:lowerLimitExpr>
+                <a:upperLimitExpr>=now()</a:upperLimitExpr>
+            </a:facetOption>
+            <a:sortOrderIndex>7</a:sortOrderIndex>
+            <a:facetOrderIndex>7</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="CreatedMoreThan180Days">
+            <a:description></a:description>
+            <a:sourceRef>CreatedDate</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>&quot;&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>&quot;More than 180 Days&quot;</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>=now()-3600</a:lowerLimitExpr>
+                <a:upperLimitExpr>=now()</a:upperLimitExpr>
+            </a:facetOption>
+            <a:sortOrderIndex>8</a:sortOrderIndex>
+            <a:facetOrderIndex>8</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="Age0-18">
+            <a:description></a:description>
+            <a:sourceRef>Patient.DateOfBirth</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>&quot;Age&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>&quot;0 - 18&quot;</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>=today() - 6574.5</a:lowerLimitExpr>
+                <a:upperLimitExpr>=today()</a:upperLimitExpr>
+            </a:facetOption>
+            <a:sortOrderIndex>9</a:sortOrderIndex>
+            <a:facetOrderIndex>9</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="Age18-30">
+            <a:description></a:description>
+            <a:sourceRef>Patient.DateOfBirth</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>&quot;&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>&quot;18 - 30&quot;</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>today() - 10957.5</a:lowerLimitExpr>
+                <a:upperLimitExpr>today() - 6574.5</a:upperLimitExpr>
+            </a:facetOption>
+            <a:sortOrderIndex>10</a:sortOrderIndex>
+            <a:facetOrderIndex>10</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="Age30-50">
+            <a:description></a:description>
+            <a:sourceRef>Patient.DateOfBirth</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>&quot;&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>&quot;30 - 50&quot;</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>today() - 18262.5</a:lowerLimitExpr>
+                <a:upperLimitExpr>today() - 10957.5</a:upperLimitExpr>
+            </a:facetOption>
+            <a:sortOrderIndex>11</a:sortOrderIndex>
+            <a:facetOrderIndex>11</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="Age50+">
+            <a:description></a:description>
+            <a:sourceRef>Patient.DateOfBirth</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>&quot;&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>&quot;50+&quot;</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>today() - 54787.5</a:lowerLimitExpr>
+                <a:upperLimitExpr>today() - 18262.5</a:upperLimitExpr>
+            </a:facetOption>
+            <a:sortOrderIndex>12</a:sortOrderIndex>
+            <a:facetOrderIndex>12</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Summary&quot;</a:nameExpr>
+            <a:uiExpr>=#&quot;cf0e44f8-9c42-41a8-8246-d8e54e248c09&quot;(rf!CaseID)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>d0d6e798-3b49-4cc1-a963-93ec7475658e</a:relatedActionCfg>
+            <a:relatedActionCfg>67a54fa8-7cc7-4915-9d88-05723100fb60</a:relatedActionCfg>
+            <a:relatedActionCfg>1350858a-0513-481a-8494-9abdf05a7432</a:relatedActionCfg>
+            <a:relatedActionCfg>f4e91679-f8f4-48c7-b323-04ff00e00797</a:relatedActionCfg>
+            <a:relatedActionCfg>a4a3b68e-f6cf-4110-8587-379e5b3913e3</a:relatedActionCfg>
+            <a:relatedActionCfg>7a56c294-18a6-4345-b764-4714acf6db32</a:relatedActionCfg>
+            <a:relatedActionCfg>94c21dfb-6c36-416d-b5b7-501f7d5e8243</a:relatedActionCfg>
+            <a:relatedActionCfg>c4824af9-137d-453a-8580-61c717487617</a:relatedActionCfg>
+            <a:relatedActionCfg>b60c9b87-a784-4d53-a878-2a8e42e62813</a:relatedActionCfg>
+            <a:relatedActionCfg>17759ac9-e001-4ffe-a965-f064b0c6788e</a:relatedActionCfg>
+            <a:relatedActionCfg>6911bab8-71a8-457a-9094-1a8c1b5b9d98</a:relatedActionCfg>
+            <a:relatedActionCfg>0eea7a88-ff97-4978-8000-1a407583366c</a:relatedActionCfg>
+            <a:relatedActionCfg>93ee8440-9704-4706-bc99-323d349a2536</a:relatedActionCfg>
+            <a:relatedActionCfg>b8622c9a-f4b8-4063-a33f-f09160df6895</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Tasks &amp; &quot; &amp; #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_3094&quot;</a:nameExpr>
+            <a:uiExpr>=#&quot;2295a274-eba2-4a2d-9406-2030de9d18a0&quot;(rf!CaseID)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_p3qO9Q</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>67a54fa8-7cc7-4915-9d88-05723100fb60</a:relatedActionCfg>
+            <a:relatedActionCfg>1350858a-0513-481a-8494-9abdf05a7432</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Documents&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;b585eb21-8fd0-4268-adb5-f1bb682b2c0a&quot;(rf!CaseID)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_oD5d0w</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>1ab95389-9b1e-47b7-a896-738dd7abdcc6</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;File Notes&quot;</a:nameExpr>
+            <a:uiExpr>=#&quot;b6164f24-d975-42df-b3e5-459c619d0b37&quot;(rf!CaseID)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_dBOeKw</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>67a54fa8-7cc7-4915-9d88-05723100fb60</a:relatedActionCfg>
+            <a:relatedActionCfg>1350858a-0513-481a-8494-9abdf05a7432</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Stakeholders&quot;</a:nameExpr>
+            <a:uiExpr>=#&quot;4ae518f0-ff8e-4921-9cb5-151b2fd033ca&quot;(rp!id)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_y65naQ</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>f4e91679-f8f4-48c7-b323-04ff00e00797</a:relatedActionCfg>
+            <a:relatedActionCfg>c4824af9-137d-453a-8580-61c717487617</a:relatedActionCfg>
+            <a:relatedActionCfg>bce2465c-9f00-45d4-a784-ce0dadc510a6</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Medical Conditions&quot;</a:nameExpr>
+            <a:uiExpr>=#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_22776&quot;(rf!CaseID)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_Gc5cqQ</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Finance&quot;</a:nameExpr>
+            <a:uiExpr>=#&quot;21fd8cbd-7984-404f-9d51-59c0f92071e2&quot;(rf!CaseID)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_Q8XqrQ</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>c12ce965-fb5d-4f60-b6f6-cbd07aca65ff</a:relatedActionCfg>
+            <a:relatedActionCfg>1aab5de0-c504-4d09-b862-c945c069f5b3</a:relatedActionCfg>
+            <a:relatedActionCfg>5a68e1fb-5bbb-49aa-9e04-04e1b0289a70</a:relatedActionCfg>
+            <a:relatedActionCfg>701d7b01-d9c0-423d-b785-9a8f5ef2cb6e</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Rehab Plan&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_9795&quot;(rf!CaseID)
+
+</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_kLQaAw</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>02ebb02c-42a1-41fc-9a91-8404bd4856f3</a:relatedActionCfg>
+            <a:relatedActionCfg>ef2dfb74-dc03-43f2-b5ff-6d9341f08d70</a:relatedActionCfg>
+            <a:relatedActionCfg>347955bd-dba2-47b7-80fc-c2ec6ca80674</a:relatedActionCfg>
+            <a:relatedActionCfg>c5bdf83d-f2e8-47c5-a15d-68a5c6e1c6a5</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Vocational Status&quot;</a:nameExpr>
+            <a:uiExpr>=#&quot;2353bb07-bd76-4840-aeaa-104ebf69536e&quot;(rf!CaseID)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_udJAIQ</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>0be4206b-1792-4897-a16b-7ed418beb211</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:defaultFilter>
+            <a:field>ProviderID</a:field>
+            <a:operator>in</a:operator>
+            <a:valueExpression>=#&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(loggedInUser()).ProviderID</a:valueExpression>
+        </a:defaultFilter>
+        <a:defaultSortInfo>
+            <field>CaseID</field>
+            <ascending>false</ascending>
+        </a:defaultSortInfo>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0003daec-a8a8-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseId: rp!id}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>1ab95389-9b1e-47b7-a896-738dd7abdcc6</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0004daf3-6aa4-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>c12ce965-fb5d-4f60-b6f6-cbd07aca65ff</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0005dbaa-6a2d-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseId: rp!id}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>cc0dfbd0-2811-4a4a-ad0f-0635723b8d3d</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="000edb83-ff51-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id}</a:contextExpr>
+            <a:visibilityExpr>=contains({1,2,3,4}, displayvalue(rf!CaseStatus, #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_2964&quot;, #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_2961&quot;, 0))</a:visibilityExpr>
+            <a:refId>d0d6e798-3b49-4cc1-a963-93ec7475658e</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0008db25-0a5a-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>02ebb02c-42a1-41fc-9a91-8404bd4856f3</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002daeb-4c22-8000-6ee0-010000010000"/>
+            <a:contextExpr>{CaseID: rp!id, AdHoc: true}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>ef2dfb74-dc03-43f2-b5ff-6d9341f08d70</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0003db33-79fa-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>c06c509f-ef67-4441-a84d-58763043464a</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dad0-f51a-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id, CaseStatus: &quot;&quot;, Adhoc: true()}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>347955bd-dba2-47b7-80fc-c2ec6ca80674</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dbaf-8399-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id, Schedule:true}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>67a54fa8-7cc7-4915-9d88-05723100fb60</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dbaf-8498-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id, Schedule:false}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>1350858a-0513-481a-8494-9abdf05a7432</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002daf4-34e7-8000-6ee0-010000010000"/>
+            <a:contextExpr>={AdHocProcess: true, CaseID: rp!id, IntendedInitiator: loggedInUser(), TaskTitle: &quot;Contact Stakeholders&quot;, Attachments: {}, Attachment: &quot;General&quot;}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>f4e91679-f8f4-48c7-b323-04ff00e00797</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dae3-74c4-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id, NoFunding: false}</a:contextExpr>
+            <a:visibilityExpr>
+	=if(or(index(#&quot;b5753418-365f-4096-b70c-31b72ef5cf97&quot;(rp!id), &quot;CaseStatus&quot;, {}) = &quot;Closure&quot;, index(#&quot;b5753418-365f-4096-b70c-31b72ef5cf97&quot;(rp!id), &quot;CaseStatus&quot;, {}) = &quot;Patient Treatment Complete&quot;), false(), true())</a:visibilityExpr>
+            <a:refId>a4a3b68e-f6cf-4110-8587-379e5b3913e3</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="000bdae8-e3d4-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id, IsEventBased: false, InvoiceFormLabel: #&quot;_a-0000db92-ca0b-8000-6ee0-010000010000_36460&quot;}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>1aab5de0-c504-4d09-b862-c945c069f5b3</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002db32-7ee2-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>7a56c294-18a6-4345-b764-4714acf6db32</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002daf1-f7bc-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id, TaskName: &quot;MLR Review&quot;}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>c5bdf83d-f2e8-47c5-a15d-68a5c6e1c6a5</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002db5e-3d20-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id}</a:contextExpr>
+            <a:visibilityExpr>=not(or(contains(rf!CaseStatus, &quot;On Hold&quot;),contains(rf!CaseStatus, &quot;Closed&quot;)))</a:visibilityExpr>
+            <a:refId>94c21dfb-6c36-416d-b5b7-501f7d5e8243</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0006daf5-93eb-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id, NoteTitle: &quot;Case Manager Reassigned&quot;, CaseManagerTypeID: 1, IsUpdate: true}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>c4824af9-137d-453a-8580-61c717487617</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002daf1-9ce8-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!ID, IsUpdate: true, TaskTitle: &quot;Receive Consent&quot;}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>b60c9b87-a784-4d53-a878-2a8e42e62813</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002db34-e0b5-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID: rp!id}</a:contextExpr>
+            <a:visibilityExpr>=if(contains(#&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(loggedInUser()).TypeID , 1), true(), false())</a:visibilityExpr>
+            <a:refId>5a68e1fb-5bbb-49aa-9e04-04e1b0289a70</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0021db37-908f-8000-6ee0-010000010000"/>
+            <a:contextExpr>{CaseID: rp!ID, IsUpdate: true}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>17759ac9-e001-4ffe-a965-f064b0c6788e</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0006daf5-e438-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseID:rp!id, NoteTitle: &quot;Case Details Have Been Updated&quot;}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>6911bab8-71a8-457a-9094-1a8c1b5b9d98</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0006db3e-4565-8000-6ee0-010000010000"/>
+            <a:contextExpr>={ CaseID: rp!id, ProductID: rf!Product.ID, IsAdhoc: true, TaskName: &quot;Vocational Status&quot;
+}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>0be4206b-1792-4897-a16b-7ed418beb211</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002daec-a55d-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseId: rp!id, IsAdhoc: true}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>bce2465c-9f00-45d4-a784-ce0dadc510a6</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0006daf5-a798-8000-6ee0-010000010000"/>
+            <a:contextExpr>{CaseID: rp!id, IsUpdate: true, NoteTitle: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_24214&quot; &amp; &quot; updated&quot;, PatientSearchedFor: &quot;&quot;, DateOpened: rf!DateOpened}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>0eea7a88-ff97-4978-8000-1a407583366c</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dbc9-e02c-8000-6ee0-010000010000"/>
+            <a:contextExpr>={CaseId: rp!id}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>701d7b01-d9c0-423d-b785-9a8f5ef2cb6e</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dbd8-96a8-8000-6ee0-010000010000"/>
+            <a:contextExpr>{CaseID: rp!ID}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>93ee8440-9704-4706-bc99-323d349a2536</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dacf-5e02-8000-6ee0-010000010000"/>
+            <a:contextExpr>{
+  CaseID: rp!id,
+  CaseManagerID: rf!ProviderAccount.ID
+}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>f7d47179-de49-4759-ae1e-42fd5afb65a5</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dbe6-e361-8000-6ee0-010000010000"/>
+            <a:contextExpr>{&#xD;
+CaseID: rp!id&#xD;
+}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>b8622c9a-f4b8-4063-a33f-f09160df6895</a:refId>
+        </a:relatedActionCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:security>16383</a:security>
+    </recordType>
+    <roleMap>
+        <role name="record_type_editor">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_36</groupUuid>
+                <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_17</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</recordTypeHaul>

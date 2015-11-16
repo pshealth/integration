@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_ClosedCaseAverageLifeCycleGrid</name>
+        <uuid>7a562fd1-619a-4f35-ae96-af3a1ff2b51c</uuid>
+        <description>Contains a grid to show the Closed Case Average Lifecycle </description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_20533</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition> #&quot;SYSTEM_SYSRULES_gridLayout&quot;(&#xD;
+    label: &quot;Average Lifecycle of Closed Cases&quot;,&#xD;
+    headerCells: {&#xD;
+      #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot; Total Number of Cases&quot;),&#xD;
+      #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Total Case Lifecycle&quot;),&#xD;
+      #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Average Lifecycle&quot;)&#xD;
+    },&#xD;
+    rows: {&#xD;
+      #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value:local!TotalCasesReceived,&#xD;
+readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: local!TotalCaseLifeCycle,&#xD;
+          readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+value: if(local!TotalCasesReceived=0,0,local!TotalCaseLifeCycle/local!TotalCasesReceived),&#xD;
+         readOnly:true&#xD;
+        )&#xD;
+      })&#xD;
+    }&#xD;
+  )</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

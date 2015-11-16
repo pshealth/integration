@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="AC" xmlns:tns="AC" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="ProviderAccountTargets">
+    <xsd:sequence>
+      <xsd:element name="ID" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ProviderAccountID" nillable="true" type="xsd:int"/>
+      <xsd:element name="Month" nillable="true" type="xsd:int"/>
+      <xsd:element name="Year" nillable="true" type="xsd:int"/>
+      <xsd:element name="Target" nillable="true" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

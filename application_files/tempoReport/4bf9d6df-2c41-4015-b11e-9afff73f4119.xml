@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="Closed Case Cost and Lifecycle" a:uuid="4bf9d6df-2c41-4015-b11e-9afff73f4119">
+        <a:description>Click above to see the Closed case cost and average lifecycle</a:description>
+        <a:uiExpr>#&quot;1addba27-57bd-4fa6-8169-a7368dc8e857&quot;()</a:uiExpr>
+        <a:urlStub>yJGixw</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_51</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_17</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoReportHaul>

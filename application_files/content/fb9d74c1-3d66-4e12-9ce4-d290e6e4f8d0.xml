@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CommonFilterSection</name>
+        <uuid>fb9d74c1-3d66-4e12-9ce4-d290e6e4f8d0</uuid>
+        <description>Contains a section of common filters which are used across all reports</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10791</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+  label: &quot;&quot;,
+  firstColumnContents: {
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+      label: &quot;Team&quot;,
+      placeholderLabel: &quot;--Please Select--&quot;,
+      disabled: if(
+        local!TypeId = #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3213&quot;[2],
+        true(),
+        false()
+      ),
+      choiceLabels: {
+        local!TeamLabel
+      },
+      choiceValues: {
+        local!TeamValues
+      },
+      value: local!FilterByTeam,
+      saveInto: {
+        local!FilterByTeam,
+        a!save(
+          local!pagingInfo.startIndex,
+          1
+        ),
+        a!save(
+          local!pagingInfo2.startIndex,
+          1
+        ),
+        a!save(
+          local!isdownload,
+          null
+        ),
+        a!save(
+          local!FilterByCaseManager,
+          null
+        )
+      }
+    ),
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+      label: &quot;Case Manager&quot;,
+      placeholderLabel: &quot;--Please Select--&quot;,
+      choiceLabels: apply(
+        #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,
+        touniformstring(
+          {
+            union(
+              local!CaseManager,
+              local!CaseManager
+            )
+          }
+        )
+      ),
+      choiceValues: {
+        union(
+          local!CaseManager,
+          local!CaseManager
+        )
+      },
+      value: local!FilterByCaseManager,
+      saveInto: {
+        local!FilterByCaseManager,
+        a!save(
+          local!pagingInfo.startIndex,
+          1
+        ),
+        a!save(
+          local!pagingInfo2.startIndex,
+          1
+        ),
+        a!save(
+          local!isdownload,
+          null
+        )
+      }
+    )
+  },
+  secondColumnContents: {
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+      label: &quot;Customer&quot;,
+      placeholderLabel: &quot;--Please Select--&quot;,
+      choiceLabels: {
+        union(
+          local!Customer,
+          local!Customer
+        )
+      },
+      choiceValues: {
+        union(
+          local!Customer,
+          local!Customer
+        )
+      },
+      value: local!FilterByCustomer,
+      saveInto: {
+        local!FilterByCustomer,
+        a!save(
+          local!pagingInfo.startIndex,
+          1
+        ),
+        a!save(
+          local!pagingInfo2.startIndex,
+          1
+        ),
+        a!save(
+          local!isdownload,
+          null
+        )
+      }
+    ),
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+      label: &quot;Product&quot;,
+      placeholderLabel: &quot;--Please Select--&quot;,
+      choiceLabels: {
+        union(
+          local!Product,
+          local!Product
+        )
+      },
+      choiceValues: {
+        union(
+          local!Product,
+          local!Product
+        )
+      },
+      value: local!FilterByProduct,
+      saveInto: {
+        local!FilterByProduct,
+        a!save(
+          local!pagingInfo.startIndex,
+          1
+        ),
+        a!save(
+          local!pagingInfo2.startIndex,
+          1
+        ),
+        a!save(
+          local!isdownload,
+          null
+        )
+      }
+    )
+  }
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

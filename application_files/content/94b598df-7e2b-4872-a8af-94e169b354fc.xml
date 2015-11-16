@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_ReportPagingGrid</name>
+        <uuid>94b598df-7e2b-4872-a8af-94e169b354fc</uuid>
+        <description>Contains a paging grid for Case Manager Monthly Productivity Report</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_9987</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+label:&quot;&quot;,&#xD;
+totalCount:local!Datasubset.totalCount,&#xD;
+columns:{&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17331&quot;[1],data:apply(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,index(local!Datasubset.data,&quot;UserName&quot;,{})),field:&quot;UserName&quot;),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByMonth),#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17331&quot;[2],data:apply(#&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,index(local!Datasubset.data,&quot;Months&quot;,{})),field:&quot;Months&quot;),{}),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17331&quot;[3],data:index(local!Datasubset.data,&quot;WorkingDays&quot;,null),field:&quot;WorkingDays&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17331&quot;[4],data:index(local!Datasubset.data,&quot;Leaves&quot;,null),field:&quot;Leaves&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17331&quot;[5],data:index(local!Datasubset.data,&quot;ProductiveHourLeave&quot;,null),field:&quot;ProductiveHourLeave&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17331&quot;[6],data:index(local!Datasubset.data,&quot;Capacity&quot;,null),field:&quot;Capacity&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17331&quot;[7],data:index(local!Datasubset.data,&quot;PotentialProductiveHour&quot;,null),field:&quot;PotentialProductiveHour&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17331&quot;[8],data:index(local!Datasubset.data,&quot;Utilization&quot;,null),field:&quot;Utilization&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17331&quot;[9],data:index(local!Datasubset.data,&quot;HRTotal&quot;,null),field:&quot;HRTotal&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17331&quot;[10],data:index(local!Datasubset.data,&quot;FRTotal&quot;,null),field:&quot;FRTotal&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17331&quot;[11],data:index(local!Datasubset.data,&quot;AllocatedFixedHours&quot;,null),field:&quot;AllocatedFixedHours&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17331&quot;[12],data:index(local!Datasubset.data,&quot;TotalTravelTime&quot;,null),field:&quot;TotalTravelTime&quot;)&#xD;
+&#xD;
+},&#xD;
+value:local!pagingInfo,&#xD;
+saveInto:local!pagingInfo&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

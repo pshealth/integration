@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CSQCasesAnswerDescriptionPagingGrid</name>
+        <uuid>3335efcc-b990-4177-95fe-e1ee17dc617a</uuid>
+        <description>Contains paging grid for CSQ Cases Answer Description</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_16157</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition> #&quot;SYSTEM_SYSRULES_gridLayout&quot;(&#xD;
+    label: &quot;Drill Down By CSQs&quot;,&#xD;
+    headerCells: {&#xD;
+      #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Answer Description&quot;),&#xD;
+      #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Count&quot;),&#xD;
+      #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Percentage&quot;)&#xD;
+    },&#xD;
+    rows: {&#xD;
+	#&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Excellent&quot;,value:&quot;Excellent&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Excellent&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Excellent&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+      #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Very Good&quot;,value:&quot;Very Good&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Very Good&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Very Good&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	 #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Good&quot;,value:&quot;Good&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Good&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Good&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	  #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Satisfactory&quot;,value:&quot;Satisfactory&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Satisfactory&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Satisfactory&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	  #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Poor&quot;,value:&quot;Poor&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Poor&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Poor&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	  #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Very Poor&quot;,value:&quot;Very Poor&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Very Poor&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Very Poor&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	   #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Extremely Satisfied&quot;,value:&quot;Extremely Satisfied&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Extremely Satisfied&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Extremely Satisfied&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	  #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Satisfied&quot;,value:&quot;Satisfied&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Satisfied&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Satisfied&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	   #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Dissatisfied&quot;,value:&quot;Dissatisfied&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Dissatisfied&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Dissatisfied&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	    #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Completely Dissatisfied&quot;,value:&quot;Completely Dissatisfied&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Completely Dissatisfied&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Completely Dissatisfied&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	   #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Strongly Agree&quot;,value:&quot;Strongly Agree&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Strongly Agree&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Strongly Agree&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	   #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Agree&quot;,value:&quot;Agree&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Agree&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Agree&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	  #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Disagree&quot;,value:&quot;Disagree&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Disagree&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Disagree&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	  #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Strongly Disagree&quot;,value:&quot;Strongly Disagree&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Strongly Disagree&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Strongly Disagree&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      }),&#xD;
+	  #&quot;SYSTEM_SYSRULES_gridRowLayout&quot;(contents: {&#xD;
+        #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+		&#xD;
+         links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(label:&quot;Undecided&quot;,value:&quot;Undecided&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: count(wherecontains(&quot;Undecided&quot;,touniformstring(local!datasubset3.data.AnswerDescription))),&#xD;
+		readOnly:true&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+          value: round((count(wherecontains(&quot;Undecided&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),&#xD;
+		readOnly:true&#xD;
+        )&#xD;
+      })&#xD;
+    }&#xD;
+  )&#xD;
+</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

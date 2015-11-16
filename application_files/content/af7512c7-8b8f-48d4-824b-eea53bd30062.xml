@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CostBillingPagingGrid</name>
+        <uuid>af7512c7-8b8f-48d4-824b-eea53bd30062</uuid>
+        <description>Contains paging for cost billing  report</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_19705</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+label:&quot;&quot;,&#xD;
+totalCount:local!Datasubset.totalCount,&#xD;
+columns:{&#xD;
+  #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Case Manager&quot;,&#xD;
+data:apply(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,index(local!Datasubset.data,&quot;CaseManagerName&quot;,{})),&#xD;
+links:apply(#&quot;cf65e0d6-8bc0-40ef-824c-282c1330a934&quot;,index(local!Datasubset.data,&quot;CaseManagerName&quot;,{})),&#xD;
+field:&quot;CaseManagerName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Month&quot;,&#xD;
+data:/*if(rule!Utils_CheckIsNull(local!FilterByMonth),a!gridTextColumn(label:&quot;&quot;,data:apply(rule!CM_MI_GetMonthNamesByMonthNumber,index(local!Datasubset.data,&quot;Months&quot;,{})),field:&quot;Months&quot;),{}),*/apply(#&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,index(local!Datasubset.data,&quot;Months&quot;,{})),&#xD;
+field:&quot;Months&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Year&quot;,&#xD;
+data:index(local!Datasubset.data,&quot;Years&quot;,null),&#xD;
+field:&quot;Years&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Assessment&quot;,&#xD;
+data:index(local!Datasubset.data,&quot;Assessment&quot;,{}),&#xD;
+field:&quot;Assessment&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Case Management&quot;,&#xD;
+data:index(local!Datasubset.data,&quot;CaseManagement&quot;,{}),&#xD;
+field:&quot;CaseManagement&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Suppliers&quot;,&#xD;
+data:index(local!Datasubset.data,&quot;Suppliers&quot;,{}),&#xD;
+field:&quot;Suppliers&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Total Cost&quot;,&#xD;
+data:index(local!Datasubset.data,&quot;Total&quot;,{}),&#xD;
+field:&quot;Total&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Target&quot;,&#xD;
+data:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(index(local!Datasubset.data,&quot;CaseManagerID&quot;,{})),null,apply(#&quot;83677902-8493-4c15-b62c-94f3da74e65c&quot;,merge(index(local!Datasubset.data,&quot;Years&quot;,{}),index(local!Datasubset.data,&quot;Months&quot;,{}),index(local!Datasubset.data,&quot;CaseManagerID&quot;,{})))),&#xD;
+field:&quot;Target&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;% Target&quot;,&#xD;
+data:apply(#&quot;d5beb574-bb9e-460a-9188-f86e390cfc67&quot;,merge(index(local!Datasubset.data,&quot;Total&quot;,{}),if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(index(local!Datasubset.data,&quot;CaseManagerID&quot;,{})),{},apply(#&quot;83677902-8493-4c15-b62c-94f3da74e65c&quot;,merge(index(local!Datasubset.data,&quot;Years&quot;,{}),index(local!Datasubset.data,&quot;Months&quot;,{}),index(local!Datasubset.data,&quot;CaseManagerID&quot;,{})))))),&#xD;
+field:&quot;PercentageTarget&quot;&#xD;
+)&#xD;
+},&#xD;
+value:local!pagingInfo,&#xD;
+saveInto:local!pagingInfo&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

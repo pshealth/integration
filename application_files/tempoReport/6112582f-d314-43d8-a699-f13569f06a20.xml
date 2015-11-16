@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="Billing Transaction Report" a:uuid="6112582f-d314-43d8-a699-f13569f06a20">
+        <a:description>Click above to view Billing Transaction Report</a:description>
+        <a:uiExpr>=#&quot;ee5d3014-46fa-4aa9-9a23-437ef568b3fc&quot;()</a:uiExpr>
+        <a:urlStub>slYF8Q</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_51</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_17</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoReportHaul>

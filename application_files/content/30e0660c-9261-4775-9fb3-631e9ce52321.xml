@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_Form_ManageProviderAccount</name>
+        <uuid>30e0660c-9261-4775-9fb3-631e9ce52321</uuid>
+        <description></description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_1004</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= load(
+  local!initiator: #&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(
+    loggedInUser()
+  ),
+  local!superUser: #&quot;_a-0000da6a-36ed-8000-6ee0-010000010000_948&quot;[2],
+  local!readOnly: not(
+    isnull(
+      ri!ProviderAccount.ID
+    )
+  ),
+  local!Supervisors: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10196&quot;(
+    ri!ProviderAccount.ProviderID,
+    ri!ProviderAccount.ID
+  ),
+  local!Supervisor: if(
+    isnull(
+      ri!ProviderAccount.ID
+    ),
+    {},
+    #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1895&quot;(
+      index(
+        #&quot;b2ebc572-dd8b-41d5-85d7-92a4d35eee7c&quot;(
+          ri!ProviderAccount.ID
+        ),
+        &quot;SupervisorID&quot;,
+        &quot;&quot;
+      )
+    )
+  ),
+  #&quot;SYSTEM_SYSRULES_formLayout&quot;(
+    label: if(
+      local!readOnly,
+      &quot;Update &quot;,
+      &quot;Add &quot;
+    ) &amp; #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1661&quot;,
+    instructions: &quot;&quot;,
+    firstColumnContents: {
+      if(
+        ri!isValid,
+        #&quot;SYSTEM_SYSRULES_textField&quot;(
+          label: &quot;&quot;,
+          value: &quot;Invalid Username has been entered. (Username are case insensitive)&quot;,
+          readOnly: true
+        ),
+        {}
+      ),
+      #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+        label: &quot;Staff Member Details&quot;,
+        firstColumnContents: {
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;First Name&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: ri!ProviderAccount.FirstName,
+            saveInto: ri!ProviderAccount.FirstName,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            required: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Last Name&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: ri!ProviderAccount.LastName,
+            saveInto: ri!ProviderAccount.LastName,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            required: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          )
+        },
+        secondColumnContents: {
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Username&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: ri!ProviderAccount.Username,
+            saveInto: {
+              a!save(
+                ri!ProviderAccount.Username,
+                trim(
+                  save!value
+                )
+              )
+            },
+            refreshAfter: &quot;UNFOCUS&quot;,
+            readOnly: local!readOnly,
+            required: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Email&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: ri!ProviderAccount.Email,
+            saveInto: {
+              a!save(
+                ri!ProviderAccount.Email,
+                trim(
+                  save!value
+                )
+              )
+            },
+            refreshAfter: &quot;UNFOCUS&quot;,
+            validations: if(
+              #&quot;83f6f923-411b-4885-83b1-5b9f0ac227b5&quot;(
+                ri!ProviderAccount.Email
+              ),
+              &quot;&quot;,
+              #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_20009&quot;
+            ),
+            align: &quot;LEFT&quot;
+          )
+        }
+      ),
+      #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+        label: &quot;Contact Details&quot;,
+        firstColumnContents: {
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Address&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: ri!ProviderAccount.Address,
+            saveInto: ri!ProviderAccount.Address,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;City&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: ri!ProviderAccount.City,
+            saveInto: ri!ProviderAccount.City,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;PostCode&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: ri!ProviderAccount.PostCode,
+            saveInto: ri!ProviderAccount.PostCode,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            validations: if(
+              #&quot;a195609e-6cf4-4e36-b5d3-786eb7e0017b&quot;(
+                ri!ProviderAccount.PostCode
+              ),
+              &quot;&quot;,
+              &quot;Please enter a valid a post code.&quot;
+            ),
+            align: &quot;LEFT&quot;
+          )
+        },
+        secondColumnContents: {
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Office Phone&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: ri!ProviderAccount.PhonePrimary,
+            saveInto: ri!ProviderAccount.PhonePrimary,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            validations: if(
+              #&quot;e55f4f7e-2c68-4d12-8995-77d41cbe36a1&quot;(
+                ri!ProviderAccount.PhonePrimary
+              ),
+              &quot;&quot;,
+              &quot;Please enter a valid a phone number.&quot;
+            ),
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Mobile&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: ri!ProviderAccount.PhoneSecondary,
+            saveInto: ri!ProviderAccount.PhoneSecondary,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            validations: if(
+              #&quot;e55f4f7e-2c68-4d12-8995-77d41cbe36a1&quot;(
+                ri!ProviderAccount.PhoneSecondary
+              ),
+              &quot;&quot;,
+              &quot;Please enter a valid a phone number.&quot;
+            ),
+            align: &quot;LEFT&quot;
+          )
+        }
+      ),
+      #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+        label: &quot;Other Details&quot;,
+        firstColumnContents: {
+          if(
+            ri!ProviderAccount.ProfileImageID,
+            #&quot;SYSTEM_SYSRULES_imageField&quot;(
+              label: &quot;Current Logo&quot;,
+              labelPosition: &quot;ABOVE&quot;,
+              images: {
+                #&quot;SYSTEM_SYSRULES_documentImage&quot;(
+                  document: todocument(
+                    if(
+                      isnull(
+                        ri!profileImageID
+                      ),
+                      ri!ProviderAccount.ProfileImageID,
+                      ri!profileImageID
+                    )
+                  )
+                )
+              },
+              size: &quot;THUMBNAIL&quot;
+            ),
+            {}
+          ),
+          #&quot;SYSTEM_SYSRULES_fileUploadField&quot;(
+            label: &quot;New Logo&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            target: #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1354&quot;,
+            saveInto: ri!profileImageID,
+            validations: {}
+          ),
+          #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+            label: &quot;Team&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            choiceLabels: #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3208&quot;,
+            placeholderLabel: &quot;--- Select Team ---&quot;,
+            choiceValues: #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3209&quot;,
+            value: ri!ProviderAccount.team,
+            saveInto: a!save(
+              ri!ProviderAccount.team,
+              save!value
+            ),
+            required: true,
+            validations: {}
+          ),
+          #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+            label: &quot;Type&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            choiceLabels: #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3212&quot;,
+            placeholderLabel: &quot;--- Select Type ---&quot;,
+            choiceValues: #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3213&quot;,
+            value: ri!ProviderAccount.TypeID,
+            saveInto: a!save(
+              ri!ProviderAccount.TypeID,
+              save!value
+            ),
+            required: false,
+            validations: {}
+          ),
+          /*
+  a!textField(
+  value: if(rule!Utils_CheckIsNull(ri!Supervisor), local!Supervisor, ri!Supervisor)
+  )
+  */
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              local!Supervisors
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+              label: &quot;Supervisor&quot;,
+              choiceLabels: apply(
+                #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10272&quot;,
+                local!Supervisors
+              ),
+              choiceValues: local!Supervisors.ID,
+              placeholderLabel: &quot;---Select---&quot;,
+              value: if(
+                #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                  ri!Supervisor
+                ),
+                if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    local!Supervisor
+                  ),
+                  &quot;&quot;,
+                  local!Supervisor
+                ),
+                ri!Supervisor
+              ),
+              saveInto: ri!Supervisor,
+              validations: {}
+            )
+          ),
+          #&quot;SYSTEM_SYSRULES_floatingPointField&quot;(
+            label: &quot;FTE&quot;,
+            value: ri!providerAccount.FTE,
+            saveInto: ri!providerAccount.FTE
+          )
+        },
+        secondColumnContents: {
+          #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Active Status&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            choiceLabels: #&quot;_a-0000da6a-36ed-8000-6ee0-010000010000_947&quot;,
+            placeholderLabel: &quot;--- Select Active Status ---&quot;,
+            choiceValues: #&quot;_a-0000da6a-36ed-8000-6ee0-010000010000_948&quot;,
+            value: ri!ProviderAccount.IsActive,
+            saveInto: a!save(
+              ri!ProviderAccount.IsActive,
+              toboolean(
+                save!value
+              )
+            ),
+            required: true,
+            validations: {}
+          ),
+          #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+            label: &quot;Super User Status&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            choiceLabels: #&quot;_a-0000da6a-36ed-8000-6ee0-010000010000_947&quot;,
+            placeholderLabel: &quot;--- Select Active Status ---&quot;,
+            choiceValues: #&quot;_a-0000da6a-36ed-8000-6ee0-010000010000_948&quot;,
+            disabled: if(
+              not(
+                local!initiator.IsAdministrator
+              ),
+              true,
+              false
+            ),
+            value: if(
+              and(
+                not(
+                  local!readOnly
+                ),
+                not(
+                  local!initiator.IsAdministrator
+                )
+              ),
+              local!superUser,
+              ri!providerAccount.IsAdministrator
+            ),
+            saveInto: {
+              local!superUser,
+              a!save(
+                ri!ProviderAccount.IsAdministrator,
+                toboolean(
+                  save!value
+                )
+              )
+            },
+            required: true,
+            validations: {}
+          )
+        }
+      ),
+      #&quot;SYSTEM_SYSRULES_checkboxField&quot;(
+        label: &quot;Availability?&quot;,
+        choiceLabels: #&quot;_a-0000db04-09b0-8000-6ee0-010000010000_8013&quot;,
+        choiceValues: #&quot;_a-0000db04-09b0-8000-6ee0-010000010000_8012&quot;,
+        value: ri!Availability,
+        saveInto: ri!Availability,
+        required: true
+      )
+    },
+    secondColumnContents: {},
+    buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+      primaryButtons: {
+        #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+          label: &quot;Submit&quot;,
+          style: &quot;PRIMARY&quot;,
+          value: &quot;Submit&quot;,
+          saveInto: {
+            a!save(
+              ri!button,
+              save!value
+            ),
+            a!save(
+              ri!Supervisor,
+              if(
+                #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                  ri!Supervisor
+                ),
+                local!Supervisor,
+                ri!Supervisor
+              )
+            ),
+            a!save(
+              ri!isValid,
+              false()
+            )
+          }
+        )
+      },
+      secondaryButtons: {
+        #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+          label: &quot;Cancel&quot;,
+          style: &quot;NORMAL&quot;,
+          value: &quot;Cancel&quot;,
+          saveInto: ri!button,
+          skipValidation: true
+        )
+      }
+    ),
+    validations: {}
+  )
+)</definition>
+        <namedTypedValue>
+            <name>providerAccount</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>button</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>profileImageID</name>
+            <type>
+                <name>CollaborationDocument</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>Availability</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>Supervisor</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>isValid</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>iain.fifer@pshealth.co.uk</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#&quot;e536aa82-9e72-44de-b3a2-c424d1e9b980&quot;(10)</a:value>
+                <a:nameRef>providerAccount</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>button</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:CollaborationDocument"/>
+                <a:nameRef>profileImageID</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                <a:nameRef>Availability</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                <a:nameRef>Supervisor</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                <a:nameRef>isValid</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

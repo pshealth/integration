@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CaseManagerInvoicReport</name>
+        <uuid>80ccfa52-9f7f-446d-b513-1f65ba599008</uuid>
+        <description>Contains SAIL Code for Case Manager Invoice Report</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10822</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+local!FilterByYear:tointeger(year(today())),&#xD;
+local!FilterByMonth:tointeger(month(today())),&#xD;
+local!FilterByCaseManager,&#xD;
+local!FilterByCustomer,&#xD;
+local!FilterByProduct,&#xD;
+local!FilterByTeam,&#xD;
+local!LoggedInUser:tostring(loggedInUser()),&#xD;
+local!AllMonths:{1,2,3,4,5,6,7,8,9,10,11,12},&#xD;
+local!pagingInfo:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:10,sort:#&quot;SYSTEM_SYSRULES_sortInfo&quot;(field:&quot;TotalInvoice&quot;,ascending:false)),&#xD;
+with(&#xD;
+  local!TypeId:#&quot;0ba28ef9-ea52-42cf-9b42-291320d1f2da&quot;(local!LoggedInUser).TypeID,&#xD;
+  local!FilterByCM:if(local!TypeId=1,local!LoggedInUser,local!FilterByCaseManager),&#xD;
+  local!Datasubset:#&quot;SYSTEM_SYSRULES_queryEntity&quot;(&#xD;
+  entity: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10823&quot;,&#xD;
+  query: #&quot;SYSTEM_SYSRULES_query&quot;(&#xD;
+  aggregation:#&quot;SYSTEM_SYSRULES_queryAggregation&quot;(&#xD;
+  aggregationColumns :{&#xD;
+  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+  field :&quot;Months&quot;,&#xD;
+  isGrouping :true&#xD;
+  ),&#xD;
+  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+  field :&quot;Years&quot;,&#xD;
+  isGrouping :true&#xD;
+  ),&#xD;
+  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+  field :&quot;UserName&quot;,&#xD;
+  isGrouping :true&#xD;
+  ),&#xD;
+  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+  field:&quot;HRTotal&quot;,&#xD;
+  aggregationFunction :&quot;SUM&quot;&#xD;
+  ),&#xD;
+  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+  field:&quot;FRTotal&quot;,&#xD;
+  aggregationFunction :&quot;SUM&quot;&#xD;
+  ),&#xD;
+  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+  field:&quot;TotalInvoice&quot;,&#xD;
+  aggregationFunction :&quot;SUM&quot;&#xD;
+  )&#xD;
+  }&#xD;
+  ),&#xD;
+    logicalExpression: if(&#xD;
+      and(&#xD;
+        isnull(&#xD;
+          local!FilterByYear&#xD;
+        ),&#xD;
+        isnull(&#xD;
+          local!FilterByMonth&#xD;
+        )&#xD;
+      ),&#xD;
+      null,&#xD;
+      #&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(&#xD;
+        operator: &quot;AND&quot;,&#xD;
+        filters: {&#xD;
+          if(&#xD;
+            isnull(&#xD;
+              local!FilterByYear&#xD;
+            ),&#xD;
+            {},&#xD;
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+              field: &quot;Years&quot;,&#xD;
+              operator: &quot;=&quot;,&#xD;
+              value:tointeger(local!FilterByYear)&#xD;
+            )),&#xD;
+            if(&#xD;
+              isnull(&#xD;
+                local!FilterByMonth&#xD;
+              ),&#xD;
+               #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                field: &quot;Months&quot;,&#xD;
+                operator: &quot;IN&quot;,&#xD;
+                value: local!AllMonths&#xD;
+              ),&#xD;
+              #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                field: &quot;Months&quot;,&#xD;
+                operator: &quot;=&quot;,&#xD;
+                value: tointeger(local!FilterByMonth)&#xD;
+              )&#xD;
+            ),&#xD;
+			if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByCM),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;UserName&quot;,operator:&quot;=&quot;,value:tostring(local!FilterByCM))),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByProduct),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;ProductName&quot;,operator:&quot;=&quot;,value:local!FilterByProduct)),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByCustomer),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;TopClientName&quot;,operator:&quot;=&quot;,value:local!FilterByCustomer)),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByTeam),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;TeamID&quot;,operator:&quot;=&quot;,value:local!FilterByTeam))&#xD;
+          &#xD;
+        }&#xD;
+      )&#xD;
+    ),&#xD;
+    pagingInfo: local!pagingInfo&#xD;
+  )&#xD;
+),&#xD;
+local!CaseManager:#&quot;3d43c2a4-71db-4c0a-90db-adbadf3a77a9&quot;(local!LoggedInUser,local!TypeId),&#xD;
+local!Customer:#&quot;7f82047a-c92a-49b8-a293-7682db2ab334&quot;(local!LoggedInUser,local!TypeId),&#xD;
+local!TeamValues:#&quot;908d1533-d1ac-4b1e-ba88-c653df22fd10&quot;(local!LoggedInUser,local!TypeId),&#xD;
+local!TeamLabel:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!TeamValues),{},index(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3208&quot;,local!TeamValues,&quot;No Team&quot;)),&#xD;
+local!Product:#&quot;7459cc01-2a3f-4b7c-a654-1023424f9cf1&quot;(local!LoggedInUser,local!TypeId),&#xD;
+#&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(&#xD;
+firstColumnContents:{&#xD;
+#&quot;59c9b7ca-91c9-4b8b-bf52-e36ac9221a6d&quot;(),&#xD;
+#&quot;b5383410-b51b-44c3-9b82-f7f9510b1b51&quot;()&#xD;
+},&#xD;
+secondColumnContents:{}&#xD;
+)&#xD;
+)&#xD;
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

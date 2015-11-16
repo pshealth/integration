@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types"
+  xmlns:tns="urn:com:appian:types" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="Complaints">
+    <xsd:sequence>
+      <xsd:element name="ComplaintID" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="CaseID" nillable="true" type="xsd:int"/>
+      <xsd:element name="Title" nillable="true" type="xsd:string"/>
+      <xsd:element name="Description" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="Description", columnDefinition="text")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="DateLogged" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="Status" nillable="true" type="xsd:string"/>
+      <xsd:element name="ComplaintMethod" nillable="true" type="xsd:string"/>
+      <xsd:element name="DateClosed" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="OutcomeType" nillable="true" type="xsd:int"/>
+      <xsd:element name="OutcomeComment" nillable="true" type="xsd:string"/>
+      <xsd:element name="CreatedBy" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_SLAAdherenceReportFilterSection</name>
+        <uuid>6612c3c1-b413-4d65-bc53-ed2cbe46c0e1</uuid>
+        <description>Contains a filter section for SLA Adherence Report</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10791</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{&#xD;
+#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+label:&quot;Filters&quot;,&#xD;
+firstColumnContents:{&#xD;
+#&quot;SYSTEM_SYSRULES_dateTimeField&quot;(&#xD;
+label:&quot;Date&quot;,&#xD;
+value:local!FilterByEndDate,&#xD;
+saveInto:{local!FilterByEndDate,a!save(local!pagingInfo.startIndex,1),a!save(local!pagingInfo2.startIndex,1),a!save(local!isdownload,null)}&#xD;
+),&#xD;
+&#xD;
+#&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+label:&quot;Business Support Users&quot;,&#xD;
+placeholderLabel:&quot;--Please Select--&quot;,&#xD;
+choiceLabels: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!BuisenessSupportUsers),{},apply(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,touniformstring({union(local!BuisenessSupportUsers,local!BuisenessSupportUsers)}))),&#xD;
+choiceValues: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!BuisenessSupportUsers),{},{union(local!BuisenessSupportUsers,local!BuisenessSupportUsers)}),&#xD;
+value:local!FilterByBusinessSupportUser,&#xD;
+saveInto:{local!FilterByBusinessSupportUser,a!save(local!pagingInfo.startIndex,1),a!save(local!pagingInfo2.startIndex,1),a!save(local!isdownload,null)}&#xD;
+)&#xD;
+&#xD;
+},&#xD;
+secondColumnContents:{&#xD;
+#&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+label:&quot;Rolling Month Count&quot;,&#xD;
+choiceLabels:#&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11228&quot;,&#xD;
+choiceValues:#&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11229&quot;,&#xD;
+value:local!RollingMonthCount,&#xD;
+saveInto:{local!RollingMonthCount,a!save(local!pagingInfo.startIndex,1),a!save(local!pagingInfo2.startIndex,1),a!save(local!isdownload,null)}&#xD;
+)&#xD;
+}&#xD;
+),&#xD;
+#&quot;fb9d74c1-3d66-4e12-9ce4-d290e6e4f8d0&quot;()&#xD;
+}</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

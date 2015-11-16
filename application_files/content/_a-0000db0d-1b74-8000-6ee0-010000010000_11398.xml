@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_Grid_CaseManagerLoads</name>
+        <uuid>_a-0000db0d-1b74-8000-6ee0-010000010000_11398</uuid>
+        <description></description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_1075</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=with(
+    local!caseManagers: #&quot;76ae3ce5-4f06-4e8f-b23e-ebed0c767f38&quot;(
+      ri!caseManagerIds,
+      ri!gridselection.pagingInfo
+    ),
+    /*
+    Fetching necessary data to get the Capacity for Case Managers
+            BEGIN
+  */
+    local!CaseManagersUserNames: index(
+      local!caseManagers.data,
+      &quot;Username&quot;,
+      {}
+    ),
+    local!ProductiveHoursDetailsForCMs: #&quot;b22f1df5-bf56-468e-855f-af0b8f5dec4d&quot;(
+      local!CaseManagersUserNames,
+      month(
+        now()
+      ),
+      year(
+        now()
+      )
+    ),
+    /*
+    Fetching necessary data to get the Capacity for Case Managers
+            END
+  */
+    {
+      #&quot;SYSTEM_SYSRULES_gridField&quot;(
+        label: &quot;&quot;,
+        labelPosition: &quot;ABOVE&quot;,
+        totalCount: local!caseManagers.totalCount,
+        columns: {
+          #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+            label: &quot;Name&quot;,
+            field: &quot;LastName&quot;,
+            data: apply(
+              #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,
+              touser(
+                index(
+                  local!caseManagers.data,
+                  &quot;Username&quot;,
+                  {}
+                )
+              )
+            ),
+            alignment: &quot;LEFT&quot;,
+            links: apply(
+              #&quot;SYSTEM_SYSRULES_dynamicLink&quot;(
+                value: _,
+                saveInto: ri!drillDownCaseManager
+              ),
+              index(
+                local!caseManagers.data,
+                &quot;ID&quot;,
+                {}
+              )
+            )
+          ),
+          #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+            label: &quot;Post Code&quot;,
+            field: &quot;PostCode&quot;,
+            data: index(
+              local!caseManagers.data,
+              &quot;PostCode&quot;,
+              {}
+            ),
+            alignment: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+            label: &quot;Number of cases&quot;,
+            data: with(
+              a: #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3683&quot;(
+                index(
+                  local!caseManagers.data,
+                  &quot;ID&quot;,
+                  {}
+                )
+              ),
+              if(
+                #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                  a
+                ),
+                {},
+                a
+              )
+            ),
+            alignment: &quot;LEFT&quot;,
+            links: apply(
+              #&quot;SYSTEM_SYSRULES_dynamicLink&quot;(
+                value: _,
+                saveInto: ri!drillDownCaseManager
+              ),
+              index(
+                local!caseManagers.data,
+                &quot;ID&quot;,
+                {}
+              )
+            )
+          ),
+          #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+            label: &quot;Capacity&quot;,
+            data: apply(
+              #&quot;c2443117-e90e-4eec-b668-4c9ad8504ac7&quot;,
+              local!CaseManagersUserNames,
+              local!ProductiveHoursDetailsForCMs
+            ),
+            alignment: &quot;LEFT&quot;
+          )
+        },
+        identifiers: index(
+          local!caseManagers.data,
+          &quot;ID&quot;,
+          {}
+        ),
+        value: ri!gridSelection,
+        saveInto: {
+          ri!gridSelection,
+          a!save(ri!drillDownCaseManager, ri!gridSelection.selected)
+        },
+        selection: true,
+        requireSelection: true,
+        requiredMessage: &quot;Please select at least one case manager.&quot;,
+        validations: if(
+          count(
+            ri!gridselection.selected
+          ) &gt; 1,
+          &quot;You may only select one Case Manager.&quot;,
+          null
+        )
+      ),
+      /*if(*/
+      /*  rule!Utils_CheckIsNull(*/
+      /*    ri!drillDownCaseManager*/
+      /*  ),*/
+      /*  {},*/
+      /*  rule!CM_Grid_CaseManagerWorkingHours(*/
+      /*    ri!drillDownCaseManager*/
+      /*  )*/
+      /*),*/
+      if(
+        #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+          ri!drillDownCaseManager
+        ),
+        {},
+        #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_42852&quot;(
+          ri!drillDownCaseManager
+        )
+      )
+    }
+  )</definition>
+        <namedTypedValue>
+            <name>caseManagerIds</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>providerId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>typeId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>gridSelection</name>
+            <type>
+                <name>GridSelection</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>drillDownCaseManager</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                <a:nameRef>caseManagerIds</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                <a:nameRef>providerId</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                <a:nameRef>typeId</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                <a:nameRef>gridSelection</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                <a:nameRef>drillDownCaseManager</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

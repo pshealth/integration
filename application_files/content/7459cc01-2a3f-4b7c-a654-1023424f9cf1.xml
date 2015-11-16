@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_GetProductNameForFilters</name>
+        <uuid>7459cc01-2a3f-4b7c-a654-1023424f9cf1</uuid>
+        <description>Returns the product name on he basis of Logged in User.
+If logged in user is a case manger then this rule will return product name corresponding to that case manager.
+If logged in user is a team leader then this rule will return all the product names</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10791</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+/*&#xD;
+local!ProviderAccountDetailsByUser:rule!CM_MI_GetProviderAccountDetailsByUsername(ri!LoggedInUser),&#xD;
+local!LoggedInUserID:if(rule!Utils_CheckIsNull(local!ProviderAccountDetailsByUser),null,local!ProviderAccountDetailsByUser.ID),&#xD;
+local!ProductIDs:if(rule!Utils_CheckIsNull(local!LoggedInUserID),{},rule!CM_MI_GetCaseDetailsByCaseManagerID(local!LoggedInUserID).ProductID),&#xD;
+local!CaseManagerProductName:apply(rule!CM_MI_GetProductNamesByProductIds,local!ProductIDs),&#xD;
+local!TeamLeaderProductName:union(rule!CM_MI_GetProductDetails().Name,rule!CM_MI_GetProductDetails().Name),&#xD;
+local!ProductName:if(ri!TypeId=cons!AC_ProviderAccount_Types_Values[1],local!CaseManagerProductName,if(ri!TypeId=cons!AC_ProviderAccount_Types_Values[3],local!TeamLeaderProductName,if(user(ri!LoggedInUser,&quot;userTypeName&quot;)=&quot;Administrator&quot;,local!TeamLeaderProductName,null))),&#xD;
+difference(local!ProductName,null)*/&#xD;
+local!ProviderAccountDetails:#&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(ri!LoggedInUser),&#xD;
+local!ProviderID:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!ProviderAccountDetails),{},tointeger(local!ProviderAccountDetails.ProviderID)),&#xD;
+local!ProductDetails:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!ProviderID),{},#&quot;2306993a-18da-4281-b9d2-397bf0c9f7d4&quot;(local!ProviderID)),&#xD;
+local!ProductName:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!ProductDetails),{},local!ProductDetails.Name),&#xD;
+local!ProductName&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>LoggedInUser</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>TypeId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>LoggedInUser</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>TypeId</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

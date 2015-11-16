@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <group>
+        <name>Admin-psHEALTH</name>
+        <securityMap>SECURITYMAP_TEAM</securityMap>
+        <uuid>_e-0000da6a-36ec-8000-6edf-010000010000_14</uuid>
+        <groupTypeUuid>SYSTEM_GROUP_TYPE_CUSTOM</groupTypeUuid>
+        <description></description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_HIGH</viewingPolicy>
+        <attributes/>
+    </group>
+    <members>
+        <users>
+            <userUuid>System_Admin</userUuid>
+            <userUuid>david.bewick@pshealth.co.uk</userUuid>
+            <userUuid>alberto.rodriguez@pshealth.co.uk</userUuid>
+            <userUuid>appcino.admin</userUuid>
+            <userUuid>eleanor.vincent@pshealth.co.uk</userUuid>
+            <userUuid>anthony.forster@pshealth.co.uk</userUuid>
+            <userUuid>iain.fifer@pshealth.co.uk</userUuid>
+            <userUuid>krassimir.dimitrov@pshealth.co.uk</userUuid>
+        </users>
+        <groups/>
+    </members>
+    <admins>
+        <users>
+            <userUuid>Administrator</userUuid>
+        </users>
+        <groups/>
+    </admins>
+    <ruleSet/>
+</groupHaul>

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_Client_Dashboard_Summary</name>
+        <uuid>7719be95-9e77-44d2-8d1a-68929a53d452</uuid>
+        <description></description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_968</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= load(
+  local!types: #&quot;00facad3-8084-4ec5-aeff-524edb5b2980&quot;(),
+  local!client: #&quot;40886eb4-ae36-4ee8-adf6-8fb4860ce02d&quot;(
+    ri!clientId
+  ),
+  local!parent: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      local!client.ParentID
+    ),
+    &quot;&quot;,
+    #&quot;40886eb4-ae36-4ee8-adf6-8fb4860ce02d&quot;(
+      local!client.ParentID
+    )
+  ),
+  local!AllSubGroups: #&quot;7da09d2c-ceeb-4e7b-a509-369369b78f84&quot;(
+    #&quot;f3a15790-4918-473e-8296-7baaddf18da3&quot;(
+      #&quot;_a-0000db92-ca0b-8000-6ee0-010000010000_36570&quot;(
+        ri!clientId
+      ).ID,
+      {1,2,3,4,5,6,7,8,9,10,11,13}
+    )
+  ),
+  local!clientSubGroups: #&quot;7da09d2c-ceeb-4e7b-a509-369369b78f84&quot;(
+    #&quot;f3a15790-4918-473e-8296-7baaddf18da3&quot;(
+      ri!clientid,
+      {1,2,3,4,5,6,7,8,9,10,11,13}
+    )
+  ),
+  local!parentGroups: difference(
+    difference(
+      local!AllSubGroups,
+      local!clientSubGroups
+    ),
+    local!client
+  ),
+  local!claimsHandlers: #&quot;7da09d2c-ceeb-4e7b-a509-369369b78f84&quot;(
+    #&quot;f3a15790-4918-473e-8296-7baaddf18da3&quot;(
+      ri!clientid,
+      {
+        12
+      }
+    )
+  ),
+  #&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(
+    firstColumnContents: {
+      #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+        label: &quot;Customer Information&quot;,
+        firstColumnContents: {
+          if(
+            not(
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                local!client.LogoID
+              )
+            ),
+            #&quot;SYSTEM_SYSRULES_imageField&quot;(
+              labelPosition: &quot;ADJACENT&quot;,
+              images: #&quot;SYSTEM_SYSRULES_documentImage&quot;(
+                document: todocument(
+                  local!client.LogoID
+                ),
+                altText: &quot;&quot;,
+                caption: &quot;&quot;,
+                link: &quot;&quot;
+              ),
+              size: &quot;THUMBNAIL&quot;
+            ),
+            {}
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Name&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: local!client.Name,
+            readOnly: true,
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Type&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: displayvalue(
+              local!client.ClientTypeID,
+              local!types.ID,
+              local!types.Name,
+              &quot;&quot;
+            ),
+            saveInto: {},
+            readonly: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Account Manager&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: local!client.accountmanager,
+            saveInto: {},
+            readonly: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Active&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: if(
+              local!client.IsActive,
+              &quot;Yes&quot;,
+              &quot;No&quot;
+            ),
+            saveInto: {},
+            readonly: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          if(
+            not(
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                local!client.HandlingInstructions
+              )
+            ),
+            #&quot;SYSTEM_SYSRULES_paragraphField&quot;(
+              label: &quot;Special Instructions&quot;,
+              labelPosition: &quot;ADJACENT&quot;,
+              value: local!client.HandlingInstructions,
+              readOnly: true
+            ),
+            {}
+          )
+        },
+        secondColumnContents: {
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Address&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: local!client.Address,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            readOnly: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;City&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: local!client.City,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            readonly: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Post Code&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: local!client.PostCode,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            readonly: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Primary Phone&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: local!client.PhonePrimary,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            readonly: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          if(
+            not(
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                local!client.PhoneSecondary
+              )
+            ),
+            #&quot;SYSTEM_SYSRULES_textField&quot;(
+              label: &quot;Secondary Phone&quot;,
+              labelPosition: &quot;ADJACENT&quot;,
+              value: local!client.PhoneSecondary,
+              refreshAfter: &quot;UNFOCUS&quot;,
+              readonly: true,
+              validations: {},
+              align: &quot;LEFT&quot;
+            ),
+            {}
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Email&quot;,
+            labelPosition: &quot;ADJACENT&quot;,
+            value: local!client.Email,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            readonly: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          )
+        }
+      ),
+      if(
+        not(
+          #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+            local!parent
+          )
+        ),
+        #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+          label: &quot;Parent Structure&quot;,
+          firstColumnContents: {
+            #&quot;fa990a40-9c6e-44a7-8fba-b14d45e8078b&quot;(
+              local!parentGroups
+            )
+          },
+          secondColumnContents: {}
+        ),
+        {}
+      ),
+      if(
+        #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+          local!clientSubGroups
+        ),
+        {},
+        #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+          label: if(
+            local!client.CustomerTypeID = 1,
+            &quot;Brand - Location&quot;,
+            &quot;Team/Department&quot;
+          ) &amp; &quot; Structure&quot;,
+          firstColumnContents: {
+            #&quot;fa990a40-9c6e-44a7-8fba-b14d45e8078b&quot;(
+              local!clientSubGroups
+            )
+          },
+          secondColumnContents: {}
+        )
+      ),
+      if(
+        #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+          local!claimsHandlers
+        ),
+        {},
+        #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+          label: &quot;Claims Handlers&quot;,
+          firstColumnContents: {
+            #&quot;fa990a40-9c6e-44a7-8fba-b14d45e8078b&quot;(
+              local!claimsHandlers
+            )
+          },
+          secondColumnContents: {}
+        )
+      )
+    },
+    secondColumnContents: {}
+  )
+)</definition>
+        <namedTypedValue>
+            <name>clientId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>Administrator</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:int">266</a:value>
+                <a:nameRef>clientId</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

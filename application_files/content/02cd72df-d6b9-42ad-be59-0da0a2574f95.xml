@@ -1,0 +1,1141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_ReportingFilterSection</name>
+        <uuid>02cd72df-d6b9-42ad-be59-0da0a2574f95</uuid>
+        <description>Provides a section with common filters for MI Reports</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_18160</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{
+  if(
+    ri!ReportType = #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_48030&quot;,
+    #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+      label: &quot;Filters&quot;,
+      firstColumnContents: {
+        #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+          label: &quot;Select Case Date Category&quot;,
+          choiceLabels: {
+            #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[1],
+            #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[2]
+          },
+          choiceValues: {
+            #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[1],
+            #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[2]
+          },
+          value: local!CaseDateRange,
+          choiceLayout: &quot;COMPACT&quot;,
+          saveInto: {
+            local!CaseDateRange,
+            a!save(
+              local!pagingInfo.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo2.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo3.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo4.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo5.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo6.startIndex,
+              1
+            ),
+            a!save(
+              local!isdownload,
+              null
+            )
+          }
+        ),
+        if(
+          local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[1],
+          #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+            label: &quot;Start Date&quot;,
+            value: local!FilterByReferredStartDate,
+            saveInto: {
+              local!FilterByReferredStartDate,
+              a!save(
+                local!pagingInfo.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo2.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo3.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo4.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo5.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo6.startIndex,
+                1
+              ),
+              a!save(
+                local!isdownload,
+                null
+              )
+            }
+          ),
+          {}
+        ),
+        if(
+          local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[2],
+          #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+            label: &quot;Start Date&quot;,
+            value: local!FilterByStartOpenedDate,
+            saveInto: {
+              local!FilterByStartOpenedDate,
+              a!save(
+                local!pagingInfo.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo2.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo3.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo4.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo5.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo6.startIndex,
+                1
+              ),
+              a!save(
+                local!isdownload,
+                null
+              )
+            }
+          ),
+          {}
+        ),
+        if(
+          local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[3],
+          #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+            label: &quot;Start Date&quot;,
+            value: local!FilterByStartClosedDate,
+            saveInto: {
+              local!FilterByStartClosedDate,
+              a!save(
+                local!pagingInfo.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo2.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo3.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo4.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo5.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo6.startIndex,
+                1
+              ),
+              a!save(
+                local!isdownload,
+                null
+              )
+            }
+          ),
+          {}
+        )
+      },
+      secondColumnContents: {
+        #&quot;SYSTEM_SYSRULES_textField&quot;(
+          label: &quot;&quot;,
+          value: &quot;&quot;,
+          readOnly: true
+        ),
+        if(
+          local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[1],
+          #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+            label: &quot;End Date&quot;,
+            value: local!FilterByReferredEndDate,
+            saveInto: {
+              local!FilterByReferredEndDate,
+              a!save(
+                local!pagingInfo.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo2.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo3.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo4.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo5.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo6.startIndex,
+                1
+              ),
+              a!save(
+                local!isdownload,
+                null
+              )
+            }
+          ),
+          {}
+        ),
+        if(
+          local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[2],
+          #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+            label: &quot;End Date&quot;,
+            value: local!FilterByEndOpenedDate,
+            saveInto: {
+              local!FilterByEndOpenedDate,
+              a!save(
+                local!pagingInfo.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo2.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo3.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo4.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo5.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo6.startIndex,
+                1
+              ),
+              a!save(
+                local!isdownload,
+                null
+              )
+            }
+          ),
+          {}
+        ),
+        if(
+          local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[3],
+          #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+            label: &quot;End Date&quot;,
+            value: local!FilterByEndClosedDate,
+            saveInto: {
+              local!FilterByEndClosedDate,
+              a!save(
+                local!pagingInfo.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo2.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo3.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo4.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo5.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo6.startIndex,
+                1
+              ),
+              a!save(
+                local!isdownload,
+                null
+              )
+            }
+          ),
+          {}
+        )
+      }
+    ),
+    #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+      label: &quot;Filters&quot;,
+      firstColumnContents: {
+        #&quot;SYSTEM_SYSRULES_radioButtonField&quot;(
+          label: &quot;Select Case Date Category&quot;,
+          choiceLabels: #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;,
+          choiceValues: #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;,
+          value: local!CaseDateRange,
+          choiceLayout: &quot;COMPACT&quot;,
+          saveInto: {
+            local!CaseDateRange,
+            a!save(
+              local!pagingInfo.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo2.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo3.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo4.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo5.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo6.startIndex,
+              1
+            ),
+            a!save(
+              local!isdownload,
+              null
+            ),
+            a!save(
+              local!FilterByEndOpenedDate,
+              null
+            ),
+            a!save(
+              local!FilterByEndClosedDate,
+              null
+            ),
+            a!save(
+              local!FilterByStartOpenedDate,
+              null
+            ),
+            a!save(
+              local!FilterByStartClosedDate,
+              null
+            ),
+            a!save(
+              local!FilterByReferredEndDate,
+              null
+            ),
+            a!save(
+              local!FilterByReferredStartDate,
+              null
+            )
+          }
+        ),
+        if(
+          local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[1],
+          #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+            label: &quot;Start Date&quot;,
+            value: local!FilterByReferredStartDate,
+            saveInto: {
+              local!FilterByReferredStartDate,
+              a!save(
+                local!pagingInfo.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo2.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo3.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo4.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo5.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo6.startIndex,
+                1
+              ),
+              a!save(
+                local!isdownload,
+                null
+              )
+            }
+          ),
+          {}
+        ),
+        if(
+          local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[2],
+          #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+            label: &quot;Start Date&quot;,
+            value: local!FilterByStartOpenedDate,
+            saveInto: {
+              local!FilterByStartOpenedDate,
+              a!save(
+                local!pagingInfo.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo2.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo3.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo4.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo5.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo6.startIndex,
+                1
+              ),
+              a!save(
+                local!isdownload,
+                null
+              )
+            }
+          ),
+          {}
+        ),
+        if(
+          local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[3],
+          #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+            label: &quot;Start Date&quot;,
+            value: local!FilterByStartClosedDate,
+            saveInto: {
+              local!FilterByStartClosedDate,
+              a!save(
+                local!pagingInfo.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo2.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo3.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo4.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo5.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo6.startIndex,
+                1
+              ),
+              a!save(
+                local!isdownload,
+                null
+              )
+            }
+          ),
+          {}
+        )
+      },
+      secondColumnContents: {
+        #&quot;SYSTEM_SYSRULES_textField&quot;(
+          label: &quot;&quot;,
+          value: &quot;&quot;,
+          readOnly: true
+        ),
+        if(
+          local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[1],
+          #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+            label: &quot;End Date&quot;,
+            value: local!FilterByReferredEndDate,
+            saveInto: {
+              local!FilterByReferredEndDate,
+              a!save(
+                local!pagingInfo.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo2.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo3.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo4.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo5.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo6.startIndex,
+                1
+              ),
+              a!save(
+                local!isdownload,
+                null
+              )
+            }
+          ),
+          {}
+        ),
+        if(
+          local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[2],
+          #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+            label: &quot;End Date&quot;,
+            value: local!FilterByEndOpenedDate,
+            saveInto: {
+              local!FilterByEndOpenedDate,
+              a!save(
+                local!pagingInfo.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo2.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo3.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo4.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo5.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo6.startIndex,
+                1
+              ),
+              a!save(
+                local!isdownload,
+                null
+              )
+            }
+          ),
+          {}
+        ),
+        if(
+          local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[3],
+          #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+            label: &quot;End Date&quot;,
+            value: local!FilterByEndClosedDate,
+            saveInto: {
+              local!FilterByEndClosedDate,
+              a!save(
+                local!pagingInfo.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo2.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo3.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo4.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo5.startIndex,
+                1
+              ),
+              a!save(
+                local!pagingInfo6.startIndex,
+                1
+              ),
+              a!save(
+                local!isdownload,
+                null
+              )
+            }
+          ),
+          {}
+        )
+      }
+    )
+  ),
+  #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+    label: &quot;&quot;,
+    firstColumnContents: {
+      #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+        label: &quot;Team&quot;,
+        placeholderLabel: &quot;--Please Select--&quot;,
+        disabled: if(
+          local!TypeId = #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3213&quot;[2],
+          true(),
+          false()
+        ),
+        choiceLabels: {
+          local!TeamLabel
+        },
+        choiceValues: {
+          local!TeamValues
+        },
+        value: local!FilterByTeam,
+        saveInto: {
+          local!FilterByTeam,
+          a!save(
+            local!pagingInfo.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo2.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo3.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo4.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo5.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo6.startIndex,
+            1
+          ),
+          a!save(
+            local!isdownload,
+            null
+          ),
+          a!save(
+            local!FilterByCaseManager,
+            null
+          )
+        }
+      ),
+      #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+        label: &quot;Case Manager&quot;,
+        placeholderLabel: &quot;--Please Select--&quot;,
+        choiceLabels: apply(
+          #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,
+          touniformstring(
+            {
+              union(
+                local!CaseManager,
+                local!CaseManager
+              )
+            }
+          )
+        ),
+        choiceValues: {
+          union(
+            local!CaseManager,
+            local!CaseManager
+          )
+        },
+        value: local!FilterByCaseManager,
+        saveInto: {
+          local!FilterByCaseManager,
+          a!save(
+            local!pagingInfo.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo2.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo3.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo4.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo5.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo6.startIndex,
+            1
+          ),
+          a!save(
+            local!isdownload,
+            null
+          )
+        }
+      ),
+      #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+        label: &quot;Product&quot;,
+        placeholderLabel: &quot;--Please Select--&quot;,
+        choiceLabels: {
+          union(
+            local!Product,
+            local!Product
+          )
+        },
+        choiceValues: {
+          union(
+            local!Product,
+            local!Product
+          )
+        },
+        value: local!FilterByProduct,
+        saveInto: {
+          local!FilterByProduct,
+          a!save(
+            local!pagingInfo.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo2.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo3.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo4.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo5.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo6.startIndex,
+            1
+          ),
+          a!save(
+            local!isdownload,
+            null
+          )
+        }
+      )
+    },
+    secondColumnContents: {
+      #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+        label: &quot;Parent Company&quot;,
+        placeholderLabel: &quot;--Please Select--&quot;,
+        choiceLabels: {
+          union(
+            local!Customer,
+            local!Customer
+          )
+        },
+        choiceValues: {
+          union(
+            local!Customer,
+            local!Customer
+          )
+        },
+        value: local!FilterByCustomer,
+        saveInto: {
+          local!FilterByCustomer,
+          a!save(
+            local!pagingInfo.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo2.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo3.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo4.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo5.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo6.startIndex,
+            1
+          ),
+          a!save(
+            local!isdownload,
+            null
+          ),
+          a!save(
+            local!FilterByBrand,
+            null
+          ),
+          a!save(
+            local!FilterByTeamDept,
+            null
+          )
+        }
+      ),
+      #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+        label: &quot;Brand - Location&quot;,
+        placeholderLabel: &quot;--Please Select--&quot;,
+        choiceLabels: if(
+          #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+            local!FilterByCustomer
+          ),
+          {},
+          index(
+            #&quot;c976272d-c9e7-453b-940c-c7248da1b1b2&quot;(
+              local!ProviderID,
+              2,
+              #&quot;e74ced5f-90b8-445e-947e-30947f3ceac0&quot;(
+                local!FilterByCustomer
+              )
+            ).data,
+            &quot;Name&quot;,
+            {}
+          )
+        ),
+        choiceValues: if(
+          #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+            local!FilterByCustomer
+          ),
+          {},
+          index(
+            #&quot;c976272d-c9e7-453b-940c-c7248da1b1b2&quot;(
+              local!ProviderID,
+              2,
+              #&quot;e74ced5f-90b8-445e-947e-30947f3ceac0&quot;(
+                local!FilterByCustomer
+              )
+            ).data,
+            &quot;Name&quot;,
+            {}
+          )
+        ),
+        disabled: if(
+          #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+            local!FilterByCustomer
+          ),
+          true(),
+          false()
+        ),
+        value: local!FilterByBrand,
+        saveInto: {
+          local!FilterByBrand,
+          a!save(
+            local!pagingInfo.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo2.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo3.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo4.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo5.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo6.startIndex,
+            1
+          ),
+          a!save(
+            local!isdownload,
+            null
+          ),
+          a!save(
+            local!FilterByTeamDept,
+            null
+          )
+        }
+      ),
+      #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+        label: &quot;Team / Department&quot;,
+        placeholderLabel: &quot;--Please Select--&quot;,
+        disabled: if(
+          #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+            local!FilterByBrand
+          ),
+          true(),
+          false()
+        ),
+        choiceLabels: if(
+          #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+            local!FilterByBrand
+          ),
+          {},
+          index(
+            #&quot;c976272d-c9e7-453b-940c-c7248da1b1b2&quot;(
+              local!ProviderID,
+              3,
+              #&quot;e74ced5f-90b8-445e-947e-30947f3ceac0&quot;(
+                local!FilterByBrand
+              )
+            ).data,
+            &quot;Name&quot;,
+            {}
+          )
+        ),
+        choiceValues: if(
+          #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+            local!FilterByBrand
+          ),
+          {},
+          index(
+            #&quot;c976272d-c9e7-453b-940c-c7248da1b1b2&quot;(
+              local!ProviderID,
+              3,
+              #&quot;e74ced5f-90b8-445e-947e-30947f3ceac0&quot;(
+                local!FilterByBrand
+              )
+            ).data,
+            &quot;Name&quot;,
+            {}
+          )
+        ),
+        value: local!FilterByTeamDept,
+        saveInto: {
+          a!save(
+            local!FilterByTeamDept,
+            save!value
+          ),
+          a!save(
+            local!pagingInfo.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo2.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo3.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo4.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo5.startIndex,
+            1
+          ),
+          a!save(
+            local!pagingInfo6.startIndex,
+            1
+          ),
+          a!save(
+            local!isdownload,
+            null
+          )
+        }
+      )
+    }
+  ),
+  #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+    firstColumnContents: {
+      if(
+        or(
+          #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+            ri!ReportType
+          ),
+          ri!ReportType = #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_48030&quot;
+        ),
+        {},
+        #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+          label: ri!ReportType &amp; &quot; Start Date&quot;,
+          value: local!FilterByStartDate,
+          saveInto: {
+            local!FilterByStartDate,
+            a!save(
+              local!pagingInfo.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo2.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo3.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo4.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo5.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo6.startIndex,
+              1
+            ),
+            a!save(
+              local!isdownload,
+              null
+            )
+          }
+        )
+      )
+    },
+    secondColumnContents: {
+      if(
+        or(
+          #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+            ri!ReportType
+          ),
+          ri!ReportType = #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_48030&quot;
+        ),
+        {},
+        #&quot;SYSTEM_SYSRULES_dateTimeField&quot;(
+          label: ri!ReportType &amp; &quot; End Date&quot;,
+          value: local!FilterByEndDate,
+          saveInto: {
+            local!FilterByEndDate,
+            a!save(
+              local!pagingInfo.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo2.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo3.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo4.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo5.startIndex,
+              1
+            ),
+            a!save(
+              local!pagingInfo6.startIndex,
+              1
+            ),
+            a!save(
+              local!isdownload,
+              null
+            )
+          }
+        )
+      )
+    }
+  )
+}</definition>
+        <namedTypedValue>
+            <name>ReportType</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>ReportType</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

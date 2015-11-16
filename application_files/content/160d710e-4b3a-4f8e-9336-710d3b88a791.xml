@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_Form_ManageClientMilestones</name>
+        <uuid>160d710e-4b3a-4f8e-9336-710d3b88a791</uuid>
+        <description></description>
+        <parentUuid>_a-0000da84-7ec2-8000-6ee0-010000010000_2164</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(&#xD;
+   local!paginginfo: topaginginfo(1, -1),&#xD;
+   local!slatype: #&quot;_a-0000db92-ca0b-8000-6ee0-010000010000_34602&quot;(false(), topaginginfo(1, -1)),&#xD;
+   local!clientMileStonesToken,&#xD;
+   local!modify: -1,&#xD;
+   	#&quot;SYSTEM_SYSRULES_formLayout&quot;(&#xD;
+      label: &quot;Manage &quot;&amp;#&quot;_a-0000da7b-2d42-8000-6ee0-010000010000_1250&quot;&amp;&quot; Milestones&quot;,&#xD;
+      instructions: #&quot;_a-0000db92-ca0b-8000-6ee0-010000010000_35209&quot;,&#xD;
+      firstColumnContents: {&#xD;
+	  #&quot;SYSTEM_SYSRULES_gridLayout&quot;(&#xD;
+      headerCells: {&#xD;
+      	#&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Milestone&quot;),&#xD;
+      	#&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Deadline (Days)&quot;, align: &quot;RIGHT&quot;),&#xD;
+        #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Deadline (Hours)&quot;, align: &quot;RIGHT&quot;),&#xD;
+        #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Total (Hours)&quot;, align: &quot;RIGHT&quot;),&#xD;
+        #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Dependant&quot;, align: &quot;RIGHT&quot;),&#xD;
+      	#&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Modify&quot;)&#xD;
+      },&#xD;
+      columnConfigs: {&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutColumnConfig&quot;(width: &quot;DISTRIBUTE&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutColumnConfig&quot;(width: &quot;DISTRIBUTE&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutColumnConfig&quot;(width: &quot;DISTRIBUTE&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutColumnConfig&quot;(width: &quot;NARROW&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutColumnConfig&quot;(width: &quot;DISTRIBUTE&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutColumnConfig&quot;(width: &quot;NARROW&quot;)&#xD;
+        },&#xD;
+      rows: #&quot;SYSTEM_SYSRULES_applyComponents&quot;(&#xD;
+        function: #&quot;_a-0000db92-ca0b-8000-6ee0-010000010000_35171&quot;(&#xD;
+          index: _,&#xD;
+  		    clientslatype: ri!clientslatype,&#xD;
+  		    slatype: local!slatype,&#xD;
+  		    itemsToken: local!clientMileStonesToken,&#xD;
+  		    modify: local!modify&#xD;
+        ),&#xD;
+        array: if(or(isnull(ri!clientslatype), count(ri!clientslatype) &lt; 1), {}, 1+enumerate(count(ri!clientslatype))),&#xD;
+        arrayVariable: local!clientMileStonesToken&#xD;
+	    )&#xD;
+		)&#xD;
+	 },&#xD;
+	 secondColumnContents: {},&#xD;
+      buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+        primaryButtons: {&#xD;
+          #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+            label: &quot;Confirm&quot;,&#xD;
+            style: &quot;PRIMARY&quot;,&#xD;
+            saveInto: {}&#xD;
+          )&#xD;
+        },&#xD;
+        secondaryButtons: {&#xD;
+          #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+            label: &quot;Cancel&quot;,&#xD;
+            style: &quot;NORMAL&quot;,&#xD;
+            value: &quot;Cancel&quot;,&#xD;
+            saveInto: ri!buttonValue,&#xD;
+            skipValidation: true&#xD;
+          )&#xD;
+        }&#xD;
+      ),&#xD;
+      validations: {}&#xD;
+    )&#xD;
+ )</definition>
+        <namedTypedValue>
+            <name>buttonValue</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>clientslatype</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>iain.fifer@pshealth.co.uk</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="MI Whole Business Report" a:uuid="2d9b95f5-3ef4-47ff-821c-464236e4555e">
+        <a:description>Click above to view the MI Whole Business Report</a:description>
+        <a:uiExpr>#&quot;dab56663-2929-4981-96b7-6c91336e586e&quot;()</a:uiExpr>
+        <a:urlStub>7BN0vQ</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_51</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_17</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoReportHaul>

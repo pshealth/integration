@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <constant>
+        <name>AC_ProviderAccount_Team_Groups</name>
+        <uuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_17199</uuid>
+        <description></description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_1007</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>Group?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+            <value>
+                <el>_e-0000db2d-0cc5-8000-6edf-010000010000_117</el>
+                <el>_e-0000db2d-0cc5-8000-6edf-010000010000_118</el>
+                <el>_e-0000db2d-0cc5-8000-6edf-010000010000_119</el>
+                <el>_e-0000db2d-0cc5-8000-6edf-010000010000_122</el>
+                <el>_e-0000db2d-0cc5-8000-6edf-010000010000_123</el>
+                <el>_e-0000db2d-0cc5-8000-6edf-010000010000_124</el>
+                <el>_e-0000dac7-a418-8000-6edf-010000010000_52</el>
+            </value>
+        </typedValue>
+    </constant>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>krassimir.dimitrov@pshealth.co.uk</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

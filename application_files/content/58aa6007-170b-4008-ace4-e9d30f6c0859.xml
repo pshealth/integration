@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CSQCasesAnswerDescriptionPieChart</name>
+        <uuid>58aa6007-170b-4008-ace4-e9d30f6c0859</uuid>
+        <description>Contains Pie chart for CSQ Cases Answer Description</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_16157</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_pieChartField&quot;(&#xD;
+  label: &quot;Drill Down By CSQs&quot;,&#xD;
+  series: {&#xD;
+    #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Excellent&quot;, data: round((count(wherecontains(&quot;Excellent&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Excellent&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+    #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Very Good&quot;,       data: round((count(wherecontains(&quot;Very Good&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Very Good&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+    #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Good&quot;, data: round((count(wherecontains(&quot;Good&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Good&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+    #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Satisfactory&quot;,    data: round((count(wherecontains(&quot;Satisfactory&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Satisfactory&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+    #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Poor&quot;,        data: round((count(wherecontains(&quot;Poor&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Poor&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+    #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Very Poor&quot;,       data: round((count(wherecontains(&quot;Very Poor&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Very Poor&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+	#&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Extremely Satisfied&quot;,       data: round((count(wherecontains(&quot;Extremely Satisfied&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Extremely Satisfied&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+	#&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Satisfied&quot;,       data: round((count(wherecontains(&quot;Satisfied&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Satisfied&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+	#&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Dissatisfied&quot;,       data: round((count(wherecontains(&quot;Dissatisfied&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Dissatisfied&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+	#&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Completely Dissatisfied&quot;,       data: round((count(wherecontains(&quot;Completely Dissatisfied&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Completely Dissatisfied&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+	#&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Strongly Agree&quot;,       data: round((count(wherecontains(&quot;Strongly Agree&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Strongly Agree&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+	#&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Agree&quot;,       data: round((count(wherecontains(&quot;Agree&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Agree&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+	#&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Disagree&quot;,       data: round((count(wherecontains(&quot;Disagree&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Disagree&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+	#&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Strongly Disagree&quot;,       data: round((count(wherecontains(&quot;Strongly Disagree&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Strongly Disagree&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)})),&#xD;
+	#&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Undecided&quot;,       data: round((count(wherecontains(&quot;Undecided&quot;,touniformstring(local!datasubset3.data.AnswerDescription)))/count(local!datasubset3.data))*100,2),links:#&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value:&quot;Undecided&quot;,saveInto:{local!AnswerDescription,a!save(local!pagingInfo2.startIndex,1)}))&#xD;
+  },&#xD;
+  showDataLabels: true,&#xD;
+  showTooltips :true&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

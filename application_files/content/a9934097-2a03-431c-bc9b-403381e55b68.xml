@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_OpenCaseStatusProfilePagingGrid</name>
+        <uuid>a9934097-2a03-431c-bc9b-403381e55b68</uuid>
+        <description>Contains the paging grid to show the status for the report Open Case Status Profile </description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_11065</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(
+  label: &quot;&quot;,
+  totalCount: local!datasubset.totalCount,
+  columns: {
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: &quot;Months&quot;,
+      field: &quot;Months&quot;,
+      data: apply(
+        #&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,
+        index(
+          local!datasubset.data,
+          &quot;Months&quot;,
+          {}
+        )
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: &quot;Years&quot;,
+      field: &quot;Years&quot;,
+      data: index(
+        local!datasubset.data,
+        &quot;Years&quot;,
+        null
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: &quot;Status&quot;,
+      field: &quot;Status&quot;,
+      data: index(
+        local!datasubset.data,
+        &quot;Status&quot;,
+        {}
+      ),
+      links: apply(
+        #&quot;f065dc38-6ca7-4b33-acef-ad2ef5092b6d&quot;,
+        local!datasubset.data
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: &quot;Count&quot;,
+      field: &quot;ID&quot;,
+      data: index(
+        local!datasubset.data,
+        &quot;ID&quot;,
+        null
+      )
+    )
+  },
+  value: local!pagingInfo,
+  saveInto: local!pagingInfo
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

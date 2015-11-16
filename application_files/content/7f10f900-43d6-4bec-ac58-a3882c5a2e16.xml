@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CaseOutcomes_GenerateDataSubsetForBarExcelExport</name>
+        <uuid>7f10f900-43d6-4bec-ac58-a3882c5a2e16</uuid>
+        <description></description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_16749</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(&#xD;
+  local!search: #&quot;SYSTEM_SYSRULES_fromJson&quot;(&#xD;
+    ri!input&#xD;
+  ),&#xD;
+  local!PagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+    startIndex: 1,&#xD;
+    batchSize: - 1,&#xD;
+    sort: {&#xD;
+      field: &quot;CaseID&quot;,&#xD;
+      ascending: false&#xD;
+    }&#xD;
+  ),&#xD;
+ &#xD;
+ /*&#xD;
+		Get the data again for values provided in filters section.&#xD;
+ */&#xD;
+ &#xD;
+local!Datasubset:#&quot;e6bb53b5-acc7-44fb-b12d-97d5adca4b81&quot;(&#xD;
+&#xD;
+FilterByStartDate:local!search.FilterByStartDate,&#xD;
+FilterByEndDate:local!search.FilterByEndDate,&#xD;
+FilterByCM:local!search.FilterByCM,&#xD;
+FilterByProduct:local!search.Product,&#xD;
+FilterByCustomer:local!search.Customer,&#xD;
+FilterByTeam:local!search.Team,&#xD;
+ProviderID:local!search.ProviderID,&#xD;
+datasubset: local!search.datasubset,&#xD;
+FilterByCaseOutcomeCategory: local!search.FilterByCaseOutcomeCategory,&#xD;
+FilterByReferredStartDate:local!search.FilterByReferredStartDate,&#xD;
+					  FilterByBrand:local!search.FilterByBrand,&#xD;
+					  FilterByTeamDept:local!search.FilterByTeamDept,&#xD;
+					  FilterByStartClosedDate:local!search.FilterByStartClosedDate,&#xD;
+					  FilterByEndClosedDate:local!search.FilterByEndClosedDate,&#xD;
+					  FilterByStartOpenedDate:local!search.FilterByStartOpenedDate,&#xD;
+					  FilterByEndOpenedDate:local!search.FilterByEndOpenedDate,&#xD;
+					  FilterByReferredEndDate:local!search.FilterByReferredEndDate&#xD;
+),&#xD;
+ &#xD;
+ &#xD;
+local!Datasubset&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>input</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>input</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

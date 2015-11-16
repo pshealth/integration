@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_Grid_AnnualLeaveCurrent</name>
+        <uuid>a6a1b49b-4978-4532-b6ff-dbdc0bc06f7c</uuid>
+        <description></description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_1004</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= #&quot;SYSTEM_SYSRULES_gridLayout&quot;(
+  label: &quot;&quot;,
+  headerCells: {
+    #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(
+      label: &quot;Start of Leave&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(
+      label: &quot;End of Leave&quot;
+    ),
+    /*a!gridLayoutHeaderCell(*/
+    /*  label: &quot;Type&quot;*/
+    /*),*/
+    #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(
+      label: &quot;Status&quot;
+    )
+  },
+  columnConfigs: {
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumnConfig&quot;(
+      width: &quot;DISTRIBUTE&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumnConfig&quot;(
+      width: &quot;DISTRIBUTE&quot;
+    ),
+    /*a!gridLayoutColumnConfig(*/
+    /*  width: &quot;DISTRIBUTE&quot;*/
+    /*),*/
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumnConfig&quot;(
+      width: &quot;DISTRIBUTE&quot;
+    )
+  },
+  rows: #&quot;SYSTEM_SYSRULES_applyComponents&quot;(
+    function: #&quot;4f20b4c7-d263-4d6b-ad57-5db865155e5b&quot;(
+      items: ri!items,
+      index: _
+    ),
+    array: if(
+      or(
+        isnull(
+          ri!items
+        ),
+        count(
+          ri!items
+        ) &lt; 1
+      ),
+      {},
+      1 + enumerate(
+        count(
+          ri!items
+        )
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>items</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>david.bewick@pshealth.co.uk</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                <a:nameRef>items</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

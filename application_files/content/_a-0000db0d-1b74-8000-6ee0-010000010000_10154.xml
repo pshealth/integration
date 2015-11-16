@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <constant>
+        <name>CM_MI_YEARS_VALUES</name>
+        <uuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10154</uuid>
+        <description>Contains the year values for monthly productive report</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10150</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+            <value>
+                <el>2000</el>
+                <el>2001</el>
+                <el>2002</el>
+                <el>2003</el>
+                <el>2004</el>
+                <el>2005</el>
+                <el>2006</el>
+                <el>2007</el>
+                <el>2008</el>
+                <el>2009</el>
+                <el>2010</el>
+                <el>2011</el>
+                <el>2012</el>
+                <el>2013</el>
+                <el>2014</el>
+                <el>2015</el>
+                <el>2016</el>
+                <el>2017</el>
+                <el>2018</el>
+                <el>2019</el>
+                <el>2020</el>
+            </value>
+        </typedValue>
+    </constant>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

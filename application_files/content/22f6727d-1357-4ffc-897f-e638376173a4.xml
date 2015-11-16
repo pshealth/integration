@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>MI_MultiTrack_TeamReport</name>
+        <uuid>22f6727d-1357-4ffc-897f-e638376173a4</uuid>
+        <description>Contains the MI Team Report </description>
+        <parentUuid>_a-0000db6d-e203-8000-6ee0-010000010000_26631</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchize: 10
+  ),
+  local!pagingInfo2: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchize: 10
+  ),
+  local!FilterByEndDate: now(),
+  local!RollingMonthCount: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11229&quot;[6],
+  local!CaseManager,
+  local!FilterByCaseManager,
+  local!FilterByCustomer,
+  local!FilterByProduct,
+  local!FilterByTeam:ri!Team,
+  local!LoggedInUser: tostring(
+    loggedInUser()
+  ),
+  
+  local!FilterByYear,
+local!FilterByMonth,
+  local!isdownload,
+  local!Referrals,
+  local!Referrals2,
+  local!SelectedReport,
+  local!ProviderID:tointeger(#&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(local!LoggedInUser).ProviderID),
+  local!DataExportReport,
+  local!CaseDateRange:#&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[1],
+  local!FilterByParentCompany,
+  local!FilterByBrandName,
+  local!FilterByTeamDeptName,
+   local!FilterByEndOpenedDate,
+  local!FilterByEndClosedDate,
+  local!FilterByReferredEndDate,
+  local!FilterByReferredStartDate,
+   local!FilterByBrand,
+  local!FilterByTeamDept,
+   local!FilterByStartOpenedDate,
+  local!FilterByStartClosedDate,
+  
+  local!pagingInfo3: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchSize: 10,
+    sort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+      field: &quot;ClientName&quot;,
+      ascending: true
+    )
+  ),
+  local!pagingInfo4:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchSize: 10,
+    sort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+      field: &quot;CaseID&quot;,
+      ascending: true
+    )
+  ),
+  local!pagingInfo5:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchSize: 10
+  ),
+  local!pagingInfo6:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchSize: 10
+  ),
+  with(
+    local!FilterByStartDate: local!FilterByEndDate - (
+      30 * local!RollingMonthCount
+    ),
+    local!AllMonths:if(or(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartDate),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndDate)),null,#&quot;2c346d1c-1883-48b9-86ea-0b3ac5c2d95c&quot;(todate(local!FilterByStartDate),todate(local!FilterByEndDate))),
+    local!TypeId: #&quot;0ba28ef9-ea52-42cf-9b42-291320d1f2da&quot;(
+      local!LoggedInUser
+    ).TypeID,
+    local!FilterByCM: 
+      local!FilterByCaseManager,
+    local!CaseManager: #&quot;3d43c2a4-71db-4c0a-90db-adbadf3a77a9&quot;(
+      local!LoggedInUser,
+      local!TypeId,
+      local!FilterByTeam
+    ),
+    local!TeamValues: #&quot;908d1533-d1ac-4b1e-ba88-c653df22fd10&quot;(
+      local!LoggedInUser,
+      local!TypeId
+    ),
+    local!TeamLabel: if(
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+        local!TeamValues
+      ),
+      {},
+      apply(
+        #&quot;bb4255cd-f430-454e-badc-2c12249fb111&quot;,
+        {
+          local!TeamValues
+        }
+      )
+    ),
+    local!Customer: #&quot;7f82047a-c92a-49b8-a293-7682db2ab334&quot;(
+      local!LoggedInUser,
+      local!TypeId
+    ),
+    local!Product: #&quot;7459cc01-2a3f-4b7c-a654-1023424f9cf1&quot;(
+      local!LoggedInUser,
+      local!TypeId
+    ),
+    local!FilterByYear:tointeger(year(local!FilterByEndDate)),
+    #&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(
+      firstColumnContents: {
+        /*Filters*/
+       /* rule!MI_MultiTrack_DateRangeFilter(),*/
+  #&quot;8b5b103b-7b18-406e-848f-671b5ffeab3c&quot;(),
+        #&quot;b2ded4b3-b270-4f21-93d0-e3f1d8e1ca52&quot;(#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26630&quot;),
+        if(contains(local!SelectedReport,#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26630&quot;[1]),#&quot;47e2321d-3e18-44b5-ab69-a2836ea08582&quot;(),{}),
+        
+        if(contains(local!SelectedReport,#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26630&quot;[2]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;c760d483-3c98-46c8-92db-a441c649a702&quot;()},{}),
+      
+      if(contains(local!SelectedReport,#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26630&quot;[3]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;ed09f0f4-cd90-43b8-9d8e-fa793f1de08f&quot;()},{}),
+       
+      if(contains(local!SelectedReport,#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26630&quot;[4]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;e93f2091-2661-423f-9109-2a08f3fe85f4&quot;()},{}),
+      
+      if(contains(local!SelectedReport,#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26630&quot;[5]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;271737c3-2e13-4f58-8cbf-c3fe181b8dff&quot;()},{}),
+      
+     if(contains(local!SelectedReport,#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26630&quot;[6]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;94cf0851-16c9-4070-8245-77a07f4905ed&quot;()},{}),
+     
+     if(contains(local!SelectedReport,#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26630&quot;[7]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;dfcc5726-7601-4e42-ab98-863f056806f9&quot;()},{}),
+     
+if(contains(local!SelectedReport,#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26630&quot;[8]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;e4dae816-d994-486a-887c-1e1c3e32947f&quot;()},{}),
+
+if(contains(local!SelectedReport,#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26630&quot;[9]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;5a1656d0-0e04-4194-b056-f3a96ea8b6be&quot;()},{})
+      }
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>Team</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                <a:nameRef>Team</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

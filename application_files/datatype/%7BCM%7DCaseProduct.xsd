@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="CM" xmlns:tns="CM" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="CaseProduct">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">
+                @Table(name="CaseProduct")
+            </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="ID" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @Column(name="ID") @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="CaseID" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="CaseID")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ProductID" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="ProductID")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="OriginalProductID" nillable="true" type="xsd:int"/>
+      <xsd:element name="CaseManagerID" nillable="true" type="xsd:int"/>
+      <xsd:element name="CaseManagementRateType" nillable="true" type="xsd:string"/>
+      <xsd:element name="FixedRate" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="FixedRate")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="IsActiveProduct" nillable="true" type="xsd:boolean"/>
+      <xsd:element name="AssessmentType" nillable="true" type="xsd:string"/>
+      <xsd:element name="AppointmentDate" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="Objective" nillable="true" type="xsd:string"/>
+      <xsd:element name="IsEscalation" nillable="true" type="xsd:boolean"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

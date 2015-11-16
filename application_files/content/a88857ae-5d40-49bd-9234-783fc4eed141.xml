@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_GetStatusCountForOpenCases</name>
+        <uuid>a88857ae-5d40-49bd-9234-783fc4eed141</uuid>
+        <description>Returns Status Count on the basis of given datasubset and status</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_11065</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(&#xD;
+  local!index: wherecontains(&#xD;
+    ri!Status,&#xD;
+    touniformstring(&#xD;
+      index(&#xD;
+        ri!datasubset.data,&#xD;
+        &quot;Status&quot;,&#xD;
+        &quot;&quot;&#xD;
+      )&#xD;
+    )&#xD;
+  ),&#xD;
+  local!Count: index(&#xD;
+    index(&#xD;
+      ri!datasubset.data,&#xD;
+      &quot;ID&quot;,&#xD;
+      null&#xD;
+    ),&#xD;
+    local!index,&#xD;
+    null&#xD;
+  ),&#xD;
+  local!MonthYear:apply(#&quot;033cfb84-261d-4a37-aad9-19773555dfde&quot;,merge(apply(#&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,index(index(ri!datasubset.data,&quot;Months&quot;,{}),local!index,{})),index(index(ri!datasubset.data,&quot;Years&quot;,{}),local!index,{}))),&#xD;
+  local!FinalIndex:wherecontains(touniformstring(union(local!MonthYear,local!MonthYear)),ri!MonthYear),&#xD;
+  if(&#xD;
+    or(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!MonthYear&#xD;
+      ),&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!Count&#xD;
+      )&#xD;
+    ),&#xD;
+    {&#xD;
+    },&#xD;
+    updatearray(&#xD;
+      {&#xD;
+      },&#xD;
+      tointeger(&#xD;
+        local!FinalIndex&#xD;
+      ),&#xD;
+      local!Count&#xD;
+    )&#xD;
+  )&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>Status</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>datasubset</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>MonthYear</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

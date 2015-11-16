@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <constant>
+        <name>MI_REPORTING_DATA_EXPORT_CLIENT_SQL</name>
+        <uuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25517</uuid>
+        <description>Holds the SQL query to extract Client Information for the Data Export of Multi Track.</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25506</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value>SELECT C. ID AS 'Client ID', P.Name As 'Provider Name', C.Name AS 'Client', C.ParentCompany AS 'Parent Company', CT.name, C.Address As 'Address', C.City As 'City', C.PostCode AS 'Post Code', C.PhonePrimary AS 'Primary Phone', C.Email AS 'Email', C.CreatedBy AS 'Created By', C.CreatedDate AS 'Created Date', C.accountmanager AS 'Account Manager', C.handlinginstructions AS 'Handling Instructions' FROM appiansecondary.client C LEFT JOIN appiansecondary.provider P ON C.ProviderID = P.ID LEFT JOIN appiansecondary.clienttype CT ON CT.ID = C.ClientTypeID</value>
+        </typedValue>
+    </constant>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

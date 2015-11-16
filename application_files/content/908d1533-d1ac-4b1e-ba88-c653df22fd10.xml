@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_GetTeamIdsForFilter</name>
+        <uuid>908d1533-d1ac-4b1e-ba88-c653df22fd10</uuid>
+        <description>Returns the Team Id on he basis of Logged in User.
+If logged in user is a case manger then this rule will return Team Id corresponding to that case manager.
+If logged in user is a team leader then this rule will return all theTeam Ids</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10791</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+  local!ProviderAccountDetailsByUser: #&quot;0ba28ef9-ea52-42cf-9b42-291320d1f2da&quot;(&#xD;
+    ri!LoggedInUser&#xD;
+  ),&#xD;
+  local!TeamId: if(&#xD;
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+      local!ProviderAccountDetailsByUser&#xD;
+    ),&#xD;
+    null,&#xD;
+    local!ProviderAccountDetailsByUser.Team&#xD;
+  ),&#xD;
+  local!CaseManagerTeamId: if(&#xD;
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+      local!TeamId&#xD;
+    ),&#xD;
+    0,&#xD;
+    local!TeamId&#xD;
+  ),&#xD;
+  local!TeamLeaderTeamId: #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3209&quot;,&#xD;
+  local!FinalTeamIDs: if(&#xD;
+   or(ri!TypeId = #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3213&quot;[2], ri!TypeId = #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3213&quot;[1]),&#xD;
+    local!CaseManagerTeamId,&#xD;
+    if(&#xD;
+      ri!TypeId = #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3213&quot;[3],&#xD;
+      local!TeamLeaderTeamId,&#xD;
+      if(&#xD;
+        user(&#xD;
+          ri!LoggedInUser,&#xD;
+          &quot;userTypeName&quot;&#xD;
+        ) = &quot;Administrator&quot;,&#xD;
+        local!TeamLeaderTeamId,&#xD;
+        tointeger(&#xD;
+          {}&#xD;
+        )&#xD;
+      )&#xD;
+    )&#xD;
+  ),&#xD;
+  if(&#xD;
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+      wherecontains(&#xD;
+        local!FinalTeamIDs,&#xD;
+        #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3209&quot;&#xD;
+      )&#xD;
+    ),&#xD;
+    {},&#xD;
+    local!FinalTeamIDs&#xD;
+  )&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>LoggedInUser</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>TypeId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

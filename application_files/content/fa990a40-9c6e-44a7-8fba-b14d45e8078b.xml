@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_Grid_ClientSubGroups</name>
+        <uuid>fa990a40-9c6e-44a7-8fba-b14d45e8078b</uuid>
+        <description></description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_966</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#&quot;SYSTEM_SYSRULES_gridLayout&quot;(&#xD;
+        label: &quot;&quot;,&#xD;
+        headerCells: {&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Parent&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Brand - Location&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Team/Department&quot;)&#xD;
+        },&#xD;
+        columnConfigs: {&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutColumnConfig&quot;(width: &quot;DISTRIBUTE&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutColumnConfig&quot;(width: &quot;DISTRIBUTE&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutColumnConfig&quot;(width: &quot;DISTRIBUTE&quot;)&#xD;
+        },&#xD;
+        rows: #&quot;SYSTEM_SYSRULES_applyComponents&quot;(&#xD;
+          function: #&quot;f6a7e1ab-f861-4e3d-904c-b6c5ad04672a&quot;(&#xD;
+            items: ri!items,&#xD;
+            index: _&#xD;
+          ),&#xD;
+          array: if(or(isnull(ri!items), count(ri!items) &lt; 1), {}, 1+enumerate(count(ri!items)))&#xD;
+        )&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>items</name>
+            <type>
+                <name>Client?list</name>
+                <namespace>AC</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>david.bewick@pshealth.co.uk</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

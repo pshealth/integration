@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CaseOutcomePagingGrid</name>
+        <uuid>b738547b-f1ec-47c8-828a-b17ae5ab4052</uuid>
+        <description>Contains a paging grid for Case Outcomes Report</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_16749</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+label:&quot;&quot;,&#xD;
+totalCount:local!datasubset.totalCount,&#xD;
+columns:{&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Case ID&quot;,&#xD;
+data:index(local!datasubset.data,&quot;CaseID&quot;,null),&#xD;
+links:apply(#&quot;SYSTEM_SYSRULES_recordLink&quot;(recordType:#&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1432&quot;,identifier:_),index(local!datasubset.data,&quot;CaseID&quot;,{})),&#xD;
+field:&quot;CaseID&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Case Outcome&quot;,&#xD;
+data:index(local!datasubset.data,&quot;CaseOutcome&quot;,null),&#xD;
+field:&quot;CaseOutcome&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Closed Date&quot;,&#xD;
+data:apply(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;,index(local!datasubset.data,&quot;DateClosed&quot;,{})),&#xD;
+field:&quot;DateClosed&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Goal Attained&quot;,&#xD;
+data:index(local!datasubset.data,&quot;GoalAttained&quot;,null),&#xD;
+field:&quot;GoalAttained&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:&quot;Goal Percentage&quot;,&#xD;
+data:index(local!datasubset.data,&quot;Percentage&quot;,null),&#xD;
+field:&quot;Percentage&quot;&#xD;
+)&#xD;
+},&#xD;
+value:local!pagingInfo,&#xD;
+saveInto:local!pagingInfo&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

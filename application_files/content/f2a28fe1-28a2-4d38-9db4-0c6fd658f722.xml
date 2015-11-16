@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CostBillingDailyRunRateGrid</name>
+        <uuid>f2a28fe1-28a2-4d38-9db4-0c6fd658f722</uuid>
+        <description>Contains the paging grid for Cost Billing Daily Run Rate Grid</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_19705</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+  label: &quot;&quot;,&#xD;
+  totalCount: local!DatasubsetForDailyRunRate.totalCount,&#xD;
+  columns: {&#xD;
+   /* a!gridTextColumn(&#xD;
+      label: &quot;Case Manager&quot;,&#xD;
+      data: apply(&#xD;
+        rule!Utils_FormatUser,&#xD;
+        index(&#xD;
+          local!DatasubsetForDailyRunRate.data,&#xD;
+          &quot;CaseManagerName&quot;,&#xD;
+          {}&#xD;
+        )&#xD;
+      ),&#xD;
+      field: &quot;CaseManagerName&quot;&#xD;
+    ),*/&#xD;
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+      label: &quot;Date&quot;,&#xD;
+      data: index(&#xD;
+        local!DatasubsetForDailyRunRate.data,&#xD;
+        &quot;DailyRunRateDate&quot;,&#xD;
+        {}&#xD;
+      ),&#xD;
+      /*links:apply(a!dynamicLink(value:_,saveInto:local!DailyRunRateDate),apply(rule!CM_MI_GetDateForCurrentMonth,index(local!DatasubsetForDailyRunRate.data,&quot;DailyRunRateDate&quot;,{}))),*/&#xD;
+      links: apply(&#xD;
+        #&quot;SYSTEM_SYSRULES_dynamicLink&quot;(&#xD;
+          value: _,&#xD;
+          saveInto: local!DailyRunRateDate&#xD;
+        ),&#xD;
+        index(&#xD;
+          local!DatasubsetForDailyRunRate.data,&#xD;
+          &quot;DailyRunRateDate&quot;,&#xD;
+          {}&#xD;
+        )&#xD;
+      ),&#xD;
+      field: &quot;DailyRunRateDate&quot;&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+      label: &quot;Assessment&quot;,&#xD;
+      data: index(&#xD;
+            local!DatasubsetForDailyRunRate.data,&#xD;
+            &quot;Assessment&quot;,&#xD;
+            {}&#xD;
+          ),&#xD;
+      field: &quot;Assessment&quot;&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+      label: &quot;Case Management&quot;,&#xD;
+      data: index(&#xD;
+            local!DatasubsetForDailyRunRate.data,&#xD;
+            &quot;CaseManagement&quot;,&#xD;
+            {}&#xD;
+          ),&#xD;
+      field: &quot;CaseManagement&quot;&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+      label: &quot;Suppliers&quot;,&#xD;
+      data: index(&#xD;
+            local!DatasubsetForDailyRunRate.data,&#xD;
+            &quot;Suppliers&quot;,&#xD;
+            {}&#xD;
+          ),&#xD;
+      field: &quot;Suppliers&quot;&#xD;
+    )&#xD;
+  },&#xD;
+  value: local!pagingInfo3,&#xD;
+  saveInto: local!pagingInfo3&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

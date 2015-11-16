@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_ReferralsReportFilterSection</name>
+        <uuid>1d957637-7111-4b3b-b846-344e704afe0e</uuid>
+        <description>Contains filter section for Referrals report</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10801</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{&#xD;
+#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+label:&quot;Filters&quot;,&#xD;
+firstColumnContents:{&#xD;
+#&quot;SYSTEM_SYSRULES_dateTimeField&quot;(&#xD;
+label:&quot;Date From&quot;,&#xD;
+value:local!FilterByStartDate,&#xD;
+saveInto:local!FilterByStartDate&#xD;
+)&#xD;
+},&#xD;
+secondColumnContents:{&#xD;
+#&quot;SYSTEM_SYSRULES_dateTimeField&quot;(&#xD;
+label:&quot;Date To&quot;,&#xD;
+value:local!FilterByEndDate,&#xD;
+saveInto:local!FilterByEndDate&#xD;
+)&#xD;
+}&#xD;
+),&#xD;
+#&quot;fb9d74c1-3d66-4e12-9ce4-d290e6e4f8d0&quot;()&#xD;
+}</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

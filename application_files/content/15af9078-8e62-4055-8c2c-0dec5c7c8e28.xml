@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>MI_Reporting_DataExport_GenerateWhereClauseQuery</name>
+        <uuid>15af9078-8e62-4055-8c2c-0dec5c7c8e28</uuid>
+        <description></description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25505</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= concat(&#xD;
+  &quot;WHERE &quot;,&#xD;
+  with(&#xD;
+    local!StartDate: if(&#xD;
+      and(&#xD;
+        not(&#xD;
+          isnull(&#xD;
+            ri!StartDate&#xD;
+          )&#xD;
+        ),&#xD;
+        ri!StartDate &lt;&gt; &quot;&quot;&#xD;
+      ),&#xD;
+      &quot;CreatedDate BETWEEN '&quot;&amp; #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;(ri!StartDate) &amp;&quot;' AND '&quot;&amp; #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;(ri!EndDate) &amp;&quot;'&quot;,&#xD;
+      {&#xD;
+        &quot;&quot;&#xD;
+      }&#xD;
+    ),&#xD;
+    local!CaseManager: if(&#xD;
+      and(&#xD;
+        not(&#xD;
+          isnull(&#xD;
+            ri!CaseManager&#xD;
+          )&#xD;
+        ),&#xD;
+        ri!CaseManager &lt;&gt; &quot;&quot;&#xD;
+      ),&#xD;
+      &quot;CaseManager IN (&quot; &amp; joinarray(&#xD;
+        #&quot;52f5fa59-2f0a-4acd-b5f5-48bbe0f0118b&quot;(&#xD;
+          ri!CaseManager&#xD;
+        ),&#xD;
+        &quot;,&quot;&#xD;
+      ) &amp; &quot;)&quot;,&#xD;
+      {&#xD;
+        &quot;&quot;&#xD;
+      }&#xD;
+    ),&#xD;
+	&#xD;
+	local!Client: if(&#xD;
+      and(&#xD;
+        not(&#xD;
+          isnull(&#xD;
+            ri!Client&#xD;
+          )&#xD;
+        ),&#xD;
+        ri!Client &lt;&gt; &quot;&quot;&#xD;
+      ),&#xD;
+      &quot;Client IN (&quot; &amp; joinarray(&#xD;
+        #&quot;52f5fa59-2f0a-4acd-b5f5-48bbe0f0118b&quot;(&#xD;
+          ri!Client&#xD;
+        ),&#xD;
+        &quot;,&quot;&#xD;
+      ) &amp; &quot;)&quot;,&#xD;
+      {&#xD;
+        &quot;&quot;&#xD;
+      }&#xD;
+    ),&#xD;
+	&#xD;
+	&#xD;
+	local!Product: if(&#xD;
+      and(&#xD;
+        not(&#xD;
+          isnull(&#xD;
+            ri!Product&#xD;
+          )&#xD;
+        ),&#xD;
+        ri!Product &lt;&gt; &quot;&quot;&#xD;
+      ),&#xD;
+      &quot;Product IN (&quot; &amp; joinarray(&#xD;
+        #&quot;52f5fa59-2f0a-4acd-b5f5-48bbe0f0118b&quot;(&#xD;
+          ri!Product&#xD;
+        ),&#xD;
+        &quot;,&quot;&#xD;
+      ) &amp; &quot;)&quot;,&#xD;
+      {&#xD;
+        &quot;&quot;&#xD;
+      }&#xD;
+    ),&#xD;
+	&#xD;
+	local!Team: if(&#xD;
+      and(&#xD;
+        not(&#xD;
+          isnull(&#xD;
+            ri!Team&#xD;
+          )&#xD;
+        ),&#xD;
+        ri!Team &lt;&gt; &quot;&quot;&#xD;
+      ),&#xD;
+      &quot;Team IN (&quot; &amp; joinarray(&#xD;
+        #&quot;52f5fa59-2f0a-4acd-b5f5-48bbe0f0118b&quot;(&#xD;
+          ri!Team&#xD;
+        ),&#xD;
+        &quot;,&quot;&#xD;
+      ) &amp; &quot;)&quot;,&#xD;
+      {&#xD;
+        &quot;&quot;&#xD;
+      }&#xD;
+    ),&#xD;
+	&#xD;
+	&#xD;
+	&#xD;
+	&#xD;
+	&#xD;
+    &#xD;
+    joinarray(&#xD;
+      difference(&#xD;
+        {&#xD;
+          local!StartDate,&#xD;
+          local!CaseManager,&#xD;
+		  local!Client,&#xD;
+		  local!Product,&#xD;
+		  local!Team&#xD;
+        },&#xD;
+        {&#xD;
+          &quot;&quot;&#xD;
+        }&#xD;
+      ),&#xD;
+      &quot; AND &quot;&#xD;
+    )&#xD;
+  ),&quot;&quot;&#xD;
+  ) &#xD;
+</definition>
+        <namedTypedValue>
+            <name>StartDate</name>
+            <type>
+                <name>dateTime</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>EndDate</name>
+            <type>
+                <name>dateTime</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>CaseManager</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>Client</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>Product</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>Team</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

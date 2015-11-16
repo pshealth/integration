@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <group>
+        <name>CM Initiators</name>
+        <securityMap>SECURITYMAP_PUBLIC</securityMap>
+        <uuid>_e-0000da6a-36ec-8000-6edf-010000010000_16</uuid>
+        <groupTypeUuid>_f-0000da6a-36ec-8000-6edf-010000010000_4</groupTypeUuid>
+        <description></description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_LOW</viewingPolicy>
+        <attributes/>
+    </group>
+    <members>
+        <users/>
+        <groups>
+            <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_36</groupUuid>
+            <groupUuid>_e-0000db6d-e1ff-8000-6edf-010000010000_142</groupUuid>
+            <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_7</groupUuid>
+            <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_37</groupUuid>
+            <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_38</groupUuid>
+            <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_17</groupUuid>
+            <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_18</groupUuid>
+        </groups>
+    </members>
+    <admins>
+        <users>
+            <userUuid>Administrator</userUuid>
+        </users>
+        <groups/>
+    </admins>
+    <ruleSet/>
+</groupHaul>

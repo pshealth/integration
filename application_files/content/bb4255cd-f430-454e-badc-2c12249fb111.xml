@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_GetTeamLabelsForFilter</name>
+        <uuid>bb4255cd-f430-454e-badc-2c12249fb111</uuid>
+        <description>Returns the Team Name on the basis of Team Ids</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10791</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(&#xD;
+local!IsTeamAvailable:contains(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3209&quot;,tointeger(ri!TeamID)),&#xD;
+local!Index:if(local!IsTeamAvailable,wherecontains(ri!TeamID,#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3209&quot;),null),&#xD;
+local!TeamName:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!Index),null,index(&#xD;
+          #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3208&quot;,local!Index,{})),&#xD;
+		  local!TeamName&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>TeamID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

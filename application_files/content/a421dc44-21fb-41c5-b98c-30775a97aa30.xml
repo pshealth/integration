@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_ReferralsReportColumnChart</name>
+        <uuid>a421dc44-21fb-41c5-b98c-30775a97aa30</uuid>
+        <description>Contains code for column chart to show the month wise  no. of received and open referrals </description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10801</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_columnChartField&quot;(&#xD;
+      label: &quot;&quot;,&#xD;
+      categories: &#xD;
+            index(&#xD;
+              local!datasubset1.data,&#xD;
+              &quot;ProductName&quot;,&#xD;
+              {}&#xD;
+            ),&#xD;
+      series: {&#xD;
+	          #&quot;SYSTEM_SYSRULES_chartSeries&quot;(&#xD;
+          label: &quot;Original Products&quot;,&#xD;
+          data: index(&#xD;
+            local!datasubset1.data,&#xD;
+            &quot;ID&quot;,&#xD;
+            {}&#xD;
+          ),&#xD;
+          links: apply(&#xD;
+            #&quot;067c90ac-9513-4ebe-8ddc-4df7b5b4ad18&quot;,&#xD;
+            local!datasubset1.data&#xD;
+          ),&#xD;
+          color:&quot;BLUEGRAY&quot;&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_chartSeries&quot;(&#xD;
+          label: &quot;Escalated From Multi Track&quot;,&#xD;
+          data: index(&#xD;
+            local!datasubset1.data,&#xD;
+            &quot;IsMultiTrack&quot;,&#xD;
+            {}&#xD;
+          ),&#xD;
+          links: apply(&#xD;
+            #&quot;50678bb9-683d-4aef-8247-31814bedd0bb&quot;,&#xD;
+            local!datasubset1.data&#xD;
+          ),&#xD;
+          color:&quot;GREEN&quot;&#xD;
+        ),&#xD;
+		#&quot;SYSTEM_SYSRULES_chartSeries&quot;(&#xD;
+          label: &quot;Escalated From Fast Track&quot;,&#xD;
+          data: index(&#xD;
+            local!datasubset1.data,&#xD;
+            &quot;IsFastTrack&quot;,&#xD;
+            {}&#xD;
+          ),&#xD;
+          links: apply(&#xD;
+            #&quot;12d87908-3f8b-4c74-9953-68e3ea9e8f9d&quot;,&#xD;
+            local!datasubset1.data&#xD;
+          ),&#xD;
+          color:&quot;YELLOW&quot;&#xD;
+        )&#xD;
+      },&#xD;
+      xAxisTitle: &quot;Products&quot;,&#xD;
+      yAxisTitle: &quot;Number of Referrals&quot;,&#xD;
+      showLegend: true&#xD;
+    )</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <queryRule>
+        <name>Test_GetSLAAdherenceDetails</name>
+        <uuid>7e2ebe85-f5e8-4f43-850a-3e251a563e02</uuid>
+        <description></description>
+        <folderUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10259</folderUuid>
+        <dataStoreEntityCompositeUuid>1caf9865-4629-45d5-a917-6dab415322b2@_a-0000dac7-a419-8000-6ee0-010000010000_3831</dataStoreEntityCompositeUuid>
+        <params>
+            <param>
+                <description></description>
+                <name>StartDate1</name>
+                <type>{http://www.w3.org/2001/XMLSchema}dateTime</type>
+            </param>
+            <param>
+                <description></description>
+                <name>StartDate2</name>
+                <type>{http://www.w3.org/2001/XMLSchema}dateTime</type>
+            </param>
+        </params>
+        <filters>
+            <filter>
+                <field>
+                    <name>StartDate</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}dateTime</type>
+                </field>
+                <op>&gt;=</op>
+                <value>StartDate1</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+            <filter>
+                <field>
+                    <name>StartDate</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}dateTime</type>
+                </field>
+                <op>&lt;=</op>
+                <value>StartDate2</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+        </filters>
+        <orderings/>
+    </queryRule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

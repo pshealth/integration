@@ -14,24 +14,23 @@
             <system>false</system>
             <unlogged>false</unlogged>
         </visibility>
-        <definition>= if(&#xD;
-  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
-    ri!user&#xD;
-  ),&#xD;
-  null,&#xD;
-  if(&#xD;
-    IsUsernameTaken(&#xD;
-      ri!user&#xD;
-    ),&#xD;
-      user(&#xD;
-        ri!user,&#xD;
-        &quot;firstName&quot;&#xD;
-      ) &amp; &quot; &quot; &amp; user(&#xD;
-        ri!user,&#xD;
-        &quot;lastName&quot;&#xD;
-      ),&#xD;
-    ri!user&#xD;
-  )&#xD;
+        <definition>= if(
+  or(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!user),
+    not(
+      isusernametaken(
+        ri!user
+      )
+    )
+  ),
+  &quot;&quot;,
+  user(
+    ri!user,
+    &quot;firstName&quot;
+  ) &amp; &quot; &quot; &amp; user(
+    ri!user,
+    &quot;lastName&quot;
+  )
 )</definition>
         <namedTypedValue>
             <name>user</name>
@@ -53,7 +52,9 @@
             <groups/>
         </role>
         <role allowForAll="false" inherit="true" name="administrators">
-            <users/>
+            <users>
+                <userUuid>krassimir.dimitrov@pshealth.co.uk</userUuid>
+            </users>
             <groups/>
         </role>
         <role allowForAll="false" inherit="false" name="denyReaders">
@@ -71,18 +72,14 @@
     </roleMap>
     <typedValue>
         <type>
-            <name>RuleTestConfig?list</name>
+            <name>RuleTestConfig</name>
             <namespace>http://www.appian.com/ae/types/2009</namespace>
         </type>
         <value>
-            <el>
-                <a:name/>
-                <a:ruleInputTestConfigs>
-                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
-                    <a:nameRef>user</a:nameRef>
-                    <a:id/>
-                </a:ruleInputTestConfigs>
-            </el>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">=&quot;sarah_preston&quot;</a:value>
+                <a:nameRef>user</a:nameRef>
+            </a:ruleInputTestConfigs>
         </value>
     </typedValue>
 </contentHaul>

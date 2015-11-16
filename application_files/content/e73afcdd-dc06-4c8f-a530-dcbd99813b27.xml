@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_OpenCaseStatusProfilePagingGridByStatus</name>
+        <uuid>e73afcdd-dc06-4c8f-a530-dcbd99813b27</uuid>
+        <description>Contains a paging grid for report &quot;Open Case Status Profile Grid&quot;  by status</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_11065</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+label:&quot;&quot;,&#xD;
+totalCount:local!datasubset2.totalCount,&#xD;
+columns:{&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17437&quot;[1],data:index(local!datasubset2.data,&quot;CaseID&quot;,{}),field:&quot;CaseID&quot;,links:apply(#&quot;SYSTEM_SYSRULES_recordLink&quot;(recordType:#&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1432&quot;,identifier:_),index(local!datasubset2.data,&quot;CaseID&quot;,{}))),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17437&quot;[2],data:index(local!datasubset2.data,&quot;TopClientName&quot;,{}),field:&quot;TopClientName&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17437&quot;[3],data:index(local!datasubset2.data,&quot;BrandName&quot;,{}),field:&quot;ProductName&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17437&quot;[4],data:index(local!datasubset2.data,&quot;ClientName&quot;,{}),field:&quot;ProductName&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17437&quot;[5],data:index(local!datasubset2.data,&quot;ProductName&quot;,{}),field:&quot;ProductName&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17437&quot;[6],data:apply(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,index(local!datasubset2.data,&quot;CaseManagerName&quot;,{})),field:&quot;CaseManagerName&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17437&quot;[7],data:index(local!datasubset2.data,&quot;Status&quot;,{}),field:&quot;Status&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17437&quot;[8],data:apply(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;,index(local!datasubset2.data,&quot;CreatedDate&quot;,{})),field:&quot;CreatedDate&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17437&quot;[9],data:apply(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;,index(local!datasubset2.data,&quot;DateOpened&quot;,{})),field:&quot;DateOpened&quot;)&#xD;
+},&#xD;
+value:local!pagingInfo2,&#xD;
+saveInto:local!pagingInfo2&#xD;
+)&#xD;
+&#xD;
+&#xD;
+</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>MI_MultiTrack_WholeBusiness_MonthlyProductivityReport</name>
+        <uuid>ed09f0f4-cd90-43b8-9d8e-fa793f1de08f</uuid>
+        <description>Contains Monthly Productivity Report for Whole Business Multi Track Report</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25362</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!isdownload,
+  local!pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchSize: 10,
+    sort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+      field: &quot;Utilization&quot;,
+      ascending: false
+    )
+  ),
+  local!pagingInfo2: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchSize: 10,
+    sort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+      field: &quot;Utilization&quot;,
+      ascending: false
+    )
+  ),
+  with(
+    local!Datasubset: if(
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+        local!ProviderID
+      ),
+      {},
+      #&quot;9d3f7b23-1de4-4c91-b03f-695b1f7fa9d3&quot;(
+        Years: local!FilterByYear,
+        Months: local!FilterByMonth,
+        AllMonths: local!AllMonths,
+        ProviderID: local!ProviderID,
+        FilterByCM: local!FilterByCM,
+        Product: local!FilterByProduct,
+        Customer: local!FilterByCustomer,
+        Team: local!FilterByTeam,
+        pagingInfo: local!pagingInfo,
+        CaseManager: local!CaseManager
+      )
+    ),
+    /*
+    Export to Excel Logic
+  */
+    local!exportUri: if(
+      local!isdownload = &quot;downloadfile&quot;,
+      getdatasubsetdownloadlinkfromprocess(
+        processModelUuid: &quot;0002db23-8a63-8000-6ee0-010000010000&quot;,
+        input: #&quot;SYSTEM_SYSRULES_toJson&quot;(
+          {
+            Years: local!FilterByYear,
+            Months: local!FilterByMonth,
+            Product: local!FilterByProduct,
+            Customer: local!FilterByCustomer,
+            Team: local!FilterByTeam,
+            LoggedUser: local!LoggedInUser,
+            AllMonths: local!AllMonths,
+            TypeID: local!TypeId,
+            FilterByCM: local!FilterByCM,
+            ProviderID: local!ProviderID,
+            CaseManager: local!CaseManager
+          }
+        )
+      ),
+      null
+    ),
+    /*
+    End of Export to Excel Logic
+  */
+    {
+      if(
+        #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+          local!datasubset
+        ),
+        #&quot;SYSTEM_SYSRULES_textField&quot;(
+          label: &quot;&quot;,
+          value: &quot;No Data Available&quot;,
+          readOnly: true
+        ),
+        {
+          #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+            label: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25359&quot;[3],
+            firstColumnContents: {
+              #&quot;94b598df-7e2b-4872-a8af-94e169b354fc&quot;()
+            },
+            isCollapsible: true
+          ),
+          #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+            label: &quot;&quot;,
+            firstColumnContents: {
+              #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+                primaryButtons: {
+                  #&quot;SYSTEM_SYSRULES_ButtonWidget&quot;(
+                    label: &quot;Export to Excel&quot;,
+                    style: &quot;PRIMARY&quot;,
+                    value: &quot;downloadfile&quot;,
+                    saveInto: local!isdownload
+                  )
+                }
+              )
+            }
+          ),
+          if(
+            local!isdownload = &quot;downloadfile&quot;,
+            #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+              label: &quot;Export report to excel&quot;,
+              firstColumnContents: {
+                #&quot;SYSTEM_SYSRULES_linkField&quot;(
+                  label: &quot;Your excel is ready&quot;,
+                  links: #&quot;SYSTEM_SYSRULES_safeLink&quot;(
+                    label: &quot;Click here to download&quot;,
+                    uri: local!exportUri
+                  )
+                )
+              }
+            ),
+            {}
+          )
+        }
+      )
+    }
+  )
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

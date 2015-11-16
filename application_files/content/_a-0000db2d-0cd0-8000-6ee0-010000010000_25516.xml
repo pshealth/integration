@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <constant>
+        <name>MI_REPORTING_DATA_EXPORT_CASE_SQL</name>
+        <uuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25516</uuid>
+        <description>Holds the SQL query to extract the necessary columns of the Case Table - used for MI Multi Track Data Export</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25506</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value>SELECT C.CaseID AS 'Case ID',  P.Name As 'Provider Name',Pa.FirstName AS 'Client First Name', Pa.LastName AS 'Client Last Name',Pa.NHSNumber AS 'NHS Number',Pa.Gender AS 'Gender', Pa.DateOfBirth AS 'Date Of Birth', Pa.Address AS 'Address', Pa.PrimaryPhone AS 'Primary Phone', Pa.City AS 'City', Pa.Postcode	AS 'Postcode', Pa.Email AS 'Client Email', C.WorkAddress As 'Work Address', C.WorkCity as 'Work City', C.WorkPostCode AS 'Work Post Code', C.Salary As Salary, C.EmployerContactName As 'Emp Contact', C.ClaimAgainstEmployer AS 'Claim Against Emp', C.EmployerPhone AS 'Emp Phone', C.EmployerEmail AS 'Emp Email', C.InsuranceType AS 'Insurance Type', C.DateOfInjury As 'Date Of Injury', C.primaryinjurydescription AS 'Injury Description', C.CreatedDate As 'Created Date', C.CreatedBy AS 'Created By', ProviderAcc.Username AS 'Case Manager User', Product.Name AS 'Product',C.CaseStatus AS 'Case Status', C.CaseOutcome AS 'Case Outcome', C.topclientid AS 'Top Client ID',Client.Name AS 'Customer',Branch.Name AS 'Branch Name',C.clientid AS 'Client ID' ,C.MatterID AS 'Matter ID', C.assessmenttype AS 'Assessment Type', C.DateOpened AS 'Date Opened', C.DateClosed AS 'Date Closed' FROM appiansecondary.`case` C LEFT JOIN appiansecondary.provider P ON C.ProviderID = P.ID LEFT JOIN appiansecondary.patient Pa ON Pa.PatientID = C.PatientID LEFT JOIN appiansecondary.provideraccount ProviderAcc ON ProviderAcc.ID = C.CaseManagerID LEFT JOIN appiansecondary.product Product ON Product.ID = C.ProductID LEFT JOIN appiansecondary.client Client ON Client.ID = C.topclientid LEFT JOIN appiansecondary.client Branch ON Branch.ID = C.clientid</value>
+        </typedValue>
+    </constant>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_GetLineGraphForReferrals</name>
+        <uuid>fe37b28b-5305-4f87-af95-8be84a0972a7</uuid>
+        <description>Returns a line graph for referrals over last 12 months</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10801</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>  #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+    label:&quot;Referrals &quot;&amp;if(local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[1],&quot;Received&quot;,&quot;Opened&quot;),&#xD;
+    firstColumnContents:{&#xD;
+     #&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+        label:&quot;Rolling Month&quot;,&#xD;
+        &#xD;
+        choiceLabels:#&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47662&quot;,&#xD;
+        choiceValues:#&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47663&quot;,&#xD;
+        value:local!ReferralRollingMonth,&#xD;
+        saveInto:local!ReferralRollingMonth&#xD;
+      ),&#xD;
+      if(local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[1],&#xD;
+      #&quot;SYSTEM_SYSRULES_lineChartField&quot;(&#xD;
+      label: &quot;&quot;,&#xD;
+      categories: apply(&#xD;
+        #&quot;033cfb84-261d-4a37-aad9-19773555dfde&quot;,&#xD;
+        merge(&#xD;
+          apply(&#xD;
+            #&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,&#xD;
+            index(&#xD;
+              local!DataubsetForReferrals.data,&#xD;
+              &quot;Months&quot;,&#xD;
+              {}&#xD;
+            )&#xD;
+          ),&#xD;
+          index(&#xD;
+            local!DataubsetForReferrals.data,&#xD;
+            &quot;Years&quot;,&#xD;
+            {}&#xD;
+          )&#xD;
+        )&#xD;
+      ),&#xD;
+      series: {&#xD;
+        #&quot;SYSTEM_SYSRULES_chartSeries&quot;(&#xD;
+          label: &quot;Received&quot;,&#xD;
+          data: index(&#xD;
+            local!DataubsetForReferrals.data,&#xD;
+            &quot;ID&quot;,&#xD;
+            {}&#xD;
+          )&#xD;
+        )&#xD;
+      },&#xD;
+      xAxisTitle: &quot;Months&quot;,&#xD;
+      yAxisTitle: &quot;Number of Referrals&quot;,&#xD;
+      showLegend: true&#xD;
+    ),{}),&#xD;
+     if(local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[2],&#xD;
+      #&quot;SYSTEM_SYSRULES_lineChartField&quot;(&#xD;
+      label: &quot;&quot;,&#xD;
+      categories: apply(&#xD;
+        #&quot;033cfb84-261d-4a37-aad9-19773555dfde&quot;,&#xD;
+        merge(&#xD;
+          apply(&#xD;
+            #&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,&#xD;
+            index(&#xD;
+              local!DataubsetForReferrals.data,&#xD;
+              &quot;Months&quot;,&#xD;
+              {}&#xD;
+            )&#xD;
+          ),&#xD;
+          index(&#xD;
+            local!DataubsetForReferrals.data,&#xD;
+            &quot;Years&quot;,&#xD;
+            {}&#xD;
+          )&#xD;
+        )&#xD;
+      ),&#xD;
+      series: {&#xD;
+       &#xD;
+		#&quot;SYSTEM_SYSRULES_chartSeries&quot;(&#xD;
+          label: &quot;Open&quot;,&#xD;
+          data: index(&#xD;
+            local!DataubsetForReferrals.data,&#xD;
+            &quot;Opened&quot;,&#xD;
+            {}&#xD;
+          )&#xD;
+        )&#xD;
+      },&#xD;
+      xAxisTitle: &quot;Months&quot;,&#xD;
+      yAxisTitle: &quot;Number of Referrals&quot;,&#xD;
+      showLegend: true&#xD;
+    ),{})&#xD;
+    })</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_ReportSpecificDateFilterSection</name>
+        <uuid>9f59f759-730c-4dba-9efd-44a5d1585f8a</uuid>
+        <description>Provides a section layout for Report Specific Date Filters</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_18160</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+  label:ri!ReportName,&#xD;
+  firstColumnContents:{#&quot;SYSTEM_SYSRULES_dateTimeField&quot;(&#xD;
+        label: ri!ReportType&amp;&quot; Start Date&quot;,&#xD;
+        value: local!FilterByStartDate,&#xD;
+        saveInto: {&#xD;
+          local!FilterByStartDate,&#xD;
+          a!save(&#xD;
+            local!pagingInfo.startIndex,&#xD;
+            1&#xD;
+          ),&#xD;
+		  a!save(&#xD;
+            local!pagingInfo2.startIndex,&#xD;
+            1&#xD;
+          ),&#xD;
+		  a!save(&#xD;
+            local!pagingInfo3.startIndex,&#xD;
+            1&#xD;
+          ),&#xD;
+a!save(&#xD;
+            local!pagingInfo4.startIndex,&#xD;
+            1&#xD;
+          ),		  &#xD;
+a!save(&#xD;
+            local!pagingInfo5.startIndex,&#xD;
+            1&#xD;
+          ),		  &#xD;
+a!save(&#xD;
+            local!pagingInfo6.startIndex,&#xD;
+            1&#xD;
+          ),		  &#xD;
+          a!save(&#xD;
+            local!isdownload,&#xD;
+            null&#xD;
+          )&#xD;
+        }&#xD;
+      )},&#xD;
+      secondColumnContents:{#&quot;SYSTEM_SYSRULES_dateTimeField&quot;(&#xD;
+        label:ri!ReportType&amp; &quot; End Date&quot;,&#xD;
+        value: local!FilterByEndDate,&#xD;
+        saveInto: {&#xD;
+          local!FilterByEndDate,&#xD;
+          a!save(&#xD;
+            local!pagingInfo.startIndex,&#xD;
+            1&#xD;
+          ),&#xD;
+		  a!save(&#xD;
+            local!pagingInfo2.startIndex,&#xD;
+            1&#xD;
+          ),&#xD;
+		  a!save(&#xD;
+            local!pagingInfo3.startIndex,&#xD;
+            1&#xD;
+          ),&#xD;
+a!save(&#xD;
+            local!pagingInfo4.startIndex,&#xD;
+            1&#xD;
+          ),		  &#xD;
+a!save(&#xD;
+            local!pagingInfo5.startIndex,&#xD;
+            1&#xD;
+          ),		  &#xD;
+a!save(&#xD;
+            local!pagingInfo6.startIndex,&#xD;
+            1&#xD;
+          ),		  &#xD;
+          a!save(&#xD;
+            local!isdownload,&#xD;
+            null&#xD;
+          )&#xD;
+        }&#xD;
+      )}&#xD;
+      )</definition>
+        <namedTypedValue>
+            <name>ReportType</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ReportName</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>ReportType</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>ReportName</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

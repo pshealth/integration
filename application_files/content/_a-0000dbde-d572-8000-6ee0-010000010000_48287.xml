@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <constant>
+        <name>MI_REPORTING_DATA_EXPORT_CONSOLIDATED_CASE_SQL</name>
+        <uuid>_a-0000dbde-d572-8000-6ee0-010000010000_48287</uuid>
+        <description>Holds the SQL to extract the consolidated view of all case elements that need to show on the summary sheet of the export.</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25506</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value>SELECT CaseID AS 'Case ID', ProviderName AS 'Provider Name', ClientFirstName AS 'Client First Name' , ClientLastName AS 'Client Last Name', CaseManagerUser AS 'Case Manager', Product AS 'Product', CaseStatus AS 'Case Status', CaseOutcome AS 'Case Outcome', AssessmentType AS 'Assessment Type', DateCreated AS 'Created Date',DateOpened AS 'Open Date', DateClosed AS 'Closed Date',DateOfInjury AS 'Date Of Injury' ,DischargeDate AS 'Discharged Date', RTWDate AS 'Return to Work Date', DeptCustName AS 'Customer Team Dept',BrandName AS 'Brand Name', TopClientName AS 'Top Client Name', FastTrackProduct AS 'Fast Track Product', RateType AS 'Rate Type', CaseItemPrice AS 'Uninvoiced Price', CaseItemQuantity AS 'Uninvoiced Quantity', CaseItemTotal AS 'Total Uninvoiced Revenue (WIP)', InvoiceTotalAmount AS 'Total Invoiced Generated Amount', InvoiceAmountPaid AS 'Total Invoiced Paid', FinanceAssessment AS 'Assessment Cost', FinanceSuppliers AS 'Supplier Cost', FinanceCaseManagement AS 'Case Management Cost', FinanceTotal AS 'Total Finance Cost', Acknowledgement AS 'Acknowledgement', Allocations AS 'Allocation', InitialContact1 AS 'Initial Contact', AssessmentBooked AS 'Assessment Booked', AssesmentCompleted AS 'Assessment Completed', AssesmentReportSent AS 'Assessment Report Sent', AppovalToProceed AS 'Approval To Proceed', VocStatusAtCurrent AS 'Current Employment Status', VocStatusAtInjury AS 'Employment Status At Injury', BillToReferenceNo AS 'Bill Ref No' FROM CaseDataExportSummary</value>
+        </typedValue>
+    </constant>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

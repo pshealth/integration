@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_GetClientDetailsByProviderIDAndCustomerID</name>
+        <uuid>c976272d-c9e7-453b-940c-c7248da1b1b2</uuid>
+        <description>Returns client details by provider ids, customer type id and parent id </description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_18160</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_queryEntity&quot;(
+  entity: #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_42551&quot;,
+  query: #&quot;SYSTEM_SYSRULES_query&quot;(
+    logicalExpression: if(
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+        ri!ProviderID
+      ),
+      null,
+      #&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(
+        operator: &quot;AND&quot;,
+        logicalExpressions: #&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(
+          operator: &quot;OR&quot;,
+          filters: {
+            if(
+              #&quot;_a-0000d448-6a3a-8000-9ba2-011c48011c48_27682&quot;(
+                ri!ParentID
+              ),
+              #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;ParentID&quot;,
+              operator: &quot;is null&quot;
+            ),
+              #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                field: &quot;ParentID&quot;,
+                operator: &quot;=&quot;,
+                value: ri!ParentID
+              )
+            )
+            
+          }
+        ),
+        filters: {
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!ProviderID
+            ),
+            null,
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;ProviderID&quot;,
+              operator: &quot;IN&quot;,
+              value: tointeger(
+                ri!ProviderID
+              )
+            )
+          ),
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!CustomerTypeID
+            ),
+            null,
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;CustomerTypeID&quot;,
+              operator: &quot;=&quot;,
+              value: ri!CustomerTypeID
+            )
+          )
+        }
+      )
+    ),
+    pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+      1,
+      - 1,
+      #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+        field: &quot;Name&quot;,
+        ascending: true
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>ProviderID</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>CustomerTypeID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ParentID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>ProviderID</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>CustomerTypeID</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>ParentID</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

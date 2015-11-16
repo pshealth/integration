@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_Form_ManageClientProducts</name>
+        <uuid>1e91696f-935b-4c3b-9a07-2782915e6eb6</uuid>
+        <description></description>
+        <parentUuid>_a-0000da7b-2d42-8000-6ee0-010000010000_1145</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(&#xD;
+   local!products: #&quot;a6693ece-1c51-49e8-80d9-58aff6f24bfe&quot;(ri!client.ProviderID),&#xD;
+   local!clientProductsToken,&#xD;
+    #&quot;SYSTEM_SYSRULES_formLayout&quot;(&#xD;
+      label: &quot;Manage &quot; &amp; #&quot;_a-0000da7b-2d42-8000-6ee0-010000010000_1250&quot; &amp; &quot; Products&quot;,&#xD;
+      instructions: &quot;&quot;,&#xD;
+      firstColumnContents: {&#xD;
+       #&quot;SYSTEM_SYSRULES_gridLayout&quot;(&#xD;
+        headerCells: {&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Product&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Assessment Cost&quot;, align: &quot;RIGHT&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Hourly Cost - Desktop&quot;, align: &quot;RIGHT&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Hourly Cost - Field Based&quot;, align: &quot;RIGHT&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Hourly Cost - Catastrophic&quot;, align: &quot;RIGHT&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridLayoutHeaderCell&quot;(label: &quot;Maximum Invoice Cycles&quot;)&#xD;
+        },&#xD;
+        /* Only needed when some columns need to be narrow */&#xD;
+        columnConfigs: {},&#xD;
+        rows: #&quot;SYSTEM_SYSRULES_applyComponents&quot;(&#xD;
+          function: #&quot;263e4ffa-fa6d-4435-9648-0a7869a2c120&quot;(&#xD;
+            items: ri!clientProducts,&#xD;
+            index: _,&#xD;
+            itemsToken: local!clientProductsToken,&#xD;
+            products: local!products&#xD;
+          ),&#xD;
+          array: if(or(isnull(ri!clientProducts), count(ri!clientProducts) &lt; 1), {}, 1+enumerate(count(ri!clientProducts))),&#xD;
+          arrayVariable: local!clientProductsToken&#xD;
+        )&#xD;
+      )&#xD;
+      },&#xD;
+      secondColumnContents: {&#xD;
+        /* Add components here for a two-column form */&#xD;
+      },&#xD;
+      buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+        primaryButtons: {&#xD;
+          #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+            label: &quot;Confirm&quot;,&#xD;
+            style: &quot;PRIMARY&quot;,&#xD;
+            saveInto: {}&#xD;
+          )&#xD;
+        },&#xD;
+        secondaryButtons: {&#xD;
+          #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+            label: &quot;Cancel&quot;,&#xD;
+            style: &quot;NORMAL&quot;,&#xD;
+            value: &quot;Cancel&quot;,&#xD;
+            saveInto: ri!buttonValue,&#xD;
+            skipValidation: true&#xD;
+          )&#xD;
+        }&#xD;
+      ),&#xD;
+      validations: {}&#xD;
+    )&#xD;
+  )</definition>
+        <namedTypedValue>
+            <name>client</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>clientProducts</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>buttonValue</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>krassimir.dimitrov@pshealth.co.uk</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

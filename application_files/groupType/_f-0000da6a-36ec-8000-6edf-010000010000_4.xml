@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <groupType>
+        <name>Case Management</name>
+        <uuid>_f-0000da6a-36ec-8000-6edf-010000010000_4</uuid>
+        <description>Case Management</description>
+        <attributes/>
+    </groupType>
+</groupTypeHaul>

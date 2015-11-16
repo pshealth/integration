@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>MI_MultiTrack_WholeBusiness_ClosedCaseCostAndLifecycle</name>
+        <uuid>e93f2091-2661-423f-9109-2a08f3fe85f4</uuid>
+        <description>Contains Closed Case Cost And Lifecycle Report for Whole Business Multi Track Report</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25362</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+local!isdownload,&#xD;
+local!pagingInfo:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:-1),&#xD;
+local!pagingInfo3:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:10,sort:#&quot;SYSTEM_SYSRULES_sortInfo&quot;(field:&quot;CaseID&quot;,ascending:true)),&#xD;
+local!AnswerDescription,&#xD;
+local!pagingInfo2:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:10,sort:#&quot;SYSTEM_SYSRULES_sortInfo&quot;(field:&quot;CaseID&quot;,ascending:true)),&#xD;
+local!pagingInfo4:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(startIndex:1,batchSize:10,sort:#&quot;SYSTEM_SYSRULES_sortInfo&quot;(field:&quot;MonthName&quot;,ascending:true)),&#xD;
+local!CaseManger,&#xD;
+local!BillingDistribution,&#xD;
+ local!RollingMonthCount: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11229&quot;[1],&#xD;
+ local!FilterByEndOpenedDate,&#xD;
+  local!FilterByEndClosedDate:now(),&#xD;
+  local!FilterByReferredEndDate,&#xD;
+  local!FilterByReferredStartDate,&#xD;
+   local!FilterByBrand,&#xD;
+  local!FilterByTeamDept,&#xD;
+  local!FilterByStartOpenedDate,&#xD;
+  local!FilterByStartClosedDate:local!FilterByEndClosedDate-(30*local!RollingMonthCount),&#xD;
+  local!pagingInfo5:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+    startIndex: 1,&#xD;
+    batchSize: 10&#xD;
+  ),&#xD;
+  local!pagingInfo6:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+    startIndex: 1,&#xD;
+    batchSize: 10&#xD;
+  ),&#xD;
+with(&#xD;
+ local!Datasubset: if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!ProviderID&#xD;
+      ),&#xD;
+      {},&#xD;
+      #&quot;d99d167f-54de-4ebc-8246-8d32f3f92225&quot;()&#xD;
+    ),&#xD;
+    local!DatasubsetForFilter: if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!ProviderID&#xD;
+      ),&#xD;
+      {},&#xD;
+      #&quot;64e70276-320c-4deb-b47d-0da4f0eeff62&quot;(&#xD;
+        FilterByEndDate:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByEndDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          ))&#xD;
+        ),&#xD;
+        FilterByStartDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByStartDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+        FilterByCM: local!FilterByCM,&#xD;
+        FilterByProduct: local!FilterByProduct,&#xD;
+        FilterByCustomer: local!FilterByCustomer,&#xD;
+        ProviderID: local!ProviderID,&#xD;
+        FilterByTeam: local!FilterByTeam,&#xD;
+        CaseManger: local!CaseManger,&#xD;
+        pagingInfo: local!pagingInfo2,&#xD;
+        CaseManager: local!CaseManager,&#xD;
+		FilterByReferredStartDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByReferredStartDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByReferredStartDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+		FilterByBrand:local!FilterByBrand,&#xD;
+		FilterByTeamDept:local!FilterByTeamDept,&#xD;
+		FilterByStartClosedDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartClosedDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByStartClosedDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+		FilterByEndClosedDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndClosedDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByEndClosedDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+		FilterByStartOpenedDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartOpenedDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByStartOpenedDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+		FilterByEndOpenedDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndOpenedDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByEndOpenedDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+		FilterByReferredEndDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByReferredEndDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByReferredEndDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        ))&#xD;
+		&#xD;
+      )&#xD;
+    ),&#xD;
+    local!DataSubsetForAverageLifecycle: if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!ProviderID&#xD;
+      ),&#xD;
+      {},&#xD;
+      #&quot;SYSTEM_SYSRULES_queryEntity&quot;(&#xD;
+        entity: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_20766&quot;,&#xD;
+        query: #&quot;SYSTEM_SYSRULES_query&quot;(&#xD;
+          aggregation: #&quot;SYSTEM_SYSRULES_queryAggregation&quot;(&#xD;
+            {&#xD;
+              #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+                field: &quot;CaseID&quot;,&#xD;
+                isGrouping: true&#xD;
+              ),&#xD;
+              #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+                field: &quot;CaseLifeCycle&quot;,&#xD;
+                aggregationFunction: &quot;SUM&quot;&#xD;
+              )&#xD;
+            }&#xD;
+          ),&#xD;
+          logicalExpression: if(&#xD;
+           and(or(&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!FilterByStartOpenedDate&#xD;
+              ),&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!FilterByEndOpenedDate&#xD;
+              )&#xD;
+            ),or(&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!FilterByStartClosedDate&#xD;
+              ),&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!FilterByEndClosedDate&#xD;
+              )&#xD;
+            ),or(&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!FilterByReferredStartDate&#xD;
+              ),&#xD;
+              #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                local!FilterByReferredEndDate&#xD;
+              )&#xD;
+            )),&#xD;
+            null,&#xD;
+            #&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(&#xD;
+              operator: &quot;AND&quot;,&#xD;
+              filters: {&#xD;
+                if(&#xD;
+                  or(&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!FilterByStartOpenedDate&#xD;
+                    ),&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!FilterByEndOpenedDate&#xD;
+                    )&#xD;
+                  ),&#xD;
+                  null,&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;DateOpened&quot;,&#xD;
+                    operator: &quot;between&quot;,&#xD;
+                    value: {&#xD;
+                      todatetime(&#xD;
+                        datetext(&#xD;
+                          local!FilterByStartOpenedDate,&#xD;
+                          &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+                        )&#xD;
+                      ),&#xD;
+                      todatetime(&#xD;
+                        datetext(&#xD;
+                          local!FilterByEndOpenedDate,&#xD;
+                          &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+                        )&#xD;
+                      )&#xD;
+                    }&#xD;
+                  )&#xD;
+                ),&#xD;
+				 if(&#xD;
+                  or(&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!FilterByStartClosedDate&#xD;
+                    ),&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!FilterByEndClosedDate&#xD;
+                    )&#xD;
+                  ),&#xD;
+                  null,&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;DateClosed&quot;,&#xD;
+                    operator: &quot;between&quot;,&#xD;
+                    value: {&#xD;
+                      todatetime(&#xD;
+                        datetext(&#xD;
+                          local!FilterByStartClosedDate,&#xD;
+                          &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+                        )&#xD;
+                      ),&#xD;
+                      todatetime(&#xD;
+                        datetext(&#xD;
+                          local!FilterByEndClosedDate,&#xD;
+                          &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+                        )&#xD;
+                      )&#xD;
+                    }&#xD;
+                  )&#xD;
+                ),&#xD;
+				 if(&#xD;
+                  or(&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!FilterByReferredStartDate&#xD;
+                    ),&#xD;
+                    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                      local!FilterByReferredEndDate&#xD;
+                    )&#xD;
+                  ),&#xD;
+                  null,&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;CreatedDate&quot;,&#xD;
+                    operator: &quot;between&quot;,&#xD;
+                    value: {&#xD;
+                      todatetime(&#xD;
+                        datetext(&#xD;
+                          local!FilterByReferredStartDate,&#xD;
+                          &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+                        )&#xD;
+                      ),&#xD;
+                      todatetime(&#xD;
+                        datetext(&#xD;
+                          local!FilterByReferredEndDate,&#xD;
+                          &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+                        )&#xD;
+                      )&#xD;
+                    }&#xD;
+                  )&#xD;
+                ),&#xD;
+                #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                  field: &quot;DateClosed&quot;,&#xD;
+                  operator: &quot;not null&quot;&#xD;
+                ),&#xD;
+                #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                  field: &quot;Status&quot;,&#xD;
+                  operator: &quot;=&quot;,&#xD;
+                  value: &quot;Closed&quot;&#xD;
+                ),&#xD;
+                if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!ProviderID&#xD;
+                  ),&#xD;
+                  {},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;ProviderID&quot;,&#xD;
+                    operator: &quot;in&quot;,&#xD;
+                    value: local!ProviderID&#xD;
+                  )&#xD;
+                ),&#xD;
+                if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!FilterByCM&#xD;
+                  ),&#xD;
+				  if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!CaseManager),{},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;CaseManagerName&quot;,&#xD;
+                    operator: &quot;in&quot;,&#xD;
+                    value: local!CaseManager&#xD;
+                  )),&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;CaseManagerName&quot;,&#xD;
+                    operator: &quot;=&quot;,&#xD;
+                    value: tostring(&#xD;
+                      local!FilterByCM&#xD;
+                    )&#xD;
+                  )&#xD;
+                ),&#xD;
+                if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!FilterByProduct&#xD;
+                  ),&#xD;
+                  {},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;ProductName&quot;,&#xD;
+                    operator: &quot;=&quot;,&#xD;
+                    value: local!FilterByProduct&#xD;
+                  )&#xD;
+                ),&#xD;
+                if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!FilterByCustomer&#xD;
+                  ),&#xD;
+                  {},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;TopClientName&quot;,&#xD;
+                    operator: &quot;=&quot;,&#xD;
+                    value: local!FilterByCustomer&#xD;
+                  )&#xD;
+                ),&#xD;
+                if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!FilterByTeam&#xD;
+                  ),&#xD;
+                  {},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;TeamID&quot;,&#xD;
+                    operator: &quot;=&quot;,&#xD;
+                    value: local!FilterByTeam&#xD;
+                  )&#xD;
+                ),&#xD;
+				if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!FilterByBrand&#xD;
+                  ),&#xD;
+                  {},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;BrandName&quot;,&#xD;
+                    operator: &quot;=&quot;,&#xD;
+                    value: local!FilterByBrand&#xD;
+                  )&#xD;
+                ),&#xD;
+				if(&#xD;
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+                    local!FilterByTeamDept&#xD;
+                  ),&#xD;
+                  {},&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(&#xD;
+                    field: &quot;ClientName&quot;,&#xD;
+                    operator: &quot;=&quot;,&#xD;
+                    value: local!FilterByTeamDept&#xD;
+                  )&#xD;
+                )&#xD;
+              }&#xD;
+            )&#xD;
+          ),&#xD;
+          pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+            startIndex: 1,&#xD;
+            batchSize: - 1&#xD;
+          )&#xD;
+        )&#xD;
+      )&#xD;
+    ),&#xD;
+    local!DatasubsetForBillingDistributionTable: if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!ProviderID&#xD;
+      ),&#xD;
+      {},&#xD;
+      #&quot;73779b3a-8cdd-4474-b5d6-9e4bdfc770e0&quot;(&#xD;
+        FilterByEndDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByEndDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+        FilterByStartDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByStartDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+        FilterByCM: local!FilterByCM,&#xD;
+        FilterByProduct: local!FilterByProduct,&#xD;
+        FilterByCustomer: local!FilterByCustomer,&#xD;
+        FilterByTeam: local!FilterByTeam,&#xD;
+        ProviderID: local!ProviderID,&#xD;
+        pagingInfo: local!pagingInfo3,&#xD;
+        CaseManager: local!CaseManager,&#xD;
+		FilterByReferredStartDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByReferredStartDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByReferredStartDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+		FilterByBrand:local!FilterByBrand,&#xD;
+		FilterByTeamDept:local!FilterByTeamDept,&#xD;
+		FilterByStartClosedDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartClosedDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByStartClosedDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+		FilterByEndClosedDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndClosedDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByEndClosedDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+		FilterByStartOpenedDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartOpenedDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByStartOpenedDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+		FilterByEndOpenedDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndOpenedDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByEndOpenedDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        )),&#xD;
+		FilterByReferredEndDate: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByReferredEndDate),null,todatetime(&#xD;
+          datetext(&#xD;
+            local!FilterByReferredEndDate,&#xD;
+            &quot;dd/MM/yyyy hh:mm&quot;&#xD;
+          )&#xD;
+        ))&#xD;
+		&#xD;
+      )&#xD;
+    ),&#xD;
+    local!DatasubsetForBillingDistributionGraph: if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!ProviderID&#xD;
+      ),&#xD;
+      {},&#xD;
+      #&quot;631deb51-379f-42f0-9665-fd0599769347&quot;()&#xD;
+    ),&#xD;
+    local!Categories: if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!DatasubsetForBillingDistributionGraph&#xD;
+      ),&#xD;
+      {},&#xD;
+      apply(&#xD;
+        #&quot;b6316f59-2ef1-4bae-b8a5-f700ab696cfa&quot;,&#xD;
+        merge(&#xD;
+          index(&#xD;
+            local!DatasubsetForBillingDistributionGraph.data,&#xD;
+            &quot;MonthId&quot;,&#xD;
+            {}&#xD;
+          ),&#xD;
+          index(&#xD;
+            local!DatasubsetForBillingDistributionGraph.data,&#xD;
+            &quot;MonthName&quot;,&#xD;
+            {}&#xD;
+          ),&#xD;
+          index(&#xD;
+            local!DatasubsetForBillingDistributionGraph.data,&#xD;
+            &quot;Years&quot;,&#xD;
+            {}&#xD;
+          )&#xD;
+        )&#xD;
+      )&#xD;
+    ),&#xD;
+    local!TotalCasesReceived: if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!DataSubsetForAverageLifecycle&#xD;
+      ),&#xD;
+      null,&#xD;
+      if(&#xD;
+        #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+          local!DataSubsetForAverageLifecycle.data&#xD;
+        ),&#xD;
+        0,&#xD;
+        count(&#xD;
+          local!DataSubsetForAverageLifecycle.data&#xD;
+        )&#xD;
+      )&#xD;
+    ),&#xD;
+    local!TotalCaseLifeCycle: if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!DataSubsetForAverageLifecycle&#xD;
+      ),&#xD;
+      null,&#xD;
+      if(&#xD;
+        #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+          local!DataSubsetForAverageLifecycle.data&#xD;
+        ),&#xD;
+        0,&#xD;
+        sum(&#xD;
+          local!DataSubsetForAverageLifecycle.data.CaseLifeCycle&#xD;
+        )&#xD;
+      )&#xD;
+    ),&#xD;
+{&#xD;
+  &#xD;
+ if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!datasubset),#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,value:&quot;No Data Available&quot;,readOnly:true),{&#xD;
+/*Filter Section*/&#xD;
+&#xD;
+&#xD;
+/*a!textField(label:&quot;&quot;,value:&quot;&quot;,readOnly:true),*/&#xD;
+#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(label:&quot;Closed Case Cost And Lifecycle&quot;,&#xD;
+firstColumnContents:{&#xD;
+#&quot;af7512c7-8b8f-48d4-824b-eea53bd30062&quot;(),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!CaseManger),{},#&quot;b44f250c-bfde-4225-a86f-49579b9cb2e1&quot;()),&#xD;
+#&quot;7a562fd1-619a-4f35-ae96-af3a1ff2b51c&quot;()&#xD;
+},isCollapsible:true),&#xD;
+#&quot;c7069087-9602-48e5-829b-abddf005750c&quot;()&#xD;
+})&#xD;
+}&#xD;
+&#xD;
+)&#xD;
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

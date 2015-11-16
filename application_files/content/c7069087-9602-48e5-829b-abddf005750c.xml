@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CostBillingDistributionSection</name>
+        <uuid>c7069087-9602-48e5-829b-abddf005750c</uuid>
+        <description>Contains Cost Billing Distribution Section</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_20533</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+  label:&quot;&quot;,&#xD;
+  firstColumnContents:{&#xD;
+#&quot;eef6ded6-b3bd-4e84-8431-14e12e80fe1f&quot;(),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!BillingDistribution),{},#&quot;SYSTEM_SYSRULES_columnChartField&quot;(&#xD;
+  label: &quot;&quot;,&#xD;
+  categories: local!Categories,&#xD;
+  series: {&#xD;
+    #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Assessment&quot;, data: index(local!DatasubsetForBillingDistributionGraph.data,&quot;Assessment&quot;,{})),&#xD;
+	#&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Case Management&quot;, data:index(local!DatasubsetForBillingDistributionGraph.data,&quot;CaseManagement&quot;,{})),&#xD;
+    #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: &quot;Suppliers&quot;, data:index(local!DatasubsetForBillingDistributionGraph.data,&quot;Suppliers&quot;,{}))&#xD;
+  },&#xD;
+  yAxisTitle: &quot;Number of Cases&quot;,&#xD;
+  stacking: &quot;NORMAL&quot;,&#xD;
+  showLegend: true,&#xD;
+  showDataLabels: true&#xD;
+)&#xD;
+)&#xD;
+}&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

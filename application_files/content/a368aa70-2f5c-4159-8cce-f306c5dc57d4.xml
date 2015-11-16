@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_TeamRecordSummaryDashboard</name>
+        <uuid>a368aa70-2f5c-4159-8cce-f306c5dc57d4</uuid>
+        <description>This contains expression for Team Record Summary Dashboard</description>
+        <parentUuid>_a-0000db6d-e203-8000-6ee0-010000010000_28355</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(
+firstColumnContents:{
+#&quot;SYSTEM_SYSRULES_textField&quot;(
+label:&quot;Team ID&quot;,
+labelPosition:&quot;ADJACENT&quot;,
+value:rf!TeamID,
+readOnly:true
+)
+},
+secondColumnContents:{
+#&quot;SYSTEM_SYSRULES_textField&quot;(
+label:&quot;Team Name&quot;,
+labelPosition:&quot;ADJACENT&quot;,
+value:rf!TeamName,
+readOnly:true
+)
+}
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

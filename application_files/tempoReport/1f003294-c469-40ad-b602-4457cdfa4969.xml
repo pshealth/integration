@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="Work In Progress Report" a:uuid="1f003294-c469-40ad-b602-4457cdfa4969">
+        <a:description>Click above to view the Work In Progress Report (Uninvoiced Items)</a:description>
+        <a:uiExpr>=#&quot;5d06a5f7-b3e8-4f1d-9b5e-3b92948b7790&quot;()</a:uiExpr>
+        <a:urlStub>4_a7Ww</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_51</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_17</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoReportHaul>

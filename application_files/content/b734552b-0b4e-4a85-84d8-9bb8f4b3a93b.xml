@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_Client_ListView</name>
+        <uuid>b734552b-0b4e-4a85-84d8-9bb8f4b3a93b</uuid>
+        <description></description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_968</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#&quot;SYSTEM_SYSRULES_listViewItem&quot;(title: fn!concat(&#xD;
+		rf!Name,&#xD;
+		if(&#xD;
+			false,&#xD;
+			concat(&#xD;
+				rf!ParentCompany,&#xD;
+				rf!Address,&#xD;
+				rf!PostCode,&#xD;
+				rf!PhonePrimary,&#xD;
+				rf!CreatedDate,&#xD;
+				rf!Email,&#xD;
+				rf!AccountManager&#xD;
+			),&#xD;
+			&quot;&quot;&#xD;
+		)&#xD;
+	), &#xD;
+	details: if(rf!IsActive, &quot;(Status: Active, &quot;, &quot;(Status: Inactive, &quot;) &amp; if(isnull(rf!ParentCompany), &quot;Parent Company: N/A, &quot;, &quot;Parent Company: &quot; &amp; rf!ParentCompany &amp; &quot;, &quot;) &amp; &quot;Type: &quot; &amp; displayvalue(rf!ClientTypeID, #&quot;_a-0000da7b-2d42-8000-6ee0-010000010000_1252&quot;, #&quot;_a-0000da7b-2d42-8000-6ee0-010000010000_1251&quot;, &quot;&quot;) &amp; &quot;)&quot;, image: todocument(rf!LogoID), timestamp: rf!LastModifiedDate)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>Administrator</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

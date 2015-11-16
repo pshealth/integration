@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_BillingTransactionPagingGridByClientID</name>
+        <uuid>_a-0000dbb7-3ff9-8000-6ee0-010000010000_46187</uuid>
+        <description>Provides a grid layout for Billing Transaction Report by client id</description>
+        <parentUuid>_a-0000dbb7-3ff9-8000-6ee0-010000010000_46133</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+label:&quot;&quot;,&#xD;
+totalCount:ri!DatasubsetForTeam.totalCount,&#xD;
+columns:{&#xD;
+&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000dbde-d572-8000-6ee0-010000010000_46371&quot;[1],&#xD;
+data:index(ri!DatasubsetForTeam.data,&quot;CaseID&quot;,{}),&#xD;
+links:apply(#&quot;SYSTEM_SYSRULES_recordLink&quot;(recordType:#&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1432&quot;,identifier:_),index(ri!DatasubsetForTeam.data,&quot;CaseID&quot;,{})),&#xD;
+field:&quot;CaseID&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000dbde-d572-8000-6ee0-010000010000_46371&quot;[2],&#xD;
+data:index(ri!DatasubsetForTeam.data,&quot;TopClientName&quot;,{}),&#xD;
+field:&quot;TopClientName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000dbde-d572-8000-6ee0-010000010000_46371&quot;[3],&#xD;
+data:index(ri!DatasubsetForTeam.data,&quot;BrandName&quot;,{}),&#xD;
+field:&quot;BrandName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000dbde-d572-8000-6ee0-010000010000_46371&quot;[4],&#xD;
+data:index(ri!DatasubsetForTeam.data,&quot;ClientName&quot;,{}),&#xD;
+field:&quot;ClientName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000dbde-d572-8000-6ee0-010000010000_46371&quot;[5],&#xD;
+data:index(ri!DatasubsetForTeam.data,&quot;ProductName&quot;,{}),&#xD;
+field:&quot;ProductName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000dbde-d572-8000-6ee0-010000010000_46371&quot;[6],&#xD;
+data:apply(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,index(ri!DatasubsetForTeam.data,&quot;CaseManagerName&quot;,{})),&#xD;
+field:&quot;CaseManagerName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000dbde-d572-8000-6ee0-010000010000_46371&quot;[7],&#xD;
+data:apply(#&quot;3fd88c58-74d4-4e05-8a45-aefdb4724451&quot;,index(ri!DatasubsetForTeam.data,&quot;Payment&quot;,{})),&#xD;
+field:&quot;Payment&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000dbde-d572-8000-6ee0-010000010000_46371&quot;[8],&#xD;
+data:apply(#&quot;3fd88c58-74d4-4e05-8a45-aefdb4724451&quot;,index(ri!DatasubsetForTeam.data,&quot;Adjustment&quot;,{})),&#xD;
+field:&quot;Adjustment&quot;&#xD;
+)&#xD;
+},&#xD;
+value:ri!PagingInfo,&#xD;
+saveInto:ri!PagingInfo&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>DatasubsetForTeam</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>PagingInfo</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>DatasubsetForTeam</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>PagingInfo</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

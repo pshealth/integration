@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_BillingTransaction_GenerateDatasubsetForExcel</name>
+        <uuid>8b2fb010-0b59-471e-b24c-68830b8599fb</uuid>
+        <description>Provides a datasubset for billing transaction to generate excel</description>
+        <parentUuid>_a-0000dbb7-3ff9-8000-6ee0-010000010000_46133</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(&#xD;
+  local!search: #&quot;SYSTEM_SYSRULES_fromJson&quot;(&#xD;
+    ri!input&#xD;
+  ),&#xD;
+  local!PagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+    startIndex: 1,&#xD;
+    batchSize: - 1,&#xD;
+    sort: {&#xD;
+      field: &quot;CaseID&quot;,&#xD;
+      ascending: true&#xD;
+    }&#xD;
+  ),&#xD;
+ &#xD;
+ /*&#xD;
+		Get the data again for values provided in filters section.&#xD;
+ */&#xD;
+ &#xD;
+local!Datasubset:#&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46160&quot;(&#xD;
+FilterByStartDate:local!search.FilterByStartDate,&#xD;
+FilterByTeam:local!search.FilterByTeam,&#xD;
+FilterByEndDate:local!search.FilterByEndDate,&#xD;
+FilterByCM:local!search.FilterByCM,&#xD;
+FilterByProduct:local!search.FilterByProduct,&#xD;
+FilterByStartClosedDate:local!search.FilterByStartClosedDate,&#xD;
+FilterByEndClosedDate:local!search.FilterByEndClosedDate,&#xD;
+FilterByCustomer:local!search.FilterByCustomer,&#xD;
+CaseManager:local!search.CaseManager,&#xD;
+ProviderID:local!search.ProviderID,&#xD;
+FilterByStartOpenedDate:local!search.FilterByStartOpenedDate,&#xD;
+FilterByEndOpenedDate:local!search.FilterByEndOpenedDate,&#xD;
+PagingInfo:local!PagingInfo,&#xD;
+FilterByReferredStartDate:local!search.FilterByReferredStartDate,&#xD;
+FilterByBrand:local!search.FilterByBrand,&#xD;
+FilterByTeamDept:local!search.FilterByTeamDept,&#xD;
+FilterByReferredEndDate:local!search.FilterByReferredEndDate,&#xD;
+FilterByParentCompany:local!search.FilterByParentCompany, FilterByTeamDeptName:local!search.FilterByTeamDeptName, FilterByBrandName:local!search.FilterByBrandName&#xD;
+),&#xD;
+local!Datasubset&#xD;
+)&#xD;
+</definition>
+        <namedTypedValue>
+            <name>input</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>input</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

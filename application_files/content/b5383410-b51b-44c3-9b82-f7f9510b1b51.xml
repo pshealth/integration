@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CaseManagerInvoiceReportPagingGrid</name>
+        <uuid>b5383410-b51b-44c3-9b82-f7f9510b1b51</uuid>
+        <description>Contains the paging for the report Case Manager Invoice report</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10822</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+label:&quot;&quot;,&#xD;
+totalCount:local!Datasubset.totalCount,&#xD;
+columns:{&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:&quot;Username&quot;,data:index(local!Datasubset.data,&quot;UserName&quot;,null),field:&quot;UserName&quot;),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByMonth),#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:&quot;Month&quot;,data:apply(#&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,index(local!Datasubset.data,&quot;Months&quot;,{})),field:&quot;Months&quot;),{}),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:&quot;Hour Cost&quot;,data:index(local!Datasubset.data,&quot;HRTotal&quot;,null),field:&quot;HRTotal&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:&quot;Fixed Rate Cost&quot;,data:index(local!Datasubset.data,&quot;FRTotal&quot;,null),field:&quot;FRTotal&quot;),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label:&quot;Total Invoice&quot;,data:index(local!Datasubset.data,&quot;TotalInvoice&quot;,null),field:&quot;TotalInvoice&quot;)&#xD;
+},&#xD;
+value:local!pagingInfo,&#xD;
+saveInto:local!pagingInfo&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

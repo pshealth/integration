@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <constant>
+        <name>MI_REPORTING_DATA_EXPORT_INTERVENTION_SQL</name>
+        <uuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25525</uuid>
+        <description>Holds the SQL for the Intervention for the Data Export</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25506</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value>SELECT INTV.CaseID AS 'Case ID', INTV.Intervention AS 'Intervention', I.Name AS 'Item', INTV.Quantity AS 'Quantity', INTV.Cost AS 'Cost', INTV.CreatedDate AS 'Created Date', INTV.CreatedBy AS 'CreatedBy', INTV.IsActive AS 'Is Active', INTV.IsInvoiced AS 'Is Invoiced', INTV.unitcost AS 'Unit Cost', INTV.ID AS 'Intervention ID', INTV.iscasemanagement AS 'Is Case Management', INTV.treatmentunitcost AS 'Treatment Unit Cost', INTV.treatmentquantity AS'Treatment Qty' FROM appiansecondary.intervention INTV LEFT JOIN appiansecondary.item I ON I.ID = INTV.ItemID</value>
+        </typedValue>
+    </constant>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

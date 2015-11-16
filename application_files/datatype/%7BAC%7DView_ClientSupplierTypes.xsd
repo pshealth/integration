@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="AC" xmlns:tns="AC" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:include schemaLocation="%7BAC%7DClient.xsd"/>
+  <xsd:include schemaLocation="%7BAC%7DSupplierType.xsd"/>
+  <xsd:complexType name="View_ClientSupplierTypes">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">
+                @Table(name="ClientSupplierTypes")
+            </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="ID" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+				  @Id
+				  @Column(name="ID")
+				  @GeneratedValue
+			</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Client" nillable="true" type="tns:Client">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+				  @JoinColumn(name="ClientID")
+			</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="SupplierType" nillable="true" type="tns:SupplierType">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+				  @JoinColumn(name="SupplierTypeID")
+			</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

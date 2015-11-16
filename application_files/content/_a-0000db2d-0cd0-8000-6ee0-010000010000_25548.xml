@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <constant>
+        <name>MI_CUSTOMER_REPORT_OPTIONS</name>
+        <uuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25548</uuid>
+        <description>Contains all the values of reports for Customer Report</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25547</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+            <value>
+                <el>Referrals Received Vs Open</el>
+                <el>Case Billing Report</el>
+                <el>Closed Case Cost And Lifecycle</el>
+                <el>SLA Adherence</el>
+                <el>Case Outcomes</el>
+                <el>CSQ Details for All Cases</el>
+                <el>Open Case Status Profile</el>
+                <el>Age Debt</el>
+                <el>Billing Transaction Report</el>
+                <el>Work In Progress Report</el>
+            </value>
+        </typedValue>
+    </constant>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

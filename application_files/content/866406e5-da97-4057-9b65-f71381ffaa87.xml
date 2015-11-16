@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CostBillingDailyRunRateGridByDate</name>
+        <uuid>866406e5-da97-4057-9b65-f71381ffaa87</uuid>
+        <description>Provides a grid for billing daily run rate by date</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_19705</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(
+  label: &quot;Case Details for &quot;&amp; local!DailyRunRateDate,
+  totalCount: local!DatasubsetByDataRunRateDate.totalCount,
+  columns: {
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[1],
+      data: index(
+        local!DatasubsetByDataRunRateDate.data,
+        &quot;CaseID&quot;,
+        {}
+      ),
+      links: apply(
+        #&quot;SYSTEM_SYSRULES_recordLink&quot;(
+          recordType: #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1432&quot;,
+          identifier: _
+        ),
+        index(
+          local!DatasubsetByDataRunRateDate.data,
+          &quot;CaseID&quot;,
+          {}
+        )
+      ),
+      field: &quot;CaseID&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[2],
+      data: index(
+        local!DatasubsetByDataRunRateDate.data,
+        &quot;DailyRunRateDate&quot;,
+        {}
+      ),
+      field: &quot;DailyRunRateDate&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[3],
+      data: apply(
+        #&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,
+        index(
+          local!DatasubsetByDataRunRateDate.data,
+          &quot;Months&quot;,
+          {}
+        )
+      ),
+      field: &quot;Months&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[4],
+      data: index(
+        local!DatasubsetByDataRunRateDate.data,
+        &quot;Years&quot;,
+        {}
+      ),
+      field: &quot;Years&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[5],
+      data: index(
+        local!DatasubsetByDataRunRateDate.data,
+        &quot;TopClientName&quot;,
+        {}
+      ),
+      field: &quot;TopClientName&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[6],
+      data: index(
+        local!DatasubsetByDataRunRateDate.data,
+        &quot;BrandName&quot;,
+        {}
+      ),
+      field: &quot;BrandName&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[7],
+      data: index(
+        local!DatasubsetByDataRunRateDate.data,
+        &quot;ClientName&quot;,
+        {}
+      ),
+      field: &quot;ClientName&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[8],
+      data: index(
+        local!DatasubsetByDataRunRateDate.data,
+        &quot;ProductName&quot;,
+        {}
+      ),
+      field: &quot;ProductName&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[9],
+      data: apply(
+        #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,
+        index(
+          local!DatasubsetByDataRunRateDate.data,
+          &quot;CaseManagerName&quot;,
+          {}
+        )
+      ),
+      field: &quot;CaseManagerName&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[10],
+      data: index(
+        local!DatasubsetByDataRunRateDate.data,
+        &quot;ItemName&quot;,
+        {}
+      ),
+      field: &quot;ItemName&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[11],
+      data: index(
+        local!DatasubsetByDataRunRateDate.data,
+        &quot;Assessment&quot;,
+        {}
+      ),
+      field: &quot;Assessment&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[12],
+      data: index(
+        local!DatasubsetByDataRunRateDate.data,
+        &quot;CaseManagement&quot;,
+        {}
+      ),
+      field: &quot;CaseManagement&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[13],
+      data: index(
+        local!DatasubsetByDataRunRateDate.data,
+        &quot;Suppliers&quot;,
+        {}
+      ),
+      field: &quot;Suppliers&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000dbde-d572-8000-6ee0-010000010000_47053&quot;[14],
+      data: index(
+        local!DatasubsetByDataRunRateDate.data,
+        &quot;Total&quot;,
+        {}
+      ),
+      field: &quot;Total&quot;
+    )
+  },
+  value: local!pagingInfo4,
+  saveInto: local!pagingInfo4
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

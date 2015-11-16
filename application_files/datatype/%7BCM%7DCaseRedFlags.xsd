@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="CM" xmlns:tns="CM" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="CaseRedFlags">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">
+                @Table(name="CaseRedFlags")
+            </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="ID" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+				  @Id
+				  @Column(name="ID")
+				  @GeneratedValue
+			</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="CaseID" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+          @Column(name="CaseID")
+      </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Symptom" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+          @Column(name="RedFlag_Symptom")
+      </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Present" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+          @Column(name="RedFlag_Present")
+      </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="CauseForConcern" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+          @Column(name="RedFlag_CauseForConcern")
+      </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Details" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+          @Column(name="RedFlag_Details")
+      </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

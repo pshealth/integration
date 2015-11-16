@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CostBilling_DatasubsetForFilters</name>
+        <uuid>223d9eda-fac6-40e5-88ee-a0b86823271e</uuid>
+        <description></description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_19705</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_queryEntity&quot;(
+  entity: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19706&quot;,
+  query: #&quot;SYSTEM_SYSRULES_query&quot;(   aggregation:#&quot;SYSTEM_SYSRULES_queryAggregation&quot;(
+          {
+            #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;CaseID&quot;,
+              isGrouping: true
+            ),
+		
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;Years&quot;,
+              isGrouping: true
+            ),
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;TopClientName&quot;,
+              isGrouping: true
+            ),
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;BrandName&quot;,
+              isGrouping: true
+            ),
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;ClientName&quot;,
+              isGrouping: true
+            ),
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;ProductName&quot;,
+              isGrouping: true
+            ),
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;CaseManagerName&quot;,
+              isGrouping: true
+            ),
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;ItemName&quot;,
+              isGrouping: true
+            ),
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;Assessment&quot;,
+              isGrouping: true
+            ),
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;CaseManagement&quot;,
+              isGrouping: true
+            ),
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;Suppliers&quot;,
+              isGrouping: true
+            ),
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;Total&quot;,
+              isGrouping: true
+            ),
+			#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(
+              field: &quot;Months&quot;,
+              isGrouping: true
+            )
+          }
+        ),
+    logicalExpression: if(
+      and(
+        isnull(
+          ri!FilterByYear
+        ),
+        isnull(
+          ri!FilterByMonth
+        )
+      ),
+      #&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(
+        operator: &quot;AND&quot;,
+        filters: {
+          if(
+            isnull(
+              ri!AllMonths
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;Months&quot;,
+              operator: &quot;IN&quot;,
+              value: ri!AllMonths
+            )
+          ),
+         /* if(
+            isnull(
+              ri!Years
+            ),
+            {},
+            a!queryFilter(
+              field: &quot;Years&quot;,
+              operator: &quot;=&quot;,
+              value: ri!Years
+            )
+          ),*/
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!ProviderID
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;ProviderID&quot;,
+              operator: &quot;in&quot;,
+              value: ri!ProviderID
+            )
+          ),
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!FilterByCM
+            ),
+           if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByCaseManager),{}, #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;CaseManagerName&quot;,
+              operator: &quot;in&quot;,
+              value: {touniformstring(
+                ri!FilterByCaseManager
+              )}
+            )),
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;CaseManagerName&quot;,
+              operator: &quot;=&quot;,
+              value: tostring(
+                ri!FilterByCM
+              )
+            )
+          ),
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!CaseManager
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;CaseManagerName&quot;,
+              operator: &quot;=&quot;,
+              value: tostring(
+                ri!CaseManager
+              )
+            )
+          ),
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!FilterByProduct
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;ProductName&quot;,
+              operator: &quot;=&quot;,
+              value: ri!FilterByProduct
+            )
+          ),
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!FilterByCustomer
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;TopClientName&quot;,
+              operator: &quot;=&quot;,
+              value: ri!FilterByCustomer
+            )
+          ),
+          if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    ri!FilterByBrand
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;BrandName&quot;,
+                    operator: &quot;=&quot;,
+                    value: ri!FilterByBrand
+                  )
+                ),
+				if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                      ri!FilterByTeamDept
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;ClientName&quot;,
+                    operator: &quot;=&quot;,
+                    value: ri!FilterByTeamDept
+                  )
+                ),
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!FilterByTeam
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;TeamID&quot;,
+              operator: &quot;=&quot;,
+              value: ri!FilterByTeam
+            )
+          )
+        }
+      ),
+      #&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(
+        operator: &quot;AND&quot;,
+        filters: {
+          if(
+            isnull(
+              ri!FilterByYear
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;Years&quot;,
+              operator: &quot;=&quot;,
+              value: tointeger(
+                ri!FilterByYear
+              )
+            )
+          ),
+          if(
+            isnull(
+              ri!FilterByMonth
+            ),
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;Months&quot;,
+              operator: &quot;IN&quot;,
+              value: ri!AllMonths
+            ),
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;Months&quot;,
+              operator: &quot;=&quot;,
+              value: tointeger(
+                ri!FilterByMonth
+              )
+            )
+          ),
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!ProviderID
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;ProviderID&quot;,
+              operator: &quot;in&quot;,
+              value: ri!ProviderID
+            )
+          ),
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!FilterByCM
+            ),
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;CaseManagerName&quot;,
+              operator: &quot;in&quot;,
+              value:{touniformstring(
+                ri!FilterByCaseManager
+              )}
+            ),
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;CaseManagerName&quot;,
+              operator: &quot;=&quot;,
+              value: tostring(
+                ri!FilterByCM
+              )
+            )
+          ),
+          if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                    ri!FilterByBrand
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;BrandName&quot;,
+                    operator: &quot;=&quot;,
+                    value: ri!FilterByBrand
+                  )
+                ),
+				if(
+                  #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+                      ri!FilterByTeamDept
+                  ),
+                  {},
+                  #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;ClientName&quot;,
+                    operator: &quot;=&quot;,
+                    value: ri!FilterByTeamDept
+                  )
+                ),
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!CaseManager
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;CaseManagerName&quot;,
+              operator: &quot;=&quot;,
+              value: tostring(
+                ri!CaseManager
+              )
+            )
+          ),
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!FilterByProduct
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;ProductName&quot;,
+              operator: &quot;=&quot;,
+              value: ri!FilterByProduct
+            )
+          ),
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!FilterByCustomer
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;TopClientName&quot;,
+              operator: &quot;=&quot;,
+              value: ri!FilterByCustomer
+            )
+          ),
+          if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!FilterByTeam
+            ),
+            {},
+            #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+              field: &quot;TeamID&quot;,
+              operator: &quot;=&quot;,
+              value: ri!FilterByTeam
+            )
+          ),
+          if(or(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByReferredStartDate),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByReferredEndDate)),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;CreatedDate&quot;,
+                    operator: &quot;between&quot;,
+                    value: {
+                      todatetime(
+                        ri!FilterByReferredStartDate
+                      ),
+                      todatetime(
+                        ri!FilterByReferredEndDate
+                      )
+                    }
+                  )),
+				 if(or(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByStartClosedDate),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByEndClosedDate)),{}, #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;DateClosed&quot;,
+                    operator: &quot;between&quot;,
+                    value: {
+                      todatetime(
+                        ri!FilterByStartClosedDate
+                      ),
+                      todatetime(
+                        ri!FilterByEndClosedDate
+                      )
+                    }
+                  )),
+				  if(or(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByStartOpenedDate),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(ri!FilterByEndOpenedDate)),{}, #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+                    field: &quot;DateOpened&quot;,
+                    operator: &quot;between&quot;,
+                    value: {
+                      todatetime(
+                        ri!FilterByStartOpenedDate
+                      ),
+                      todatetime(
+                        ri!FilterByEndOpenedDate
+                      )
+                    }
+                  ))
+        }
+      )
+    ),
+    pagingInfo: ri!pagingInfo
+  )
+)</definition>
+        <namedTypedValue>
+            <name>AllMonths</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByCM</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByProduct</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByYear</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByMonth</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByCustomer</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ProviderID</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByTeam</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>pagingInfo</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>CaseManager</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByCaseManager</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByBrand</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByTeamDept</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByReferredStartDate</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByStartClosedDate</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByEndClosedDate</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByStartOpenedDate</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByReferredEndDate</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>FilterByEndOpenedDate</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>AllMonths</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>FilterByCM</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>FilterByProduct</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>FilterByYear</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>FilterByMonth</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>FilterByCustomer</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>ProviderID</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>FilterByTeam</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>pagingInfo</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>CaseManager</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:nameRef>FilterByCaseManager</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>FilterByBrand</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>FilterByTeamDept</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>FilterByReferredStartDate</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>FilterByStartClosedDate</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>FilterByEndClosedDate</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>FilterByStartOpenedDate</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>FilterByReferredEndDate</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>FilterByEndOpenedDate</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

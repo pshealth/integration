@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="Case Manager Monthly Productivity Report" a:uuid="09fc01ed-9c09-4a70-81e3-c884ad26b6e7">
+        <a:description>Click to view the detailed productivity report of users</a:description>
+        <a:uiExpr>=#&quot;f55856b0-183c-4b56-9add-52f8dda4a918&quot;()</a:uiExpr>
+        <a:urlStub>moQL1Q</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_51</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_17</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoReportHaul>

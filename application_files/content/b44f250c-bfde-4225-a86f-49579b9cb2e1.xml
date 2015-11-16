@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_CostBilling_FilteredPagingGrid</name>
+        <uuid>b44f250c-bfde-4225-a86f-49579b9cb2e1</uuid>
+        <description></description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_19705</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+label:&quot;&quot;,&#xD;
+totalCount:local!DatasubsetForFilter.totalCount,&#xD;
+columns:{&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[1],&#xD;
+data:index(local!DatasubsetForFilter.data,&quot;CaseID&quot;,{}),&#xD;
+links: apply(&#xD;
+        #&quot;SYSTEM_SYSRULES_recordLink&quot;(&#xD;
+          recordType: #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1432&quot;,&#xD;
+          identifier: _&#xD;
+        ),&#xD;
+        index(&#xD;
+          local!DatasubsetForFilter.data,&#xD;
+          &quot;CaseID&quot;,&#xD;
+          {}&#xD;
+        )&#xD;
+      ),&#xD;
+field:&quot;CaseID&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[2],&#xD;
+data:apply(#&quot;3a0228d0-44d4-410e-9e84-6797f1f097ff&quot;,index(local!DatasubsetForFilter.data,&quot;Months&quot;,{})),&#xD;
+field:&quot;Months&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[3],&#xD;
+data:index(local!DatasubsetForFilter.data,&quot;Years&quot;,{}),&#xD;
+field:&quot;Years&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[4],&#xD;
+data:index(local!DatasubsetForFilter.data,&quot;TopClientName&quot;,{}),&#xD;
+field:&quot;TopClientName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[5],&#xD;
+data:index(local!DatasubsetForFilter.data,&quot;BrandName&quot;,{}),&#xD;
+field:&quot;BrandName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[6],&#xD;
+data:index(local!DatasubsetForFilter.data,&quot;ClientName&quot;,{}),&#xD;
+field:&quot;ClientName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[7],&#xD;
+data:index(local!DatasubsetForFilter.data,&quot;ProductName&quot;,{}),&#xD;
+field:&quot;ProductName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[8],&#xD;
+data:apply(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,index(local!DatasubsetForFilter.data,&quot;CaseManagerName&quot;,{})),&#xD;
+field:&quot;CaseManagerName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[9],&#xD;
+data:index(local!DatasubsetForFilter.data,&quot;ItemName&quot;,{}),&#xD;
+field:&quot;ItemName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[10],&#xD;
+data:index(local!DatasubsetForFilter.data,&quot;Assessment&quot;,{}),&#xD;
+field:&quot;Assessment&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[11],&#xD;
+data:index(local!DatasubsetForFilter.data,&quot;CaseManagement&quot;,{}),&#xD;
+field:&quot;CaseManagement&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[12],&#xD;
+data:index(local!DatasubsetForFilter.data,&quot;Suppliers&quot;,{}),&#xD;
+field:&quot;Suppliers&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_19721&quot;[13],&#xD;
+data:index(local!DatasubsetForFilter.data,&quot;Total&quot;,{}),&#xD;
+field:&quot;Total&quot;&#xD;
+)&#xD;
+},&#xD;
+value:local!pagingInfo2,&#xD;
+saveInto:local!pagingInfo2&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

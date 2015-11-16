@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_GetCaseMangerForFilters</name>
+        <uuid>3d43c2a4-71db-4c0a-90db-adbadf3a77a9</uuid>
+        <description>Returns the case manger name on the basis of Logged in User.
+If logged in user is a case manger then this rule will return case manger name corresponding to that case manager.
+If logged in user is a team leader then this rule will return all the case manger names</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10791</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(
+  local!ProviderAccountDetails: #&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(
+    ri!LoggedInUser
+  ),
+  local!TeamId: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      local!ProviderAccountDetails
+    ),
+    {},
+    local!ProviderAccountDetails.Team
+  ),
+  local!ProviderAccountDetailsByTeamID: #&quot;9389fff6-b1a7-4511-8046-771b610f423f&quot;(
+    if(
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+        ri!TeamId
+      ),
+      #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3209&quot;,
+      ri!TeamId
+    ),
+    {
+      #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3213&quot;[1],
+      #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3213&quot;[2]
+    }
+  ),
+  local!CaseMangers: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+      local!ProviderAccountDetailsByTeamID
+    ),
+    {},
+    local!ProviderAccountDetailsByTeamID.Username
+  ),
+  if(
+    ri!TypeId = #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3213&quot;[1],
+    ri!LoggedInUser,
+    if(
+      ri!TypeId = #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3213&quot;[3],
+      local!CaseMangers,
+      {}
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>LoggedInUser</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>TypeId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>TeamId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_AgeDebtPagingGrid</name>
+        <uuid>b7b47dae-aa0a-4345-a6e3-8a41ce3aebbd</uuid>
+        <description>Contains paging grid for age debt report</description>
+        <parentUuid>_a-0000db6d-e203-8000-6ee0-010000010000_26684</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+label:&quot;&quot;,&#xD;
+totalCount:ri!datasubset.totalCount,&#xD;
+columns:{&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[1],&#xD;
+data:index(ri!datasubset.data,&quot;CaseID&quot;,{}),&#xD;
+links: apply(&#xD;
+        #&quot;SYSTEM_SYSRULES_recordLink&quot;(&#xD;
+          recordType: #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1432&quot;,&#xD;
+          identifier: _&#xD;
+        ),&#xD;
+        index(&#xD;
+          ri!datasubset.data,&#xD;
+          &quot;CaseID&quot;,&#xD;
+          {}&#xD;
+        )&#xD;
+      ),&#xD;
+field:&quot;CaseID&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[2],&#xD;
+data:index(ri!datasubset.data,&quot;TopClientName&quot;,{}),&#xD;
+field:&quot;TopClientName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[3],&#xD;
+data:index(ri!datasubset.data,&quot;BrandName&quot;,{}),&#xD;
+field:&quot;BrandName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[4],&#xD;
+data:index(ri!datasubset.data,&quot;ClientName&quot;,{}),&#xD;
+field:&quot;ClientName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[5],&#xD;
+data:index(ri!datasubset.data,&quot;ProductName&quot;,{}),&#xD;
+field:&quot;ProductName&quot;&#xD;
+),&#xD;
+&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[6],&#xD;
+data:apply(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,index(ri!datasubset.data,&quot;CaseManagerName&quot;,{})),&#xD;
+field:&quot;CaseManagerName&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[7],&#xD;
+data:index(ri!datasubset.data,&quot;AmountTotal&quot;,{}),&#xD;
+field:&quot;AmountTotal&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[8],&#xD;
+data:index(ri!datasubset.data,&quot;Days_1_30&quot;,{}),&#xD;
+field:&quot;Days_1_30&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[9],&#xD;
+data:index(ri!datasubset.data,&quot;Days_31_60&quot;,{}),&#xD;
+field:&quot;Days_31_60&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[10],&#xD;
+data:index(ri!datasubset.data,&quot;Days_61_90&quot;,{}),&#xD;
+field:&quot;Days_61_90&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[11],&#xD;
+data:index(ri!datasubset.data,&quot;Months_3_6&quot;,{}),&#xD;
+field:&quot;Months_3_6&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[12],&#xD;
+data:index(ri!datasubset.data,&quot;Months_6_12&quot;,{}),&#xD;
+field:&quot;Months_6_12&quot;&#xD;
+),&#xD;
+&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+  label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[13],&#xD;
+  data:index(ri!datasubset.data,&quot;Months_12_18&quot;,{}),&#xD;
+  field:&quot;Months_12_18&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+  label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[14],&#xD;
+  data:index(ri!datasubset.data,&quot;Months_18_24&quot;,{}),&#xD;
+  field:&quot;Months_18_24&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+  label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[15],&#xD;
+  data:index(ri!datasubset.data,&quot;Months_24_30&quot;,{}),&#xD;
+  field:&quot;Months_24_30&quot;&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+  label:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_26687&quot;[16],&#xD;
+  data:index(ri!datasubset.data,&quot;Months_30&quot;,{}),&#xD;
+  field:&quot;Months_30&quot;&#xD;
+)&#xD;
+},&#xD;
+value:ri!pagingInfo,&#xD;
+saveInto:ri!pagingInfo&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>datasubset</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>pagingInfo</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>datasubset</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>pagingInfo</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

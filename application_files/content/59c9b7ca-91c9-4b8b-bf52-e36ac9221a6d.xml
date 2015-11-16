@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_ReportFilterSection</name>
+        <uuid>59c9b7ca-91c9-4b8b-bf52-e36ac9221a6d</uuid>
+        <description>Contains a section for filters.</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_9987</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+label:&quot;Filters&quot;,&#xD;
+firstColumnContents:{&#xD;
+#&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+label:&quot;Years&quot;,&#xD;
+&#xD;
+choiceLabels:#&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10154&quot;,&#xD;
+choiceValues:#&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10154&quot;,&#xD;
+value:local!FilterByYear,&#xD;
+saveInto:{local!FilterByYear,a!save(local!pagingInfo.startIndex,1),a!save(local!isdownload,null)}&#xD;
+)&#xD;
+},&#xD;
+secondColumnContents:{&#xD;
+#&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+label:&quot;Months&quot;,&#xD;
+placeholderLabel:&quot;All&quot;,&#xD;
+choiceLabels:#&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10153&quot;,&#xD;
+choiceValues:{1,2,3,4,5,6,7,8,9,10,11,12},&#xD;
+value:local!FilterByMonth,&#xD;
+saveInto:{local!FilterByMonth,a!save(local!pagingInfo.startIndex,1),a!save(local!isdownload,null)}&#xD;
+)&#xD;
+}&#xD;
+),&#xD;
+#&quot;fb9d74c1-3d66-4e12-9ce4-d290e6e4f8d0&quot;()&#xD;
+}</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

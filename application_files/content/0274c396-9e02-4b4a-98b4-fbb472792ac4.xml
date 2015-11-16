@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_GetSLADetailsPagingGridBySLATypeName</name>
+        <uuid>0274c396-9e02-4b4a-98b4-fbb472792ac4</uuid>
+        <description>Contains a grid for SLA Details</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10791</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_gridField&quot;(
+  label: &quot;&quot;,
+  totalCount: local!SLATypeInformation.totalCount,
+  columns: {
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17456&quot;[1],
+      data: index(
+        local!SLATypeInformation.data,
+        &quot;CaseID&quot;,
+        {}
+      ),
+      field: &quot;CaseID&quot;,
+      links: apply(
+        #&quot;SYSTEM_SYSRULES_recordLink&quot;(
+          recordType: #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1432&quot;,
+          identifier: _
+        ),
+        index(
+          local!SLATypeInformation.data,
+          &quot;CaseID&quot;,
+          {}
+        )
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17456&quot;[2],
+      data: index(
+        local!SLATypeInformation.data,
+        &quot;SLATypeName&quot;,
+        null
+      ),
+      field: &quot;SLATypeName&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17456&quot;[3],
+      data:apply(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4596&quot;,index(
+        local!SLATypeInformation.data,
+        &quot;SLACaseManagerName&quot;,
+        {}
+      )),
+      field: &quot;SLACaseManagerName&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17456&quot;[4],
+      data: apply(
+        #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;,
+        index(
+          local!SLATypeInformation.data,
+          &quot;StartDate&quot;,
+          {}
+        )
+      ),
+      field: &quot;StartDate&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17456&quot;[5],
+      data: apply(
+        #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;,
+        index(
+          local!SLATypeInformation.data,
+          &quot;DateAccepted&quot;,
+          {}
+        )
+      ),
+      field: &quot;DateAccepted&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17456&quot;[6],
+      data: apply(
+        #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;,
+        index(
+          local!SLATypeInformation.data,
+          &quot;DateEnded&quot;,
+          {}
+        )
+      ),
+      field: &quot;DateEnded&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17456&quot;[7],
+      data: apply(
+        #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;,
+        index(
+          local!SLATypeInformation.data,
+          &quot;Deadline&quot;,
+          {}
+        )
+      ),
+      field: &quot;Deadline&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17456&quot;[8],
+      data: index(
+        local!SLATypeInformation.data,
+        &quot;ProductName&quot;,
+        null
+      ),
+      field: &quot;ProductName&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17456&quot;[9],
+      data: index(
+        local!SLATypeInformation.data,
+        &quot;TopClientName&quot;,
+        null
+      ),
+      field: &quot;TopClientName&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+      label: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17456&quot;[10],
+      data:apply(#&quot;bb4255cd-f430-454e-badc-2c12249fb111&quot;,index(
+            local!SLATypeInformation.data,
+            &quot;TeamID&quot;,
+            {}
+          )),
+      field: &quot;TeamID&quot;
+    ),
+    #&quot;SYSTEM_SYSRULES_gridImageColumn&quot;(
+      label: #&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_17456&quot;[11],
+      size: &quot;ICON&quot;,
+      data: apply(
+        #&quot;SYSTEM_SYSRULES_documentImage&quot;(
+          document: _,
+          altText: _,
+          caption: _
+        ),
+        merge(
+          apply(
+            #&quot;SYSTEM_SYSRULES_iconIndicator&quot;,
+            apply(
+              #&quot;11e22371-e1f0-4a85-99be-9739fc16cb16&quot;,
+              merge(
+                index(
+                  local!SLATypeInformation.data,
+                  &quot;Breached&quot;,
+                  {}
+                ),
+                index(
+                  local!SLATypeInformation.data,
+                  &quot;Deadline&quot;,
+                  {}
+                ),
+                index(
+                  local!SLATypeInformation.data,
+                  &quot;DateEnded&quot;,
+                  {}
+                )
+              )
+            )
+          ),
+          {
+            apply(
+              #&quot;e25cded9-533c-437d-8fed-f41d57bd142c&quot;,
+              merge(
+                index(
+                  local!SLATypeInformation.data,
+                  &quot;Breached&quot;,
+                  {}
+                ),
+                index(
+                  local!SLATypeInformation.data,
+                  &quot;Deadline&quot;,
+                  {}
+                ),
+                index(
+                  local!SLATypeInformation.data,
+                  &quot;DateEnded&quot;,
+                  {}
+                )
+              )
+            )
+          },
+          {
+            apply(
+              #&quot;e25cded9-533c-437d-8fed-f41d57bd142c&quot;,
+              merge(
+                index(
+                  local!SLATypeInformation.data,
+                  &quot;Breached&quot;,
+                  {}
+                ),
+                index(
+                  local!SLATypeInformation.data,
+                  &quot;Deadline&quot;,
+                  {}
+                ),
+                index(
+                  local!SLATypeInformation.data,
+                  &quot;DateEnded&quot;,
+                  {}
+                )
+              )
+            )
+          }
+        )
+      )
+    )/*a!gridTextColumn(label:&quot;SLA Met&quot;,data:index(local!SLATypeInformation.data,&quot;Breached&quot;,{}),field:&quot;Breached&quot;)*/
+  },
+  value: local!pagingInfo2,
+  saveInto: local!pagingInfo2
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

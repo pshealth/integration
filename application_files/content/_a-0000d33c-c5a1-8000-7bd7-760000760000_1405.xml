@@ -19,7 +19,7 @@
                 <name>string</name>
                 <namespace>http://www.w3.org/2001/XMLSchema</namespace>
             </type>
-            <value>jdbc/AppianSecondaryDS</value>
+            <value>java:/jdbc/appiansecondary</value>
         </typedValue>
     </constant>
     <roleMap public="true">

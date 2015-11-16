@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_ClientMilestone_Grid</name>
+        <uuid>13a67f68-a557-4a84-8629-57662aa9a415</uuid>
+        <description></description>
+        <parentUuid>_a-0000da84-7ec2-8000-6ee0-010000010000_2166</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=with(
+  local!parentsIds: #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1886&quot;(
+    ri!clientslatype.data,
+    &quot;SLATypeID&quot;,
+    index(ri!slatype, &quot;ParentSLATypeID&quot;, {}),
+    index(ri!slatype, &quot;ID&quot;, {})
+  ),
+  local!parentNames: if(
+    #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!parentsIds),
+    {},
+    apply(
+      fn!displayvalue,
+      local!parentsIds,
+      index(ri!slatype, &quot;ID&quot;, {}),
+      index(ri!slatype, &quot;Name&quot;, {}),
+      &quot;When Case Starts&quot;
+    )
+  ),
+  if(
+    tointeger(
+      index(
+        ri!clientslatype,
+        &quot;totalCount&quot;,
+        0
+      )
+    ) = 0,
+    {
+      #&quot;SYSTEM_SYSRULES_textField&quot;(
+        label: &quot;No &quot; &amp; #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_3094&quot; &amp; &quot; configured&quot;,
+        readOnly: true
+      )
+    },
+    #&quot;SYSTEM_SYSRULES_gridField&quot;(
+      label: &quot;&quot;,
+      labelPosition: &quot;ABOVE&quot;,
+      totalCount: index(
+        ri!clientslatype,
+        &quot;totalCount&quot;,
+        0
+      ),
+      columns: {
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Stakeholder&quot;,
+          data: #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1886&quot;(
+            ri!clientslatype.data,
+            &quot;ClientID&quot;,
+            ri!clients.Name,
+            ri!clients.ID
+          ),
+          alignment: &quot;LEFT&quot;
+        ),
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10897&quot;,
+          data: if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!clientslatype.data
+            ),
+            {},
+            #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1886&quot;(
+              ri!clientslatype.data,
+              &quot;SLATypeID&quot;,
+              ri!slatype.name,
+              ri!slatype.id
+            )
+          ),
+          alignment: &quot;LEFT&quot;
+        ),
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Deadline (Days)&quot;,
+          data: if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!clientslatype.data
+            ),
+            null,
+            toInteger(
+              (
+                index(
+                  ri!clientslatype.data,
+                  &quot;DeadlineHours&quot;,
+                  {}
+                ) / 8
+              )
+            )
+          )
+        ),
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Deadline (Hours)&quot;,
+          data: if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!clientslatype.data
+            ),
+            null,
+            mod(
+              index(
+                ri!clientslatype.data,
+                &quot;DeadlineHours&quot;,
+                {}
+              ),
+              8
+            )
+          )
+        ),
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Total (Hours)&quot;,
+          data: if(
+            #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(
+              ri!clientslatype.data
+            ),
+            null,
+            index(
+              ri!clientslatype.data,
+              &quot;DeadlineHours&quot;,
+              {}
+            )
+          )
+        ),
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10897&quot; &amp; &quot; begins after: &quot;,
+          data: local!parentNames
+        )
+      },
+      value: ri!paginginfo,
+      saveInto: ri!paginginfo,
+      validations: {}
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>clientslatype</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>clients</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>slatype</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>paginginfo</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>iain.fifer@pshealth.co.uk</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                <a:nameRef>clientslatype</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                <a:nameRef>clients</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                <a:nameRef>slatype</a:nameRef>
+            </a:ruleInputTestConfigs>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:Expression"/>
+                <a:nameRef>paginginfo</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

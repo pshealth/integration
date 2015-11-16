@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_GenerateDatasubsetForOpenCaseStatusProfileReport</name>
+        <uuid>ed81cf02-6753-49c0-9ee5-a873b0535552</uuid>
+        <description>Generates datasubset for Open Case Status Profile Report</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_11065</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_queryEntity&quot;(&#xD;
+entity:#&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11003&quot;,&#xD;
+query:#&quot;SYSTEM_SYSRULES_query&quot;(&#xD;
+aggregation:#&quot;SYSTEM_SYSRULES_queryAggregation&quot;(&#xD;
+{#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+field:&quot;Months&quot;,&#xD;
+isGrouping:true&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+field:&quot;Years&quot;,&#xD;
+isGrouping:true&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(&#xD;
+field:&quot;Status&quot;,&#xD;
+isGrouping:true&#xD;
+),&#xD;
+#&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(field: &quot;ID&quot;, aggregationFunction: &quot;COUNT&quot;)&#xD;
+}&#xD;
+),&#xD;
+logicalExpression :if(and(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartDate),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndDate)),null,#&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(&#xD;
+operator :&quot;AND&quot;,&#xD;
+filters : {/*if(or(rule!Utils_CheckIsNull(local!FilterByStartDate),rule!Utils_CheckIsNull(local!FilterByEndDate)),null,&#xD;
+		&#xD;
+		a!queryFilter(&#xD;
+  field: &quot;DateOpened&quot;,&#xD;
+  operator: &quot;between&quot;,&#xD;
+  value: {local!FilterByStartDate,local!FilterByEndDate}&#xD;
+)),*/&#xD;
+#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;Status&quot;,operator:&quot;not null&quot;),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByCM),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;CaseManagerName&quot;,operator:&quot;=&quot;,value:tostring(local!FilterByCM))),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByProduct),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;ProductName&quot;,operator:&quot;=&quot;,value:local!FilterByProduct)),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByCustomer),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;TopClientName&quot;,operator:&quot;=&quot;,value:local!FilterByCustomer)),&#xD;
+if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByTeam),{},#&quot;SYSTEM_SYSRULES_queryFilter&quot;(field:&quot;TeamID&quot;,operator:&quot;=&quot;,value:local!FilterByTeam))}&#xD;
+&#xD;
+)),&#xD;
+	pagingInfo: local!pagingInfo&#xD;
+	)&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

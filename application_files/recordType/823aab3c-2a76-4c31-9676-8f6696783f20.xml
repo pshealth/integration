@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <recordType name="Customer Stakeholder" a:uuid="823aab3c-2a76-4c31-9676-8f6696783f20">
+        <a:pluralName>Customer Stakeholders</a:pluralName>
+        <a:description>Records of customers that can be accessed for each case</a:description>
+        <a:urlStub>JvuMRA</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="a76a8afc-5795-460d-a2e0-1c6b429ca73b@_a-0000da6a-36ed-8000-6ee0-010000010000_956"/>
+        <a:listViewTemplateExpr>=#&quot;b734552b-0b4e-4a85-84d8-9bb8f4b3a93b&quot;()</a:listViewTemplateExpr>
+        <a:fieldCfg name="Type">
+            <a:description></a:description>
+            <a:sourceRef>ClientTypeID</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>=&quot;Type&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Insurer&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>1</a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Claimant Solicitor&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>3</a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Defendant Solicitor&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>13</a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Employer&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=4</a:values>
+            </a:facetOption>
+            <a:sortOrderIndex>0</a:sortOrderIndex>
+            <a:facetOrderIndex>0</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="Recently Added">
+            <a:description></a:description>
+            <a:sourceRef>CreatedDate</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>=&quot;Recently Added&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>=index(#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_29284&quot;, 1, &quot;&quot;)</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>=now() - index(#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_29283&quot;, 1, 0)</a:lowerLimitExpr>
+                <a:upperLimitExpr>=now()</a:upperLimitExpr>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=index(#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_29284&quot;, 2, 0)</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>=now() - index(#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_29283&quot;, 2, 0)</a:lowerLimitExpr>
+                <a:upperLimitExpr>=now()</a:upperLimitExpr>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=index(#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_29284&quot;, 3, 0)</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>=now() - index(#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_29283&quot;, 3, 0)</a:lowerLimitExpr>
+                <a:upperLimitExpr>=now()</a:upperLimitExpr>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=index(#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_29284&quot;, 4, 0)</a:labelExpr>
+                <a:facetOperator>BETWEEN</a:facetOperator>
+                <a:lowerLimitExpr>=now() - index(#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_29283&quot;, 4, 0)</a:lowerLimitExpr>
+                <a:upperLimitExpr>=now()</a:upperLimitExpr>
+            </a:facetOption>
+            <a:sortOrderIndex>1</a:sortOrderIndex>
+            <a:facetOrderIndex>1</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="Status">
+            <a:description></a:description>
+            <a:sourceRef>IsActive</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>=&quot;Status&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Active&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=true()</a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Inactive&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>=false()</a:values>
+            </a:facetOption>
+            <a:sortOrderIndex>2</a:sortOrderIndex>
+            <a:facetOrderIndex>2</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:fieldCfg name="Level">
+            <a:description></a:description>
+            <a:sourceRef>ParentID</a:sourceRef>
+            <a:isSortable>false</a:isSortable>
+            <a:isSearchable>false</a:isSearchable>
+            <a:isFacet>true</a:isFacet>
+            <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+            <a:isExclusiveFacet>true</a:isExclusiveFacet>
+            <a:facetLabelExpr>=&quot;Level&quot;</a:facetLabelExpr>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Parent Company&quot;</a:labelExpr>
+                <a:facetOperator>IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>0</a:values>
+            </a:facetOption>
+            <a:facetOption>
+                <a:labelExpr>=&quot;Branch / Team&quot;</a:labelExpr>
+                <a:facetOperator>NOT_IN</a:facetOperator>
+                <a:lowerLimitExpr></a:lowerLimitExpr>
+                <a:upperLimitExpr></a:upperLimitExpr>
+                <a:values>0</a:values>
+            </a:facetOption>
+            <a:sortOrderIndex>3</a:sortOrderIndex>
+            <a:facetOrderIndex>3</a:facetOrderIndex>
+        </a:fieldCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Summary&quot;</a:nameExpr>
+            <a:uiExpr>=#&quot;7719be95-9e77-44d2-8d1a-68929a53d452&quot;(rp!id)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>c4fb364c-4f8f-4db4-a500-7d22f95ed2f7</a:relatedActionCfg>
+            <a:relatedActionCfg>df8637b7-f575-45e5-bb9f-6fcb8f929774</a:relatedActionCfg>
+            <a:relatedActionCfg>950eeb95-a9e8-4586-8de1-4420c5dbc043</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Products&quot;</a:nameExpr>
+            <a:uiExpr>=#&quot;36ff5406-2dcf-4f9f-98e2-2f9a4233c3e9&quot;(rp!id)</a:uiExpr>
+            <a:visibilityExpr>=if(rf!TopLevelTypeID = 1, true, false)</a:visibilityExpr>
+            <a:urlStub>_h1ERDA</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>2caec047-4649-4c3a-a2c6-92600301c294</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>=#&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_3094&quot;</a:nameExpr>
+            <a:uiExpr>=#&quot;784633dd-ed64-4795-8362-2d87ae6e95bc&quot;(rp!id)
+</a:uiExpr>
+            <a:visibilityExpr>=if(rf!TopLevelTypeID = 1, true, false)</a:visibilityExpr>
+            <a:urlStub>_GrAhmg</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>&quot;Customer MI Report&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;99e98fd0-8f71-4d08-a9d0-d6c37eb48ad9&quot;(trim(rf!Name))</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_prGEXA</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+        </a:detailViewCfg>
+        <a:defaultFilter>
+            <a:field>ProviderID</a:field>
+            <a:operator>in</a:operator>
+            <a:valueExpression>=#&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(loggedInUser()).ProviderID</a:valueExpression>
+        </a:defaultFilter>
+        <a:defaultFilter>
+            <a:field>ID</a:field>
+            <a:operator>in</a:operator>
+            <a:valueExpression>=#&quot;45ec65a2-90dd-4a80-a1a9-2cbb166127ad&quot;(1, 4).ID</a:valueExpression>
+        </a:defaultFilter>
+        <a:defaultSortInfo>
+            <field>Name</field>
+            <ascending>true</ascending>
+        </a:defaultSortInfo>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0007da83-4903-8000-6ee0-010000010000"/>
+            <a:contextExpr>={ParentClientID: rf!ID, ParentTopLevelTypeID: rf!TopLevelTypeID, ProviderID: rf!ProviderID, AddingSubClient: true}</a:contextExpr>
+            <a:visibilityExpr>=if(or(rf!ClientTypeID = 4, rf!ClientTypeID = 12), false(), true())</a:visibilityExpr>
+            <a:refId>c4fb364c-4f8f-4db4-a500-7d22f95ed2f7</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0006daa8-3e32-8000-6ee0-010000010000"/>
+            <a:contextExpr>={ClientID: rp!id}</a:contextExpr>
+            <a:visibilityExpr>=and(not(rf!ClientTypeID=12), #&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(loggedInUser()).IsAdministrator = 1)</a:visibilityExpr>
+            <a:refId>2caec047-4649-4c3a-a2c6-92600301c294</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002daf4-3b28-8000-6ee0-010000010000"/>
+            <a:contextExpr>={ClientID: rp!id}</a:contextExpr>
+            <a:visibilityExpr>=not(rf!ClientTypeID=12)</a:visibilityExpr>
+            <a:refId>df8637b7-f575-45e5-bb9f-6fcb8f929774</a:refId>
+        </a:relatedActionCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0003db0d-93bf-8000-6ee0-010000010000"/>
+            <a:contextExpr>{ClientID: rf!ID, ProviderID: rf!ProviderID, IsUpdate: true()}</a:contextExpr>
+            <a:visibilityExpr>=not(contains(#&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(loggedInUser()).TypeID , 1))</a:visibilityExpr>
+            <a:refId>950eeb95-a9e8-4586-8de1-4420c5dbc043</a:refId>
+        </a:relatedActionCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:security>16383</a:security>
+    </recordType>
+    <roleMap>
+        <role name="record_type_editor">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_15</groupUuid>
+                <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_17</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</recordTypeHaul>

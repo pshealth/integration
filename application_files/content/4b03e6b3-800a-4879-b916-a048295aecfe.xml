@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_ProviderAccount_Dashboard_Skills</name>
+        <uuid>4b03e6b3-800a-4879-b916-a048295aecfe</uuid>
+        <description></description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_1005</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(&#xD;
+    local!pagingInfo:  #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+          startIndex: 1,&#xD;
+          batchSize: 10&#xD;
+          ),&#xD;
+	local!skills: #&quot;aaf71e1d-39d0-44c1-867e-bfe03df97654&quot;(),&#xD;
+	local!proficiencies: #&quot;c8ccc7e0-85da-444e-a5e7-6653bf509860&quot;(),&#xD;
+	with(&#xD;
+		local!providerAccountSkills: #&quot;f33e4a66-7cab-4f96-8de3-32112d6ddfe2&quot;(ri!providerAccountId, local!paginginfo),&#xD;
+		 #&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(&#xD;
+		  firstColumnContents: {&#xD;
+		 	  #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+	          label: &quot;Skills&quot;,&#xD;
+	          firstColumnContents:{&#xD;
+	            #&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+  	            labelPosition: &quot;ABOVE&quot;,&#xD;
+  	            totalCount: local!providerAccountSkills.totalCount,&#xD;
+  	            columns: {&#xD;
+    	           #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+	                    label: &quot;Skill&quot;,&#xD;
+	                    field: &quot;SkillID&quot;,&#xD;
+	                    data: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!providerAccountSkills.data), null, apply(fn!displayvalue, index(local!providerAccountSkills.data, &quot;SkillID&quot;, null), local!skills.ID, local!skills.Name, 0)),&#xD;
+	                    alignment: &quot;LEFT&quot;&#xD;
+	                  ),&#xD;
+	                   #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+	                    label: &quot;Proficiency&quot;,&#xD;
+	                    field: &quot;SkillProficiencyID&quot;,&#xD;
+	                    data: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!providerAccountSkills.data), null, apply(fn!displayvalue, index(local!providerAccountSkills.data, &quot;SkillProficiencyID&quot;, null), local!proficiencies.ID, local!proficiencies.Name, 0)),&#xD;
+	                    alignment: &quot;LEFT&quot;&#xD;
+	                  ) &#xD;
+  	            },&#xD;
+  	            value: local!paginginfo,&#xD;
+  	            saveInto: local!paginginfo,&#xD;
+  	            validations: {}&#xD;
+	            )&#xD;
+&#xD;
+	          },&#xD;
+	          secondColumnContents:{&#xD;
+	          }&#xD;
+	        )&#xD;
+		  },&#xD;
+		  secondColumnContents: {&#xD;
+		  }&#xD;
+		)&#xD;
+	)&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>providerAccountId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>krassimir.dimitrov@pshealth.co.uk</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

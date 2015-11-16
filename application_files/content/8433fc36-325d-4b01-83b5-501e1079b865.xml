@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>CM_MI_ReferralsReceivedOpenSection</name>
+        <uuid>8433fc36-325d-4b01-83b5-501e1079b865</uuid>
+        <description>Contains a section to show the total referrals received and total referrals open</description>
+        <parentUuid>_a-0000db0d-1b74-8000-6ee0-010000010000_10801</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+  label: &quot;Case Product for &quot; &amp; if(&#xD;
+    local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[1],&#xD;
+    if(&#xD;
+      month(&#xD;
+        local!FilterByReferredStartDate&#xD;
+      ) = month(&#xD;
+        local!FilterByReferredEndDate&#xD;
+      ),&#xD;
+      #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;(&#xD;
+        local!FilterByReferredStartDate&#xD;
+      &#xD;
+    ),&#xD;
+    #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;(&#xD;
+      todatetime(&#xD;
+        1 &amp; &quot;/&quot; &amp; month(&#xD;
+          local!FilterByReferredEndDate&#xD;
+        ) &amp; &quot;/&quot; &amp; year(&#xD;
+          local!FilterByReferredEndDate&#xD;
+        )&amp;&quot; 23:00&quot;&#xD;
+      )&#xD;
+    )&#xD;
+  ),&#xD;
+  if(&#xD;
+    month(&#xD;
+      local!FilterByStartOpenedDate&#xD;
+    ) = month(&#xD;
+      local!FilterByEndOpenedDate&#xD;
+    ),&#xD;
+    #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;(&#xD;
+      local!FilterByStartOpenedDate&#xD;
+    ),&#xD;
+    #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;(&#xD;
+      todatetime(&#xD;
+        1 &amp; &quot;/&quot; &amp; month(&#xD;
+          local!FilterByEndOpenedDate&#xD;
+        ) &amp; &quot;/&quot; &amp; year(&#xD;
+          local!FilterByEndOpenedDate&#xD;
+        )&amp;&quot; 23:00&quot;&#xD;
+      )&#xD;
+    )&#xD;
+  )&#xD;
+) &amp; &quot; - &quot; &amp; if(&#xD;
+  local!CaseDateRange = #&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[1],&#xD;
+  #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;(&#xD;
+    local!FilterByReferredEndDate&#xD;
+  ),&#xD;
+  #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_4230&quot;(&#xD;
+    local!FilterByEndOpenedDate&#xD;
+  )&#xD;
+),/*&#xD;
+firstColumnContents: {&#xD;
+  a!textField(&#xD;
+    label: &quot;Total Referrals Received&quot;,&#xD;
+    value: if(&#xD;
+      rule!Utils_CheckIsNull(&#xD;
+        local!datasubset1.data&#xD;
+      ),&#xD;
+      0,&#xD;
+      SUM(&#xD;
+        local!datasubset1.data.ID&#xD;
+      )&#xD;
+    ),&#xD;
+    readOnly: true&#xD;
+  )&#xD;
+},&#xD;
+secondColumnContents: {&#xD;
+  a!textField(&#xD;
+    label: &quot;Total Referrals Open&quot;,&#xD;
+    value: if(&#xD;
+      rule!Utils_CheckIsNull(&#xD;
+        local!datasubset1.data&#xD;
+      ),&#xD;
+      0,&#xD;
+      sum(&#xD;
+        index(&#xD;
+          local!datasubset1.data,&#xD;
+          &quot;Opened&quot;,&#xD;
+          null&#xD;
+        )&#xD;
+      )&#xD;
+    ),&#xD;
+    readOnly: true&#xD;
+  )&#xD;
+},*/&#xD;
+isCollapsible: true&#xD;
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+    </typedValue>
+</contentHaul>

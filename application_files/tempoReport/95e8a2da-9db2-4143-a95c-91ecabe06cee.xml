@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="SLA Adherence" a:uuid="95e8a2da-9db2-4143-a95c-91ecabe06cee">
+        <a:description>Click above to view the percentage SLA met for the cases</a:description>
+        <a:uiExpr>=#&quot;91dac07f-c08c-4969-b316-494af06ce16e&quot;()</a:uiExpr>
+        <a:urlStub>8AWJ1w</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dac7-a418-8000-6edf-010000010000_51</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000da6a-36ec-8000-6edf-010000010000_17</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoReportHaul>

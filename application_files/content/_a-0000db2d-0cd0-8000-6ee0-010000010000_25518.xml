@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <constant>
+        <name>MI_REPORTING_DATA_EXPORT_CASE_CLIENT_SQL</name>
+        <uuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25518</uuid>
+        <description>Holds the SQL for extract for Case Client Table - data Export</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25506</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value>SELECT CC.CaseID AS 'Case ID', Client.Name As 'Customer', CC.IsBillTo As 'Is Bill To', CC.Status As 'Status', CC.reference AS 'Reference', CC.isreferrer AS 'Is Referrer', CC.isinstructed AS 'Is Instructed', CC.handlername AS 'Handler Name', CC.handlerphone AS 'Handler Phone', CC.handleremail AS 'Handler Email', CR.Type AS 'Case Role' FROM appiansecondary.caseclient CC LEFT JOIN appiansecondary.client Client ON Client.ID = CC.ClientID LEFT JOIN appiansecondary.`case` C ON C.CaseID = CC.CaseID LEFT JOIN appiansecondary.caserole CR ON CR.RoleID = CC.caseroleid</value>
+        </typedValue>
+    </constant>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

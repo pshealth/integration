@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>MI_MultiTrack_CustomerReportDashboard</name>
+        <uuid>99e98fd0-8f71-4d08-a9d0-d6c37eb48ad9</uuid>
+        <description>Contains the Customer Report for MI Multi Track Dashboard</description>
+        <parentUuid>_a-0000db2d-0cd0-8000-6ee0-010000010000_25549</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+  local!pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+    startIndex: 1,&#xD;
+    batchize: 10&#xD;
+  ),&#xD;
+  local!pagingInfo2: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+    startIndex: 1,&#xD;
+    batchize: 10&#xD;
+  ),&#xD;
+local!CaseDateRange:#&quot;_a-0000dbb7-3ff9-8000-6ee0-010000010000_46128&quot;[1],&#xD;
+  local!FilterByParentCompany,&#xD;
+  local!FilterByBrandName,&#xD;
+  local!FilterByTeamDeptName,&#xD;
+  local!FilterByBrand,&#xD;
+  local!FilterByTeamDept,&#xD;
+  local!FilterByEndDate: now(),&#xD;
+  local!FilterByEndOpenedDate,&#xD;
+  local!FilterByEndClosedDate,&#xD;
+  local!FilterByReferredEndDate,&#xD;
+  local!FilterByReferredStartDate,&#xD;
+ local!RollingMonthCount: #&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_11229&quot;[1],&#xD;
+   local!FilterByStartDate: local!FilterByEndDate - (&#xD;
+      30 * local!RollingMonthCount&#xD;
+    ),&#xD;
+	local!FilterByStartOpenedDate,&#xD;
+  local!FilterByStartClosedDate,&#xD;
+  local!CaseManager,&#xD;
+  local!FilterByCaseManager,&#xD;
+  local!FilterByCustomer:ri!Customer,&#xD;
+  local!FilterByProduct,&#xD;
+  &#xD;
+  local!LoggedInUser: tostring(&#xD;
+   loggedInUser()&#xD;
+  ),&#xD;
+  local!LoggedInUserTeamID:tointeger(#&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(local!LoggedInUser).Team),&#xD;
+local!FilterByTeam:if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!LoggedInUserTeamID),null,if(contains(#&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3209&quot;,local!LoggedInUserTeamID[1]),local!LoggedInUserTeamID[1],null)),&#xD;
+  local!FilterByYear,&#xD;
+local!FilterByMonth,&#xD;
+  local!isdownload,&#xD;
+  local!Referrals,&#xD;
+  local!Referrals2,&#xD;
+  local!SelectedReport,&#xD;
+  local!ProviderID:tointeger(#&quot;8430783a-f3f9-468d-a8b1-b6f55db99737&quot;(local!LoggedInUser).ProviderID),&#xD;
+  local!DataExportReport,&#xD;
+  with(&#xD;
+   &#xD;
+     local!AllMonths:if(or(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByStartDate),#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!FilterByEndDate)),null,#&quot;2c346d1c-1883-48b9-86ea-0b3ac5c2d95c&quot;(todate(local!FilterByStartDate),todate(local!FilterByEndDate))),&#xD;
+    local!TypeId: #&quot;0ba28ef9-ea52-42cf-9b42-291320d1f2da&quot;(&#xD;
+      local!LoggedInUser&#xD;
+    ).TypeID,&#xD;
+    local!FilterByCM: if(&#xD;
+      local!TypeId = 1,&#xD;
+      local!LoggedInUser,&#xD;
+      local!FilterByCaseManager&#xD;
+    ),&#xD;
+    local!CaseManager: #&quot;3d43c2a4-71db-4c0a-90db-adbadf3a77a9&quot;(&#xD;
+      local!LoggedInUser,&#xD;
+      local!TypeId,&#xD;
+      local!FilterByTeam&#xD;
+    ),&#xD;
+    local!TeamValues: #&quot;908d1533-d1ac-4b1e-ba88-c653df22fd10&quot;(&#xD;
+      local!LoggedInUser,&#xD;
+      local!TypeId&#xD;
+    ),&#xD;
+    local!TeamLabel: if(&#xD;
+      #&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(&#xD;
+        local!TeamValues&#xD;
+      ),&#xD;
+      {},&#xD;
+      apply(&#xD;
+        #&quot;bb4255cd-f430-454e-badc-2c12249fb111&quot;,&#xD;
+        {&#xD;
+          local!TeamValues&#xD;
+        }&#xD;
+      )&#xD;
+    ),&#xD;
+    local!Customer: #&quot;7f82047a-c92a-49b8-a293-7682db2ab334&quot;(&#xD;
+      local!LoggedInUser,&#xD;
+      local!TypeId&#xD;
+    ),&#xD;
+    local!Product: #&quot;7459cc01-2a3f-4b7c-a654-1023424f9cf1&quot;(&#xD;
+      local!LoggedInUser,&#xD;
+      local!TypeId&#xD;
+    ),&#xD;
+    local!FilterByYear:tointeger(year(local!FilterByEndDate)),&#xD;
+    #&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(&#xD;
+      firstColumnContents: {&#xD;
+        /*Filters*/&#xD;
+     /*   rule!MI_MultiTrack_DateRangeFilter(),*/&#xD;
+  #&quot;b595eb1a-a005-4a2c-8724-7ad9b0662712&quot;(),&#xD;
+        #&quot;b2ded4b3-b270-4f21-93d0-e3f1d8e1ca52&quot;(#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25548&quot;),&#xD;
+        if(contains(local!SelectedReport,#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25548&quot;[1]),#&quot;47e2321d-3e18-44b5-ab69-a2836ea08582&quot;(),{}),&#xD;
+        &#xD;
+        if(contains(local!SelectedReport,#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25548&quot;[2]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;c760d483-3c98-46c8-92db-a441c649a702&quot;()},{}),&#xD;
+       &#xD;
+      if(contains(local!SelectedReport,#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25548&quot;[3]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;e93f2091-2661-423f-9109-2a08f3fe85f4&quot;()},{}),&#xD;
+      &#xD;
+      if(contains(local!SelectedReport,#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25548&quot;[4]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;271737c3-2e13-4f58-8cbf-c3fe181b8dff&quot;()},{}),&#xD;
+      &#xD;
+     if(contains(local!SelectedReport,#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25548&quot;[5]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;94cf0851-16c9-4070-8245-77a07f4905ed&quot;()},{}),&#xD;
+     &#xD;
+     if(contains(local!SelectedReport,#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25548&quot;[6]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;dfcc5726-7601-4e42-ab98-863f056806f9&quot;()},{}),&#xD;
+     &#xD;
+if(contains(local!SelectedReport,#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25548&quot;[7]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;e4dae816-d994-486a-887c-1e1c3e32947f&quot;()},{}),&#xD;
+&#xD;
+if(contains(local!SelectedReport,#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25548&quot;[8]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;195857a9-a5ba-4b5c-9fb5-d7c115acb68a&quot;()},{}),&#xD;
+&#xD;
+if(contains(local!SelectedReport,#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25548&quot;[9]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;557a693f-cef3-4ddd-8b88-9e560e79df11&quot;()},{}),&#xD;
+&#xD;
+if(contains(local!SelectedReport,#&quot;_a-0000db2d-0cd0-8000-6ee0-010000010000_25548&quot;[10]),{#&quot;SYSTEM_SYSRULES_textField&quot;(label:&quot;&quot;,labelPosition:&quot;COLLAPSED&quot;,value:&quot;&quot;,readOnly:true),#&quot;5a1656d0-0e04-4194-b056-f3a96ea8b6be&quot;()},{})&#xD;
+      }&#xD;
+    )&#xD;
+  )&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>Customer</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>appcino.admin</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <a:ruleInputTestConfigs>
+                <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                <a:nameRef>Customer</a:nameRef>
+            </a:ruleInputTestConfigs>
+        </value>
+    </typedValue>
+</contentHaul>

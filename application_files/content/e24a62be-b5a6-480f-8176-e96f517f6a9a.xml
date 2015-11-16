@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>AC_ProviderAccount_Dashboard_Summary</name>
+        <uuid>e24a62be-b5a6-480f-8176-e96f517f6a9a</uuid>
+        <description></description>
+        <parentUuid>_a-0000da6a-36ed-8000-6ee0-010000010000_1005</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(
+	local!providerAccount: #&quot;e536aa82-9e72-44de-b3a2-c424d1e9b980&quot;(ri!providerAccountId),
+	local!Supervisor: #&quot;_a-0000da84-7ec2-8000-6ee0-010000010000_1895&quot;(index(#&quot;b2ebc572-dd8b-41d5-85d7-92a4d35eee7c&quot;(ri!providerAccountId), &quot;SupervisorID&quot;, &quot;&quot;)),
+	local!Dependents: index(#&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10210&quot;(ri!providerAccountId), &quot;ProviderID&quot;, &quot;&quot;),
+	local!SupervisorAccount: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!Supervisor), {}, #&quot;e536aa82-9e72-44de-b3a2-c424d1e9b980&quot;(local!Supervisor)),
+	localDependentsAccounts: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!Dependents), {}, #&quot;76ae3ce5-4f06-4e8f-b23e-ebed0c767f38&quot;(local!Dependents)),
+	 #&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(
+	  firstColumnContents: {
+	  	#&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+	  	firstColumnContents: {
+	   	   #&quot;SYSTEM_SYSRULES_textField&quot;(
+	          label: &quot;Username&quot;,
+	          labelPosition: &quot;ABOVE&quot;,
+	          value: local!providerAccount.Username,
+	          saveInto: local!providerAccount.Username,
+	          readOnly: true
+	        ),
+	        #&quot;SYSTEM_SYSRULES_textField&quot;(
+	          label: &quot;First Name&quot;,
+	          labelPosition: &quot;ABOVE&quot;,
+	          value: local!providerAccount.FirstName,
+	          saveInto: local!providerAccount.FirstName,
+	          readonly: true
+	        ),
+	        #&quot;SYSTEM_SYSRULES_textField&quot;(
+	          label: &quot;Last Name&quot;,
+	          labelPosition: &quot;ABOVE&quot;,
+	          value: local!providerAccount.LastName,
+	          saveInto: local!providerAccount.LastName,
+	          readonly: true
+	        ),
+		if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(displayvalue(local!providerAccount.team, #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3209&quot;, #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3208&quot;, null)),#&quot;SYSTEM_SYSRULES_textField&quot;(
+	          label: &quot;Team&quot;,
+			  labelPosition: &quot;ABOVE&quot;,
+			  value: displayvalue(local!providerAccount.team, #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3209&quot;, #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3208&quot;, null),   
+			  saveInto: {},	
+			  readonly: true
+	        ),
+	        #&quot;SYSTEM_SYSRULES_linkField&quot;(label:&quot;Team&quot;,links:#&quot;SYSTEM_SYSRULES_recordLink&quot;(label:displayvalue(local!providerAccount.team, #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3209&quot;, #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3208&quot;, null),recordType:#&quot;_a-0000db6d-e203-8000-6ee0-010000010000_27014&quot;,identifier:#&quot;230cb62a-562f-4c4a-9862-6aa0ff5d17dd&quot;(#&quot;e536aa82-9e72-44de-b3a2-c424d1e9b980&quot;(ri!providerAccountId).Team).ID))),
+	        			if(
+				#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!SupervisorAccount), 
+				{},
+				#&quot;SYSTEM_SYSRULES_textField&quot;(
+					label: &quot;Supervisor&quot;,
+					labelPosition: &quot;ABOVE&quot;,
+					value: apply(#&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10272&quot;, local!SupervisorAccount),
+					readOnly: true
+				)
+			),
+			if(
+				#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(localDependentsAccounts),
+				{},
+				#&quot;SYSTEM_SYSRULES_textField&quot;(
+					label: &quot;Staff (accounts this user is supervisor of)&quot;,
+					labelPosition: &quot;ABOVE&quot;,
+					value: apply(#&quot;_a-0000db0d-1b74-8000-6ee0-010000010000_10272&quot;, localDependentsAccounts),
+					readOnly: true
+				)
+			)
+			},
+			secondColumnContents: {
+				 #&quot;SYSTEM_SYSRULES_textField&quot;(
+	          label: &quot;Email&quot;,
+	          labelPosition: &quot;ABOVE&quot;,
+	          value: local!providerAccount.Email,
+	          saveInto: local!providerAccount.Email,
+	          readOnly: true
+	        ),
+			#&quot;SYSTEM_SYSRULES_textField&quot;(
+	          label: &quot;Type&quot;,
+			  labelPosition: &quot;ABOVE&quot;,
+			  value: displayvalue(local!providerAccount.TypeID, #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3213&quot;, #&quot;_a-0000dac7-a419-8000-6ee0-010000010000_3212&quot;, null),
+			  saveInto: {},
+	          readonly: true
+	        ),
+		/*if(rule!Utils_CheckIsNull(local!SupervisorAccount),
+		  {},
+		  a!orgChartField(
+		    label: &quot;Staff chart&quot;,
+		    value: touser(local!SupervisorAccount.username),
+		    showAllAncestors: true()
+		  )
+		),
+		*/
+		#&quot;SYSTEM_SYSRULES_imageField&quot;(
+			  label: &quot;Logo&quot;,
+			  labelPosition: &quot;ABOVE&quot;,
+			  images: if(#&quot;_a-0000d33c-c5a1-8000-7bd7-760000760000_1541&quot;(local!providerAccount.ProfileImageID),{}, #&quot;SYSTEM_SYSRULES_documentImage&quot;( document: todocument(local!providerAccount.ProfileImageID),altText: &quot;&quot;, caption: &quot;&quot;, link: &quot;&quot;)),
+			  size: &quot;THUMBNAIL&quot;
+			)
+		}
+		),
+   #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+        label: &quot;Contact Details&quot;,
+        firstColumnContents: {
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Address&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: local!providerAccount.Address,
+            saveInto: local!providerAccount.Address,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            readonly: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;City&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: local!providerAccount.City,
+            saveInto: local!providerAccount.City,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            readonly: true,
+            validations: {},
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;PostCode&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: local!providerAccount.PostCode,
+            saveInto: local!providerAccount.PostCode,
+            refreshAfter: &quot;UNFOCUS&quot;,
+            readonly: true,
+            align: &quot;LEFT&quot;
+          )
+        },
+        secondColumnContents: {
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Office Phone&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: local!providerAccount.PhonePrimary,
+            saveInto: local!providerAccount.PhonePrimary,
+            refreshAfter: &quot;UNFOCUS&quot;,
+          readonly: true,
+            align: &quot;LEFT&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_textField&quot;(
+            label: &quot;Mobile&quot;,
+            labelPosition: &quot;ABOVE&quot;,
+            value: local!providerAccount.PhoneSecondary,
+            saveInto: local!providerAccount.PhoneSecondary,
+            refreshAfter: &quot;UNFOCUS&quot;,
+           readonly: true,
+            align: &quot;LEFT&quot;
+          )
+        }
+      )
+	  },
+	  secondColumnContents: {}
+	)
+)</definition>
+        <namedTypedValue>
+            <name>providerAccountId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>Administrator</userUuid>
+                <userUuid>krassimir.dimitrov@pshealth.co.uk</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>
